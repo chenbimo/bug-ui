@@ -1,0 +1,50 @@
+{
+    "name": "bug-ui",
+    "version": "0.0.0",
+    "description": "Bug-ui - 为 Vue3 提供的组件库",
+    "type": "module",
+    "private": false,
+    "publishConfig": {
+        "access": "public",
+        "registry": "https://registry.npmjs.org"
+    },
+    "exports": {},
+    "scripts": {
+        "ra": "bun run ../release.js --major",
+        "rb": "bun run ../release.js --minor",
+        "rc": "bun run ../release.js --patch"
+    },
+    "keywords": [
+        "bun",
+        "ui",
+        "framework",
+        "javascript"
+    ],
+    "author": "chensuiyi <bimostyle@qq.com>",
+    "homepage": "https://chensuiyi.me",
+    "license": "Apache-2.0",
+    "files": [
+        "bin/",
+        "apis/",
+        "checks/",
+        "config/",
+        "plugins/",
+        "scripts/",
+        "tables/",
+        "utils/",
+        ".gitignore",
+        ".npmignore",
+        ".bunignore",
+        ".editorconfig",
+        ".npmrc",
+        ".prettierignore",
+        ".prettierrc",
+        "bunfig.toml",
+        "LICENSE",
+        "main.js",
+        "system.js",
+        "package.json",
+        "README.md"
+    ],
+    "gitHead": "1dc5f118a723969456559e758e2ba889f4601224"
+}
