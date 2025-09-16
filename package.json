@@ -10,9 +10,9 @@
     },
     "exports": {},
     "scripts": {
-        "ra": "bun run ../release.js --major",
-        "rb": "bun run ../release.js --minor",
-        "rc": "bun run ../release.js --patch"
+        "ra": "bun run ./release.js --major",
+        "rb": "bun run ./release.js --minor",
+        "rc": "bun run ./release.js --patch"
     },
     "keywords": [
         "bun",
