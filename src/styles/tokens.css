@@ -1,0 +1,7 @@
+:root {
+    --ui-color-primary: #3b82f6;
+    --ui-color-primary-foreground: #ffffff;
+    --ui-radius: 8px;
+    --ui-padding-y: 0.5rem;
+    --ui-padding-x: 0.875rem;
+}
