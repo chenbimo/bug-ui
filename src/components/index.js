@@ -1,1 +1,1 @@
-export { default as YiiButton } from './button/index.vue';
+export { default as YiiButton } from './button.vue';

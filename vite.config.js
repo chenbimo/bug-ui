@@ -4,6 +4,7 @@ import vue from '@vitejs/plugin-vue';
 export default defineConfig({
     plugins: [vue()],
     build: {
+        cssCodeSplit: true,
         lib: {
             // 多入口：主库与样式 tokens
             entry: {
