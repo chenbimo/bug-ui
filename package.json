@@ -29,10 +29,9 @@
         "test": "vitest run",
         "test:watch": "vitest",
         "e2e": "playwright test",
-        "docs:dev": "vitepress dev docs",
-        "docs:build": "vitepress build docs",
-        "docs:preview": "vitepress preview docs",
-        "gen:sidebar": "bun run scripts/genSidebar.mjs"
+        "docs:dev": "bun run scripts/docsDev.mjs",
+        "docs:build": "bunx vitepress build docs",
+        "docs:preview": "bunx vitepress preview docs"
     },
     "keywords": [
         "bun",
