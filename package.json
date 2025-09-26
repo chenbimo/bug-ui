@@ -1,6 +1,6 @@
 {
     "name": "buig",
-    "version": "0.0.5",
+    "version": "0.0.6",
     "description": "buig(big + bug + ui) - 全是 BUG 的 Vue3 UI组件库",
     "type": "module",
     "private": false,
@@ -21,9 +21,6 @@
         "**/*.css"
     ],
     "scripts": {
-        "ra": "bun ./release.js --major",
-        "rb": "bun ./release.js --minor",
-        "rc": "bun ./release.js --patch",
         "build": "vite build",
         "dev": "vite",
         "test": "vitest run",

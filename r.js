@@ -56,13 +56,12 @@ function updateVersion(currentVersion, type) {
  * 主函数
  */
 async function main() {
-    console.log('ddddd');
     // 解析参数（仅支持 --major | --minor | --patch）
     const args = process.argv.slice(2);
     let versionType;
-    if (args.includes('--major')) versionType = 'major';
-    else if (args.includes('--minor')) versionType = 'minor';
-    else if (args.includes('--patch')) versionType = 'patch';
+    if (args.includes('-x')) versionType = 'major';
+    else if (args.includes('-y')) versionType = 'minor';
+    else if (args.includes('-z')) versionType = 'patch';
     else {
         console.error('错误: 缺少版本类型参数 (--major | --minor | --patch)');
         process.exit(1);
