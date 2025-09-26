@@ -1,5 +1,6 @@
 import type { App } from 'vue';
-import * as components from './components/index.js';
+// 聚合入口已迁移到 src/components.ts（编译后为 dist/components.js）
+import * as components from './components';
 import type { BuigInstallOptions, BuigComponentWithName } from '../types';
 
 export const componentsList = components;

@@ -51,6 +51,26 @@ const { nav, sidebar } = await buildNavSidebar();
 // 注入环境变量
 const env = { ...process.env, YUI_NAV: JSON.stringify(nav), YUI_SIDEBAR: JSON.stringify(sidebar) };
 
-// 启动 VitePress（通过 bunx）
-const proc = Bun.spawn(['bunx', 'vitepress', 'dev', 'docs'], { stdio: ['inherit', 'inherit', 'inherit'], env });
-await proc.exited;
+// 直接调用本地安装的 vitepress 可执行（node_modules/.bin/vitepress）
+// 在 Bun 下可通过 npx/bunx 但为避免潜在退出码包裹问题，这里尝试直接解析 bin 路径
+import { join } from 'node:path';
+import { access } from 'node:fs/promises';
+
+async function resolveVitePressBin() {
+    const local = join(process.cwd(), 'node_modules', '.bin', 'vitepress');
+    try {
+        await access(local);
+        return local;
+    } catch {
+        return 'vitepress'; // 回退到 PATH
+    }
+}
+
+const bin = await resolveVitePressBin();
+console.log('[docs:dev] using bin:', bin);
+const proc = Bun.spawn([bin, 'dev', 'docs'], { stdio: ['inherit', 'inherit', 'inherit'], env });
+proc.exited.then((code) => {
+    if (code !== 0) {
+        console.error('[docs:dev] vitepress exited with code', code);
+    }
+});
