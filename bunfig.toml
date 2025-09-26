@@ -1,0 +1,10 @@
+smol = true
+logLevel = "debug"
+telemetry = false
+[console]
+depth = 5
+[install]
+linker = "isolated"
+[run]
+shell = "bun"
+bun = true

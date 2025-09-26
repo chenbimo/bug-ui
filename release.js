@@ -56,6 +56,7 @@ function updateVersion(currentVersion, type) {
  * 主函数
  */
 async function main() {
+    console.log('ddddd')
     // 解析参数（仅支持 --major | --minor | --patch）
     const args = process.argv.slice(2);
     let versionType;

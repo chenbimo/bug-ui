@@ -1,7 +1,7 @@
 {
-    "name": "bug-ui",
+    "name": "buig",
     "version": "0.0.3",
-    "description": "bug-ui - 为 Vue3 提供的组件库",
+    "description": "buig(big + bug + ui) - 全是 BUG 的 Vue3 UI组件库",
     "type": "module",
     "private": false,
     "publishConfig": {
