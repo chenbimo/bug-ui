@@ -1,7 +1,7 @@
 {
-    "name": "yii-ui",
+    "name": "bug-ui",
     "version": "0.0.3",
-    "description": "yii-ui - 为 Vue3 提供的组件库",
+    "description": "bug-ui - 为 Vue3 提供的组件库",
     "type": "module",
     "private": false,
     "publishConfig": {
@@ -48,17 +48,10 @@
         "package.json",
         "README.md"
     ],
-    "peerDependencies": {
-        "vue": ">=3.3.0"
-    },
     "devDependencies": {
-        "@vitejs/plugin-vue": "latest",
-        "@vue/test-utils": "latest",
-        "jsdom": "^27.0.0",
-        "playwright": "latest",
-        "vite": "latest",
-        "vitepress": "latest",
-        "vitest": "latest",
-        "vue": "latest"
+        "@vitejs/plugin-vue": "^6.0.1",
+        "vite": "^7.1.7",
+        "vitepress": "^1.6.4",
+        "vue": "^3.5.22"
     }
 }
