@@ -1,23 +1,23 @@
 <template>
-    <span class="yii-popover">
-        <span class="yii-popover__ref"><slot /></span>
-        <span class="yii-popover__content"
+    <span class="buig-popover">
+        <span class="buig-popover__ref"><slot /></span>
+        <span class="buig-popover__content"
             ><slot name="content">{{ $Prop.content }}</slot></span
         >
     </span>
 </template>
 
-<script setup>
-defineOptions({ name: 'YiiPopover' });
-const $Prop = defineProps({ content: { type: String, default: '' } });
+<script setup lang="ts">
+defineOptions({ name: 'BuigPopover' });
+const $Prop = defineProps<{ content?: string }>();
 </script>
 
 <style>
-.yii-popover {
+.buig-popover {
     position: relative;
     display: inline-block;
 }
-.yii-popover__content {
+.buig-popover__content {
     position: absolute;
     top: 100%;
     left: 50%;
@@ -34,7 +34,7 @@ const $Prop = defineProps({ content: { type: String, default: '' } });
     margin-top: 6px;
     z-index: 100;
 }
-.yii-popover:hover .yii-popover__content {
+.buig-popover:hover .buig-popover__content {
     opacity: 1;
 }
 </style>

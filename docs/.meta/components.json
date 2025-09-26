@@ -1,0 +1,340 @@
+{
+  "version": "buig@0.0.6",
+  "generatedAt": "2025-09-26T16:59:08.151Z",
+  "components": {
+    "BuigAlert": {
+      "file": "src/components/alert.vue",
+      "props": [],
+      "emits": [
+        "close"
+      ],
+      "slots": [
+        "default"
+      ]
+    },
+    "BuigAvatar": {
+      "file": "src/components/avatar.vue",
+      "props": [],
+      "emits": [],
+      "slots": [
+        "default"
+      ]
+    },
+    "BuigBadge": {
+      "file": "src/components/badge.vue",
+      "props": [],
+      "emits": [],
+      "slots": [
+        "default"
+      ]
+    },
+    "BuigBreadcrumb": {
+      "file": "src/components/breadcrumb.vue",
+      "props": [
+        {
+          "name": "items",
+          "optional": true,
+          "type": "Crumb[]"
+        }
+      ],
+      "emits": [],
+      "slots": []
+    },
+    "BuigButton": {
+      "file": "src/components/button.vue",
+      "props": [
+        {
+          "name": "variant",
+          "optional": true,
+          "type": "'primary' | 'success' | 'warning' | 'danger' | 'neutral'"
+        },
+        {
+          "name": "size",
+          "optional": true,
+          "type": "'xs' | 'sm' | 'md' | 'lg'"
+        },
+        {
+          "name": "disabled",
+          "optional": true,
+          "type": "boolean"
+        },
+        {
+          "name": "loading",
+          "optional": true,
+          "type": "boolean"
+        },
+        {
+          "name": "type",
+          "optional": true,
+          "type": "'button' | 'submit' | 'reset'"
+        }
+      ],
+      "emits": [
+        "click"
+      ],
+      "slots": [
+        "default"
+      ]
+    },
+    "BuigCard": {
+      "file": "src/components/card.vue",
+      "props": [],
+      "emits": [],
+      "slots": [
+        "header",
+        "default",
+        "footer"
+      ]
+    },
+    "BuigCheckbox": {
+      "file": "src/components/checkbox.vue",
+      "props": [],
+      "emits": [
+        "update:modelValue",
+        "change"
+      ],
+      "slots": [
+        "default"
+      ]
+    },
+    "BuigDialog": {
+      "file": "src/components/dialog.vue",
+      "props": [],
+      "emits": [
+        "update:modelValue",
+        "close"
+      ],
+      "slots": [
+        "header",
+        "default",
+        "footer"
+      ]
+    },
+    "BuigDivider": {
+      "file": "src/components/divider.vue",
+      "props": [
+        {
+          "name": "direction",
+          "optional": true,
+          "type": "Direction"
+        }
+      ],
+      "emits": [],
+      "slots": [
+        "default"
+      ]
+    },
+    "BuigDrawer": {
+      "file": "src/components/drawer.vue",
+      "props": [],
+      "emits": [
+        "update:modelValue",
+        "close"
+      ],
+      "slots": [
+        "header",
+        "default"
+      ]
+    },
+    "BuigIcon": {
+      "file": "src/components/icon.vue",
+      "props": [],
+      "emits": [],
+      "slots": [
+        "default"
+      ]
+    },
+    "BuigInput": {
+      "file": "src/components/input.vue",
+      "props": [
+        {
+          "name": "modelValue",
+          "optional": true,
+          "type": "string | number"
+        },
+        {
+          "name": "placeholder",
+          "optional": true,
+          "type": "string"
+        },
+        {
+          "name": "disabled",
+          "optional": true,
+          "type": "boolean"
+        },
+        {
+          "name": "readonly",
+          "optional": true,
+          "type": "boolean"
+        },
+        {
+          "name": "type",
+          "optional": true,
+          "type": "string"
+        },
+        {
+          "name": "size",
+          "optional": true,
+          "type": "'xs' | 'sm' | 'md' | 'lg'"
+        },
+        {
+          "name": "variant",
+          "optional": true,
+          "type": "'primary' | 'success' | 'warning' | 'danger' | 'neutral'"
+        }
+      ],
+      "emits": [
+        "update:modelValue",
+        "input",
+        "change",
+        "focus",
+        "blur"
+      ],
+      "slots": []
+    },
+    "BuigPagination": {
+      "file": "src/components/pagination.vue",
+      "props": [],
+      "emits": [
+        "update:page",
+        "change"
+      ],
+      "slots": []
+    },
+    "BuigPopover": {
+      "file": "src/components/popover.vue",
+      "props": [
+        {
+          "name": "content",
+          "optional": true,
+          "type": "string"
+        }
+      ],
+      "emits": [],
+      "slots": [
+        "default",
+        "content"
+      ]
+    },
+    "BuigProgress": {
+      "file": "src/components/progress.vue",
+      "props": [
+        {
+          "name": "value",
+          "optional": true,
+          "type": "number | string"
+        }
+      ],
+      "emits": [],
+      "slots": []
+    },
+    "BuigRadio": {
+      "file": "src/components/radio.vue",
+      "props": [],
+      "emits": [
+        "update:modelValue",
+        "change"
+      ],
+      "slots": [
+        "default"
+      ]
+    },
+    "BuigSelect": {
+      "file": "src/components/select.vue",
+      "props": [],
+      "emits": [
+        "update:modelValue",
+        "change"
+      ],
+      "slots": []
+    },
+    "BuigSkeleton": {
+      "file": "src/components/skeleton.vue",
+      "props": [],
+      "emits": [],
+      "slots": []
+    },
+    "BuigSlider": {
+      "file": "src/components/slider.vue",
+      "props": [],
+      "emits": [
+        "update:modelValue",
+        "change"
+      ],
+      "slots": []
+    },
+    "BuigSpinner": {
+      "file": "src/components/spinner.vue",
+      "props": [],
+      "emits": [],
+      "slots": []
+    },
+    "BuigSteps": {
+      "file": "src/components/steps.vue",
+      "props": [],
+      "emits": [],
+      "slots": []
+    },
+    "BuigSwitch": {
+      "file": "src/components/switch.vue",
+      "props": [],
+      "emits": [
+        "update:modelValue",
+        "change"
+      ],
+      "slots": []
+    },
+    "BuigTabs": {
+      "file": "src/components/tabs.vue",
+      "props": [],
+      "emits": [
+        "update:modelValue",
+        "change"
+      ],
+      "slots": [
+        "default"
+      ]
+    },
+    "BuigTag": {
+      "file": "src/components/tag.vue",
+      "props": [],
+      "emits": [],
+      "slots": [
+        "default"
+      ]
+    },
+    "BuigTextarea": {
+      "file": "src/components/textarea.vue",
+      "props": [],
+      "emits": [
+        "update:modelValue",
+        "input"
+      ],
+      "slots": []
+    },
+    "BuigToast": {
+      "file": "src/components/toast.vue",
+      "props": [],
+      "emits": [
+        "close"
+      ],
+      "slots": [
+        "default"
+      ]
+    },
+    "BuigTooltip": {
+      "file": "src/components/tooltip.vue",
+      "props": [
+        {
+          "name": "text",
+          "optional": true,
+          "type": "string"
+        }
+      ],
+      "emits": [],
+      "slots": [
+        "default"
+      ]
+    }
+  }
+}

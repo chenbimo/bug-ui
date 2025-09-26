@@ -1,45 +1,48 @@
 <template>
-    <ol class="yii-steps">
-        <li v-for="(s, i) in $Prop.steps" :key="i" class="yii-steps__item" :class="[i < $Prop.current && 'yii-steps__item--done', i === $Prop.current && 'yii-steps__item--active']">
-            <span class="yii-steps__index">{{ i + 1 }}</span>
-            <span class="yii-steps__label">{{ s.label }}</span>
+    <ol class="buig-steps">
+        <li v-for="(s, i) in $Prop.steps" :key="i" class="buig-steps__item" :class="[i < $Prop.current && 'buig-steps__item--done', i === $Prop.current && 'buig-steps__item--active']">
+            <span class="buig-steps__index">{{ i + 1 }}</span>
+            <span class="buig-steps__label">{{ s.label }}</span>
         </li>
     </ol>
 </template>
 
-<script setup>
-defineOptions({ name: 'YiiSteps' });
-const $Prop = defineProps({ current: { type: Number, default: 0 }, steps: { type: Array, default: () => [] } });
+<script setup lang="ts">
+defineOptions({ name: 'BuigSteps' });
+interface Step {
+    label: string;
+}
+const $Prop = defineProps<{ current?: number; steps?: Step[] }>();
 </script>
 
 <style>
-.yii-steps {
+.buig-steps {
     display: flex;
     gap: 16px;
     list-style: none;
     padding: 0;
     margin: 0;
 }
-.yii-steps__item {
+.buig-steps__item {
     display: flex;
     align-items: center;
     gap: 8px;
-    color: #999;
+    color: var(--ui-color-text-secondary, #666);
 }
-.yii-steps__item--active {
+.buig-steps__item--active {
     color: var(--ui-color-primary, #1677ff);
 }
-.yii-steps__item--done {
-    color: #52c41a;
+.buig-steps__item--done {
+    color: var(--ui-color-success, #16a34a);
 }
-.yii-steps__index {
+.buig-steps__index {
     display: inline-flex;
     width: 20px;
     height: 20px;
     border-radius: 50%;
     align-items: center;
     justify-content: center;
-    background: #eee;
+    background: var(--ui-color-bg-muted, #eee);
     font-size: 12px;
 }
 </style>

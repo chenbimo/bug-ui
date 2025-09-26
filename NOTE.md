@@ -1,0 +1,50 @@
+## 变更记录（2025-09-27）
+
+本次改造重点：命名统一 + TypeScript 引入 + Button 规范化 + 文档与 tokens 初步增强。
+
+### 改动要点
+
+1. 引入 TypeScript：新增 `tsconfig.json`、`types.ts`，package.json 增加 `typescript`、`vue-tsc`，配置导出 types。
+2. 入口重构：`install.js` 迁移为 `src/install.ts`，`src/index.ts` 导出 install 与组件。
+3. 组件命名：统一前缀 `Buig`（示例已完成 `BuigButton`）。后续其他组件逐步补充内部 defineOptions 与类名前缀。
+4. Button 事件策略：内部 emit `click`，对外文档继续使用 `@onClick`（映射策略将在后续统一说明）。
+5. 样式 tokens 扩展：新增 hover / active / disabled / font-size 变量；Button 使用变量化。
+6. 文档改造：更新 `docs/index.md` 与 `01-Button.md` 中示例；准备删除重复 `docs/markdown` 目录（已移除）。
+7. 导出结构：package.json exports 增加 types 映射，组件通配路径从 `.vue.js` 调整为 `.js`。
+
+### 待办展望
+
+-   其余组件统一改名前缀与 TS 化。
+-   事件命名策略与文档 API 表格生成脚本。
+-   Tokens 体系进一步语义化（色板、尺寸、排版）。
+-   SideEffects 精简与构建产物 d.ts 完整性验证。
+
+（本文件用于记录变更，不修改 AGENTS.md）
+
+### 第二阶段（局部执行 2025-09-27 后续补充）
+
+-   已改造组件：Button / Alert / Input / Spinner。
+-   删除旧根级 `install.js`，仅保留 `src/install.ts`。
+-   事件内部统一采用语义名（如 Alert: close, Input: input/change/focus/blur）。
+-   下一批计划：剩余所有组件名前缀与样式类替换，抽离硬编码颜色为 tokens。
+
+### 第三阶段（2025-09-27 晚间）
+
+本阶段完成：
+
+1. 批量组件前缀与 TS 化（二批 + 三批）：Avatar / Badge / Breadcrumb / Card / Checkbox / Radio / Textarea / Select / Switch / Slider / Dialog / Drawer / Toast / Tooltip / Popover / Progress / Skeleton / Tag / Steps / Tabs / Pagination 全量迁移。
+2. 事件统一：移除旧 `onChange` / `onInput` / `onClose` 命名，内部统一语义：`change`、`input`、`close`；双向绑定继续使用 `update:*`。
+3. Tokens 扩展：新增 semantic color（success / warning / danger / border / subtle / bg / text 等）与阴影变量，为后续去硬编码做准备。
+4. 新增安装一致性：所有组件使用 `defineOptions({ name: 'BuigXxx' })` 与 BEM `.buig-xxx`。
+5. 过渡策略：暂未批量替换所有硬编码色值（例如若干边框 #d9d9d9 / 背景 #eee 等），已在 tokens 中提供映射变量，后续集中替换。
+
+后续计划（下阶段优先级）：
+
+1. 硬编码样式全面变量化（边框、背景、阴影、语义状态颜色）。
+2. 生成统一的组件 API 文档（脚本化 Props/Events/Slots 表格）。
+3. 设计 size / variant 通用规范（对 Button / Tag / Input / Switch 等统一）。
+4. 进行一次全局 grep 确认无遗留 `yii-` 与旧事件名；若有补齐。
+5. README 同步最新使用示例（install + 按需引入）。
+6. 视需要添加 `types.ts` 中更多公共类型（例如通用 Size/Variant 联合类型枚举）。
+
+（第三阶段记录完毕）

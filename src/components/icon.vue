@@ -1,21 +1,16 @@
 <template>
-    <i class="yii-icon" :style="$Computed.style"><slot /></i>
+    <i class="buig-icon" :style="$Computed.style"><slot /></i>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { computed } from 'vue';
-defineOptions({ name: 'YiiIcon' });
-
-const $Prop = defineProps({ size: { type: [String, Number], default: 16 }, color: { type: String, default: 'currentColor' } });
-const $Emit = defineEmits([]);
-const $Computed = {
-    style: computed(() => ({ fontSize: typeof $Prop.size === 'number' ? `${$Prop.size}px` : $Prop.size, color: $Prop.color }))
-};
-const $Method = {};
+defineOptions({ name: 'BuigIcon' });
+const $Prop = defineProps<{ size?: string | number; color?: string }>();
+const $Computed = { style: computed(() => ({ fontSize: typeof $Prop.size === 'number' ? `${$Prop.size}px` : $Prop.size || '16px', color: $Prop.color || 'currentColor' })) };
 </script>
 
 <style>
-.yii-icon {
+.buig-icon {
     display: inline-flex;
     line-height: 0;
     vertical-align: middle;

@@ -1,46 +1,41 @@
 <template>
-    <div class="yii-textarea" :class="[$Prop.disabled && 'yii-textarea--disabled']">
-        <textarea ref="$Ref" class="yii-textarea__native" :placeholder="$Prop.placeholder" :disabled="$Prop.disabled" :readonly="$Prop.readonly" :rows="$Prop.rows" :value="$Prop.modelValue ?? ''" @input="$Method.onInput" />
+    <div class="buig-textarea" :class="[$Prop.disabled && 'buig-textarea--disabled']">
+        <textarea ref="$Ref" class="buig-textarea__native" :placeholder="$Prop.placeholder" :disabled="$Prop.disabled" :readonly="$Prop.readonly" :rows="$Prop.rows" :value="$Prop.modelValue ?? ''" @input="$Method.onInput" />
     </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { reactive, ref, computed } from 'vue';
-defineOptions({ name: 'YiiTextarea' });
-
-const $Prop = defineProps({ modelValue: { type: String, default: '' }, placeholder: { type: String, default: '' }, rows: { type: Number, default: 3 }, disabled: { type: Boolean, default: false }, readonly: { type: Boolean, default: false } });
-const $Emit = defineEmits(['update:modelValue', 'onInput']);
+defineOptions({ name: 'BuigTextarea' });
+const $Prop = defineProps<{ modelValue?: string; placeholder?: string; rows?: number; disabled?: boolean; readonly?: boolean }>();
+const $Emit = defineEmits<{ (e: 'update:modelValue', v: string): void; (e: 'input', v: string): void }>();
 const $Data = reactive({});
-const $Ref = ref(null);
+const $Ref = ref<HTMLTextAreaElement | null>(null);
 const $Computed = { interactive: computed(() => !$Prop.disabled && !$Prop.readonly) };
 const $Method = {
-    onInput(e) {
+    onInput(e: Event) {
         if (!$Computed.interactive.value) return;
-        const v = e?.target?.value;
+        const v = (e.target as HTMLTextAreaElement)?.value;
         $Emit('update:modelValue', v);
-        $Emit('onInput', v);
+        $Emit('input', v);
     }
 };
-defineExpose({
-    focus() {
-        $Ref.value?.focus();
-    }
-});
+defineExpose({ focus: () => $Ref.value?.focus() });
 </script>
 
 <style>
-.yii-textarea__native {
+.buig-textarea__native {
     width: 280px;
     border: 1px solid rgba(0, 0, 0, 0.15);
     border-radius: var(--ui-radius);
     padding: var(--ui-padding-y) var(--ui-padding-x);
-    font-size: 14px;
+    font-size: var(--ui-font-size, 14px);
     outline: none;
 }
-.yii-textarea__native:focus {
+.buig-textarea__native:focus {
     border-color: var(--ui-color-primary);
 }
-.yii-textarea--disabled .yii-textarea__native {
+.buig-textarea--disabled .buig-textarea__native {
     opacity: 0.6;
     cursor: not-allowed;
     background: rgba(0, 0, 0, 0.03);

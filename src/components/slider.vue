@@ -1,25 +1,25 @@
 <template>
-    <input class="yii-slider" type="range" :min="$Prop.min" :max="$Prop.max" :step="$Prop.step" :disabled="$Prop.disabled" :value="$Prop.modelValue" @input="$Method.onInput" />
+    <input class="buig-slider" type="range" :min="$Prop.min" :max="$Prop.max" :step="$Prop.step" :disabled="$Prop.disabled" :value="$Prop.modelValue" @input="$Method.onInput" />
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { computed } from 'vue';
-defineOptions({ name: 'YiiSlider' });
-const $Prop = defineProps({ modelValue: { type: [Number, String], default: 0 }, min: { type: [Number, String], default: 0 }, max: { type: [Number, String], default: 100 }, step: { type: [Number, String], default: 1 }, disabled: { type: Boolean, default: false } });
-const $Emit = defineEmits(['update:modelValue', 'onChange']);
+defineOptions({ name: 'BuigSlider' });
+const $Prop = defineProps<{ modelValue?: number | string; min?: number | string; max?: number | string; step?: number | string; disabled?: boolean }>();
+const $Emit = defineEmits<{ (e: 'update:modelValue', v: number): void; (e: 'change', v: number): void }>();
 const $Computed = { interactive: computed(() => !$Prop.disabled) };
 const $Method = {
-    onInput(e) {
+    onInput(e: Event) {
         if (!$Computed.interactive.value) return;
-        const v = Number(e?.target?.value);
+        const v = Number((e.target as HTMLInputElement)?.value);
         $Emit('update:modelValue', v);
-        $Emit('onChange', v);
+        $Emit('change', v);
     }
 };
 </script>
 
 <style>
-.yii-slider {
+.buig-slider {
     width: 200px;
 }
 </style>

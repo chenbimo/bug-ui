@@ -1,46 +1,47 @@
 <template>
-    <div v-if="$Prop.visible" class="yii-toast" :class="[`yii-toast--${$Prop.type}`]">
+    <div v-if="$Prop.visible" class="buig-toast" :class="[`buig-toast--${$Prop.type}`]">
         <span
             ><slot>{{ $Prop.message }}</slot></span
         >
-        <button class="yii-toast__close" @click="$Emit('onClose')">×</button>
+        <button class="buig-toast__close" @click="$Emit('close')">×</button>
     </div>
 </template>
 
-<script setup>
-defineOptions({ name: 'YiiToast' });
-const $Prop = defineProps({ visible: { type: Boolean, default: false }, type: { type: String, default: 'info' }, message: { type: String, default: '' } });
-const $Emit = defineEmits(['onClose']);
+<script setup lang="ts">
+defineOptions({ name: 'BuigToast' });
+type ToastType = 'info' | 'success' | 'warning' | 'danger';
+const $Prop = defineProps<{ visible?: boolean; type?: ToastType; message?: string }>();
+const $Emit = defineEmits<{ (e: 'close'): void }>();
 </script>
 
 <style>
-.yii-toast {
+.buig-toast {
     position: fixed;
     right: 16px;
     top: 16px;
     padding: 10px 12px;
-    background: #fff;
+    background: var(--ui-color-bg, #fff);
     border-radius: 6px;
-    border: 1px solid #e5e7eb;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    border: 1px solid var(--ui-color-border-subtle, #e5e7eb);
+    box-shadow: var(--ui-shadow-pop, 0 6px 20px rgba(0, 0, 0, 0.15));
     display: flex;
     gap: 8px;
     align-items: center;
     z-index: 1100;
 }
-.yii-toast--info {
-    border-color: #bae0ff;
+.buig-toast--info {
+    border-color: var(--ui-color-primary, #3b82f6);
 }
-.yii-toast--success {
-    border-color: #b7eb8f;
+.buig-toast--success {
+    border-color: var(--ui-color-success, #16a34a);
 }
-.yii-toast--warning {
-    border-color: #ffe58f;
+.buig-toast--warning {
+    border-color: var(--ui-color-warning, #f59e0b);
 }
-.yii-toast--danger {
-    border-color: #ffccc7;
+.buig-toast--danger {
+    border-color: var(--ui-color-danger, #dc2626);
 }
-.yii-toast__close {
+.buig-toast__close {
     border: none;
     background: transparent;
     cursor: pointer;

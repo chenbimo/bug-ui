@@ -1,22 +1,22 @@
 <template>
-    <div class="yii-alert" :class="[`yii-alert--${$Prop.type}`]">
-        <span class="yii-alert__content"
+    <div class="buig-alert" :class="[`buig-alert--${$Prop.type}`]">
+        <span class="buig-alert__content"
             ><slot>{{ $Prop.message }}</slot></span
         >
-        <button v-if="$Prop.closable" class="yii-alert__close" @click="$Emit('onClose')">×</button>
+        <button v-if="$Prop.closable" class="buig-alert__close" @click="$Emit('close')">×</button>
     </div>
 </template>
 
-<script setup>
-defineOptions({ name: 'YiiAlert' });
-const $Prop = defineProps({ type: { type: String, default: 'info' }, message: { type: String, default: '' }, closable: { type: Boolean, default: false } });
-const $Emit = defineEmits(['onClose']);
+<script setup lang="ts">
+defineOptions({ name: 'BuigAlert' });
+const $Prop = defineProps<{ type?: 'info' | 'success' | 'warning' | 'danger'; message?: string; closable?: boolean }>();
+const $Emit = defineEmits<{ (e: 'close'): void }>();
 </script>
 
 <style>
-.yii-alert {
+.buig-alert {
     padding: 8px 12px;
-    border-radius: 6px;
+    border-radius: var(--ui-radius);
     background: #f6ffed;
     color: #333;
     border: 1px solid #d9f7be;
@@ -24,24 +24,25 @@ const $Emit = defineEmits(['onClose']);
     justify-content: space-between;
     align-items: center;
     gap: 8px;
+    font-size: var(--ui-font-size, 14px);
 }
-.yii-alert--info {
+.buig-alert--info {
     background: #e6f4ff;
     border-color: #bae0ff;
 }
-.yii-alert--success {
+.buig-alert--success {
     background: #f6ffed;
     border-color: #b7eb8f;
 }
-.yii-alert--warning {
+.buig-alert--warning {
     background: #fffbe6;
     border-color: #ffe58f;
 }
-.yii-alert--danger {
+.buig-alert--danger {
     background: #fff2f0;
     border-color: #ffccc7;
 }
-.yii-alert__close {
+.buig-alert__close {
     border: none;
     background: transparent;
     cursor: pointer;

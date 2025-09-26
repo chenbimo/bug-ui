@@ -1,17 +1,17 @@
 <template>
-    <span class="yii-badge" :class="[`yii-badge--${$Prop.variant}`]">
+    <span class="buig-badge" :class="[`buig-badge--${$Prop.variant}`]">
         <slot />
         <template v-if="$Prop.value !== undefined">{{ $Prop.value }}</template>
     </span>
 </template>
 
-<script setup>
-defineOptions({ name: 'YiiBadge' });
-const $Prop = defineProps({ value: { type: [String, Number], default: undefined }, variant: { type: String, default: 'primary' } });
+<script setup lang="ts">
+defineOptions({ name: 'BuigBadge' });
+const $Prop = defineProps<{ value?: string | number; variant?: 'primary' | 'success' | 'warning' | 'danger' }>();
 </script>
 
 <style>
-.yii-badge {
+.buig-badge {
     display: inline-flex;
     align-items: center;
     padding: 0 6px;
@@ -22,13 +22,13 @@ const $Prop = defineProps({ value: { type: [String, Number], default: undefined 
     background: var(--ui-color-primary, #1677ff);
     color: #fff;
 }
-.yii-badge--success {
+.buig-badge--success {
     background: var(--ui-color-success, #52c41a);
 }
-.yii-badge--warning {
+.buig-badge--warning {
     background: var(--ui-color-warning, #faad14);
 }
-.yii-badge--danger {
+.buig-badge--danger {
     background: var(--ui-color-danger, #ff4d4f);
 }
 </style>

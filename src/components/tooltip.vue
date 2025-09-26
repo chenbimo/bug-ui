@@ -1,25 +1,25 @@
 <template>
-    <span class="yii-tooltip" :data-tip="$Prop.text"><slot /></span>
+    <span class="buig-tooltip" :data-tip="$Prop.text"><slot /></span>
 </template>
 
-<script setup>
-defineOptions({ name: 'YiiTooltip' });
-const $Prop = defineProps({ text: { type: String, default: '' } });
+<script setup lang="ts">
+defineOptions({ name: 'BuigTooltip' });
+const $Prop = defineProps<{ text?: string }>();
 </script>
 
 <style>
-.yii-tooltip {
+.buig-tooltip {
     position: relative;
     display: inline-block;
 }
-.yii-tooltip::after {
+.buig-tooltip::after {
     content: attr(data-tip);
     position: absolute;
     top: 100%;
     left: 50%;
     transform: translateX(-50%);
-    background: #333;
-    color: #fff;
+    background: var(--ui-color-text, #333);
+    color: var(--ui-color-primary-foreground, #fff);
     padding: 4px 8px;
     border-radius: 4px;
     font-size: 12px;
@@ -29,7 +29,7 @@ const $Prop = defineProps({ text: { type: String, default: '' } });
     transition: opacity 0.15s;
     margin-top: 6px;
 }
-.yii-tooltip:hover::after {
+.buig-tooltip:hover::after {
     opacity: 1;
 }
 </style>

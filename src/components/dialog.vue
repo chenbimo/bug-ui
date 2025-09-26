@@ -1,41 +1,41 @@
 <template>
-    <div v-if="$Prop.modelValue" class="yii-dialog">
-        <div class="yii-dialog__mask" @click="$Method.close"></div>
-        <div class="yii-dialog__box">
-            <div class="yii-dialog__header">
+    <div v-if="$Prop.modelValue" class="buig-dialog">
+        <div class="buig-dialog__mask" @click="$Method.close"></div>
+        <div class="buig-dialog__box">
+            <div class="buig-dialog__header">
                 <slot name="header">{{ $Prop.title }}</slot>
-                <button class="yii-dialog__close" @click="$Method.close">×</button>
+                <button class="buig-dialog__close" @click="$Method.close">×</button>
             </div>
-            <div class="yii-dialog__body"><slot /></div>
-            <div v-if="$slots.footer" class="yii-dialog__footer"><slot name="footer" /></div>
+            <div class="buig-dialog__body"><slot /></div>
+            <div v-if="$slots.footer" class="buig-dialog__footer"><slot name="footer" /></div>
         </div>
     </div>
 </template>
 
-<script setup>
-defineOptions({ name: 'YiiDialog' });
-const $Prop = defineProps({ modelValue: { type: Boolean, default: false }, title: { type: String, default: '' } });
-const $Emit = defineEmits(['update:modelValue', 'onClose']);
+<script setup lang="ts">
+defineOptions({ name: 'BuigDialog' });
+const $Prop = defineProps<{ modelValue?: boolean; title?: string }>();
+const $Emit = defineEmits<{ (e: 'update:modelValue', v: boolean): void; (e: 'close'): void }>();
 const $Method = {
     close() {
         $Emit('update:modelValue', false);
-        $Emit('onClose');
+        $Emit('close');
     }
 };
 </script>
 
 <style>
-.yii-dialog {
+.buig-dialog {
     position: fixed;
     inset: 0;
     z-index: 1000;
 }
-.yii-dialog__mask {
+.buig-dialog__mask {
     position: absolute;
     inset: 0;
     background: rgba(0, 0, 0, 0.45);
 }
-.yii-dialog__box {
+.buig-dialog__box {
     position: absolute;
     left: 50%;
     top: 50%;
@@ -47,22 +47,22 @@ const $Method = {
     overflow: hidden;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
-.yii-dialog__header {
+.buig-dialog__header {
     padding: 12px 16px;
     border-bottom: 1px solid #eee;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
-.yii-dialog__body {
+.buig-dialog__body {
     padding: 16px;
 }
-.yii-dialog__footer {
+.buig-dialog__footer {
     padding: 12px 16px;
     border-top: 1px solid #eee;
     text-align: right;
 }
-.yii-dialog__close {
+.buig-dialog__close {
     border: none;
     background: transparent;
     font-size: 18px;

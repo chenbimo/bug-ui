@@ -1,52 +1,52 @@
 <template>
-    <button class="yii-switch" :class="[$Prop.modelValue && 'yii-switch--on', $Prop.disabled && 'yii-switch--disabled']" :disabled="$Prop.disabled" @click="$Method.toggle">
-        <span class="yii-switch__thumb" />
+    <button class="buig-switch" :class="[$Prop.modelValue && 'buig-switch--on', $Prop.disabled && 'buig-switch--disabled']" :disabled="$Prop.disabled" @click="$Method.toggle">
+        <span class="buig-switch__thumb" />
     </button>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { computed } from 'vue';
-defineOptions({ name: 'YiiSwitch' });
-const $Prop = defineProps({ modelValue: { type: Boolean, default: false }, disabled: { type: Boolean, default: false } });
-const $Emit = defineEmits(['update:modelValue', 'onChange']);
+defineOptions({ name: 'BuigSwitch' });
+const $Prop = defineProps<{ modelValue?: boolean; disabled?: boolean }>();
+const $Emit = defineEmits<{ (e: 'update:modelValue', v: boolean): void; (e: 'change', v: boolean): void }>();
 const $Computed = { interactive: computed(() => !$Prop.disabled) };
 const $Method = {
     toggle() {
         if (!$Computed.interactive.value) return;
         const v = !$Prop.modelValue;
         $Emit('update:modelValue', v);
-        $Emit('onChange', v);
+        $Emit('change', v);
     }
 };
 </script>
 
 <style>
-.yii-switch {
+.buig-switch {
     width: 40px;
     height: 22px;
     border-radius: 999px;
-    background: #ddd;
+    background: var(--ui-color-border, #ddd);
     position: relative;
     border: none;
     cursor: pointer;
 }
-.yii-switch__thumb {
+.buig-switch__thumb {
     position: absolute;
     top: 2px;
     left: 2px;
     width: 18px;
     height: 18px;
     border-radius: 50%;
-    background: #fff;
+    background: var(--ui-color-bg, #fff);
     transition: left 0.2s;
 }
-.yii-switch--on {
+.buig-switch--on {
     background: var(--ui-color-primary);
 }
-.yii-switch--on .yii-switch__thumb {
+.buig-switch--on .buig-switch__thumb {
     left: 20px;
 }
-.yii-switch--disabled {
+.buig-switch--disabled {
     opacity: 0.6;
     cursor: not-allowed;
 }

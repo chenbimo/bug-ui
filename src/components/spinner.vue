@@ -1,21 +1,21 @@
 <template>
-    <span class="yii-spinner" :style="{ width: $Prop.size + 'px', height: $Prop.size + 'px', borderTopColor: $Prop.color }"></span>
+    <span class="buig-spinner" :style="{ width: $Prop.size + 'px', height: $Prop.size + 'px', borderTopColor: $Prop.color }"></span>
 </template>
 
-<script setup>
-defineOptions({ name: 'YiiSpinner' });
-const $Prop = defineProps({ size: { type: Number, default: 20 }, color: { type: String, default: 'var(--ui-color-primary, #1677ff)' } });
+<script setup lang="ts">
+defineOptions({ name: 'BuigSpinner' });
+const $Prop = defineProps<{ size?: number; color?: string }>();
 </script>
 
 <style>
-.yii-spinner {
+.buig-spinner {
     display: inline-block;
     border: 2px solid #eee;
-    border-top-color: #1677ff;
+    border-top-color: var(--ui-color-primary, #1677ff);
     border-radius: 50%;
-    animation: yii-spin 1s linear infinite;
+    animation: buig-spin 1s linear infinite;
 }
-@keyframes yii-spin {
+@keyframes buig-spin {
     to {
         transform: rotate(360deg);
     }
