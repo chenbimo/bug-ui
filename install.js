@@ -1,4 +1,4 @@
-import * as components from '../components/index.js';
+import * as components from './src/components/index.js';
 
 export const componentsList = components;
 
