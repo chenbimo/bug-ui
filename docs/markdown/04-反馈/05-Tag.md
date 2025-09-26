@@ -2,15 +2,15 @@
 
 <ClientOnly>
   <div class="demo-line">
-    <YiiTag>Default</YiiTag>
-    <YiiTag variant="primary" style="margin-inline-start:8px">Primary</YiiTag>
+    <BuigTag>Default</BuigTag>
+    <BuigTag variant="primary" style="margin-inline-start:8px">Primary</BuigTag>
   </div>
 </ClientOnly>
 
 ```vue
 <template>
     <div>
-        <YiiTag>Default</YiiTag>
+        <BuigTag>Default</BuigTag>
     </div>
 </template>
 ```

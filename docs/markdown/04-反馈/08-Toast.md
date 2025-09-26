@@ -7,8 +7,8 @@ const visible = ref(false)
 
 <ClientOnly>
   <div>
-    <YiiButton @onClick="visible=true">显示Toast</YiiButton>
-    <YiiToast :visible="visible" type="success" message="保存成功" @onClose="visible=false" />
+    <BuigButton @onClick="visible=true">显示Toast</BuigButton>
+    <BuigToast :visible="visible" type="success" message="保存成功" @onClose="visible=false" />
   </div>
 </ClientOnly>
 
@@ -19,7 +19,7 @@ const visible = ref(false);
 </script>
 
 <template>
-    <YiiButton @onClick="visible = true">显示Toast</YiiButton>
-    <YiiToast :visible="visible" type="success" message="保存成功" @onClose="visible = false" />
+    <BuigButton @onClick="visible = true">显示Toast</BuigButton>
+    <BuigToast :visible="visible" type="success" message="保存成功" @onClose="visible = false" />
 </template>
 ```

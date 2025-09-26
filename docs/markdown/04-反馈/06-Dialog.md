@@ -7,13 +7,13 @@ const show = ref(false)
 
 <ClientOnly>
   <div>
-    <YiiButton @onClick="show=true">打开Dialog</YiiButton>
-    <YiiDialog v-model="show" title="标题">
+    <BuigButton @onClick="show=true">打开Dialog</BuigButton>
+    <BuigDialog v-model="show" title="标题">
       这里是对话框内容
       <template #footer>
-        <YiiButton @onClick="show=false">关闭</YiiButton>
+        <BuigButton @onClick="show=false">关闭</BuigButton>
       </template>
-    </YiiDialog>
+    </BuigDialog>
   </div>
 </ClientOnly>
 
@@ -24,12 +24,12 @@ const show = ref(false);
 </script>
 
 <template>
-    <YiiButton @onClick="show = true">打开Dialog</YiiButton>
-    <YiiDialog v-model="show" title="标题">
+    <BuigButton @onClick="show = true">打开Dialog</BuigButton>
+    <BuigDialog v-model="show" title="标题">
         这里是对话框内容
         <template #footer>
-            <YiiButton @onClick="show = false">关闭</YiiButton>
+            <BuigButton @onClick="show = false">关闭</BuigButton>
         </template>
-    </YiiDialog>
+    </BuigDialog>
 </template>
 ```

@@ -4,9 +4,9 @@
 
 <ClientOnly>
   <div style="display:flex; gap:12px; align-items:center;">
-    <YiiInput v-model="val" placeholder="请输入" />
-    <YiiInput :disabled="true" placeholder="禁用" />
-    <YiiInput :readonly="true" placeholder="只读" />
+    <BuigInput v-model="val" placeholder="请输入" />
+    <BuigInput :disabled="true" placeholder="禁用" />
+    <BuigInput :readonly="true" placeholder="只读" />
   </div>
   <p>值：{{ val }}</p>
 
@@ -21,9 +21,9 @@
 ```vue
 <template>
     <div style="display:flex; gap:12px; align-items:center;">
-        <YiiInput v-model="val" placeholder="请输入" />
-        <YiiInput :disabled="true" placeholder="禁用" />
-        <YiiInput :readonly="true" placeholder="只读" />
+        <BuigInput v-model="val" placeholder="请输入" />
+        <BuigInput :disabled="true" placeholder="禁用" />
+        <BuigInput :readonly="true" placeholder="只读" />
     </div>
     <p>值：{{ val }}</p>
 </template>

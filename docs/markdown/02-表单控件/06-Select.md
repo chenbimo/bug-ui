@@ -10,7 +10,7 @@ const options = [
 </script>
 
 <ClientOnly>
-  <YiiSelect v-model="city" :options="options" style="width:200px" />
+  <BuigSelect v-model="city" :options="options" style="width:200px" />
 </ClientOnly>
 
 ```vue
@@ -24,6 +24,6 @@ const options = [
 </script>
 
 <template>
-    <YiiSelect v-model="city" :options="options" />
+    <BuigSelect v-model="city" :options="options" />
 </template>
 ```

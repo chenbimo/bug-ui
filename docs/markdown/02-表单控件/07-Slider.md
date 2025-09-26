@@ -7,7 +7,7 @@ const v = ref(30)
 
 <ClientOnly>
   <div class="demo-line">
-    <YiiSlider v-model="v" />
+    <BuigSlider v-model="v" />
     <span style="margin-inline-start:8px">{{ v }}</span>
   </div>
 </ClientOnly>
@@ -19,7 +19,7 @@ const v = ref(30);
 </script>
 
 <template>
-    <YiiSlider v-model="v" />
+    <BuigSlider v-model="v" />
     <span>{{ v }}</span>
 </template>
 ```

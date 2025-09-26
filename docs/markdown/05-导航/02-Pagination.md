@@ -6,7 +6,7 @@ const page = ref(1)
 </script>
 
 <ClientOnly>
-  <YiiPagination v-model:page="page" :total="55" :pageSize="10" />
+  <BuigPagination v-model:page="page" :total="55" :pageSize="10" />
 </ClientOnly>
 
 ```vue
@@ -16,6 +16,6 @@ const page = ref(1);
 </script>
 
 <template>
-    <YiiPagination v-model:page="page" :total="55" :pageSize="10" />
+    <BuigPagination v-model:page="page" :total="55" :pageSize="10" />
 </template>
 ```

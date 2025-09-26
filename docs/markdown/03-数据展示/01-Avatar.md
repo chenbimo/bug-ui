@@ -2,15 +2,15 @@
 
 <ClientOnly>
   <div class="demo-line">
-    <YiiAvatar alt="A" />
-    <YiiAvatar alt="B" :size="40" style="margin-inline-start:12px" />
+    <BuigAvatar alt="A" />
+    <BuigAvatar alt="B" :size="40" style="margin-inline-start:12px" />
   </div>
 </ClientOnly>
 
 ```vue
 <template>
     <div>
-        <YiiAvatar alt="A" />
+        <BuigAvatar alt="A" />
     </div>
 </template>
 ```

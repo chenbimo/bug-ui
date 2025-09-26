@@ -7,7 +7,7 @@ const val = ref(30)
 
 <ClientOnly>
   <div>
-    <YiiProgress :value="val" />
+    <BuigProgress :value="val" />
   </div>
 </ClientOnly>
 
@@ -18,6 +18,6 @@ const val = ref(30);
 </script>
 
 <template>
-    <YiiProgress :value="val" />
+    <BuigProgress :value="val" />
 </template>
 ```

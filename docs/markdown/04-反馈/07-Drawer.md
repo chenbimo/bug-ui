@@ -7,8 +7,8 @@ const open = ref(false)
 
 <ClientOnly>
   <div>
-    <YiiButton @onClick="open=true">打开Drawer</YiiButton>
-    <YiiDrawer v-model="open" title="标题" placement="right">内容</YiiDrawer>
+    <BuigButton @onClick="open=true">打开Drawer</BuigButton>
+    <BuigDrawer v-model="open" title="标题" placement="right">内容</BuigDrawer>
   </div>
 </ClientOnly>
 
@@ -19,7 +19,7 @@ const open = ref(false);
 </script>
 
 <template>
-    <YiiButton @onClick="open = true">打开Drawer</YiiButton>
-    <YiiDrawer v-model="open" title="标题" placement="right">内容</YiiDrawer>
+    <BuigButton @onClick="open = true">打开Drawer</BuigButton>
+    <BuigDrawer v-model="open" title="标题" placement="right">内容</BuigDrawer>
 </template>
 ```

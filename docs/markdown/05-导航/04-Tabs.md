@@ -8,7 +8,7 @@ const tabs = [ { key: 'a', label: 'A' }, { key: 'b', label: 'B' } ]
 
 <ClientOnly>
   <div>
-    <YiiTabs v-model="key" :tabs="tabs" />
+    <BuigTabs v-model="key" :tabs="tabs" />
     <div style="margin-top:8px">当前：{{ key }}</div>
   </div>
 </ClientOnly>
@@ -24,6 +24,6 @@ const tabs = [
 </script>
 
 <template>
-    <YiiTabs v-model="key" :tabs="tabs" />
+    <BuigTabs v-model="key" :tabs="tabs" />
 </template>
 ```

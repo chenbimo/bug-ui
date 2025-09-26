@@ -4,16 +4,16 @@
 
 <ClientOnly>
   <div class="demo-line">
-    <YiiIcon :size="16">★</YiiIcon>
-    <YiiIcon :size="24" style="margin-inline-start:12px">❤</YiiIcon>
-    <YiiIcon :size="32" style="margin-inline-start:12px">✔</YiiIcon>
+    <BuigIcon :size="16">★</BuigIcon>
+    <BuigIcon :size="24" style="margin-inline-start:12px">❤</BuigIcon>
+    <BuigIcon :size="32" style="margin-inline-start:12px">✔</BuigIcon>
   </div>
 </ClientOnly>
 
 ```vue
 <template>
     <div>
-        <YiiIcon :size="20">★</YiiIcon>
+        <BuigIcon :size="20">★</BuigIcon>
     </div>
 </template>
 ```

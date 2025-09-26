@@ -7,7 +7,7 @@ const on = ref(false)
 
 <ClientOnly>
   <div class="demo-line">
-    <YiiSwitch v-model="on" />
+    <BuigSwitch v-model="on" />
   </div>
 </ClientOnly>
 
@@ -18,6 +18,6 @@ const on = ref(false);
 </script>
 
 <template>
-    <YiiSwitch v-model="on" />
+    <BuigSwitch v-model="on" />
 </template>
 ```

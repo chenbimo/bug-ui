@@ -57,7 +57,7 @@
 
 1. 新增顶层 `src/components.ts`，集中具名导出所有组件（避免在组件目录放置聚合文件）。
 2. 调整 `src/index.ts` 改为 `export * from './components';` 指向新的聚合入口。
-3. 删除 `src/components/index.js`（遗留 `Yii*` 命名导出）与 `src/components/index.ts`（已冗余）。
+3. 删除 `src/components/index.js`（遗留 `Buig*` 命名导出）与 `src/components/index.ts`（已冗余）。
 4. 现 `src/components/` 下仅保留各组件 `.vue` 文件，实现目录纯化。
 
 后续待办（延续上阶段 + 新增）：
@@ -66,7 +66,7 @@
 2. 构建与类型校验：执行 `bun run build` 与 `vue-tsc --noEmit`，记录潜在告警。
 3. gen:meta 稳定性增强（可选）：为脚本增加 try/catch、开始/结束日志与失败 `process.exit(1)`。
 4. 公共样式抽象：提炼复用 Focus Ring / 间距 / 尺寸工具类，减少组件内重复。
-5. 全局 grep：检查遗留 `Yii`、硬编码十六进制颜色（逐步替换为 tokens）。
+5. 全局 grep：检查遗留 `Buig`、硬编码十六进制颜色（逐步替换为 tokens）。
 6. 追加 Size/Variant 方案推广到尚未接入的组件（除已改 Button/Input/Tag 之外）。
 7. 生成脚本输出的 Components API 文档预留多语言结构（当前仍仅中文内容）。
 

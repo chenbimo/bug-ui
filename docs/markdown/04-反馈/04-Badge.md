@@ -2,15 +2,15 @@
 
 <ClientOnly>
   <div class="demo-line">
-    <YiiBadge>NEW</YiiBadge>
-    <YiiBadge variant="success" style="margin-inline-start:8px">OK</YiiBadge>
+    <BuigBadge>NEW</BuigBadge>
+    <BuigBadge variant="success" style="margin-inline-start:8px">OK</BuigBadge>
   </div>
 </ClientOnly>
 
 ```vue
 <template>
     <div>
-        <YiiBadge>NEW</YiiBadge>
+        <BuigBadge>NEW</BuigBadge>
     </div>
 </template>
 ```

@@ -7,7 +7,7 @@ const visible = ref(true)
 
 <ClientOnly>
   <div>
-    <YiiAlert v-if="visible" type="warning" closable @onClose="visible=false">注意：这是一条警示。</YiiAlert>
+    <BuigAlert v-if="visible" type="warning" closable @onClose="visible=false">注意：这是一条警示。</BuigAlert>
   </div>
 </ClientOnly>
 
@@ -18,6 +18,6 @@ const visible = ref(true);
 </script>
 
 <template>
-    <YiiAlert v-if="visible" type="warning" closable @onClose="visible = false">注意：这是一条警示。</YiiAlert>
+    <BuigAlert v-if="visible" type="warning" closable @onClose="visible = false">注意：这是一条警示。</BuigAlert>
 </template>
 ```

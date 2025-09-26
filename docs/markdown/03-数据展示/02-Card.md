@@ -1,19 +1,19 @@
 # Card 卡片
 
 <ClientOnly>
-  <YiiCard>
+  <BuigCard>
     <template #header>标题</template>
     这里是内容
     <template #footer>底部</template>
-  </YiiCard>
+  </BuigCard>
 </ClientOnly>
 
 ```vue
 <template>
-    <YiiCard>
+    <BuigCard>
         <template #header>标题</template>
         这里是内容
         <template #footer>底部</template>
-    </YiiCard>
+    </BuigCard>
 </template>
 ```

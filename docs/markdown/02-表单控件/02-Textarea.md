@@ -6,7 +6,7 @@ const text = ref('Hello')
 </script>
 
 <ClientOnly>
-  <YiiTextarea v-model="text" :rows="3" style="width:260px" />
+  <BuigTextarea v-model="text" :rows="3" style="width:260px" />
 </ClientOnly>
 
 ```vue
@@ -16,6 +16,6 @@ const text = ref('Hello');
 </script>
 
 <template>
-    <YiiTextarea v-model="text" :rows="3" />
+    <BuigTextarea v-model="text" :rows="3" />
 </template>
 ```

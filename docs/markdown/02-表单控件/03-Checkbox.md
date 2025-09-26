@@ -8,8 +8,8 @@ const ck2 = ref(true)
 
 <ClientOnly>
   <div class="demo-line">
-    <YiiCheckbox v-model="ck1">选项 A</YiiCheckbox>
-    <YiiCheckbox v-model="ck2" style="margin-inline-start:12px">选项 B</YiiCheckbox>
+    <BuigCheckbox v-model="ck1">选项 A</BuigCheckbox>
+    <BuigCheckbox v-model="ck2" style="margin-inline-start:12px">选项 B</BuigCheckbox>
   </div>
 </ClientOnly>
 
@@ -21,7 +21,7 @@ const ck2 = ref(true);
 </script>
 
 <template>
-    <YiiCheckbox v-model="ck1">选项 A</YiiCheckbox>
-    <YiiCheckbox v-model="ck2">选项 B</YiiCheckbox>
+    <BuigCheckbox v-model="ck1">选项 A</BuigCheckbox>
+    <BuigCheckbox v-model="ck2">选项 B</BuigCheckbox>
 </template>
 ```

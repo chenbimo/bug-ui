@@ -3,7 +3,7 @@
 <ClientOnly>
   <div>
     文本前
-    <YiiDivider />
+    <BuigDivider />
     文本后
   </div>
 </ClientOnly>
@@ -12,7 +12,7 @@
 <template>
     <div>
         文本前
-        <YiiDivider />
+        <BuigDivider />
         文本后
     </div>
 </template>
