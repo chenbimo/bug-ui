@@ -69,8 +69,7 @@ async function resolveVitePressBin() {
 const bin = await resolveVitePressBin();
 console.log('[docs:dev] using bin:', bin);
 const proc = Bun.spawn([bin, 'dev', 'docs'], { stdio: ['inherit', 'inherit', 'inherit'], env });
-proc.exited.then((code) => {
-    if (code !== 0) {
-        console.error('[docs:dev] vitepress exited with code', code);
-    }
-});
+const code = await proc.exited;
+if (code !== 0) {
+    console.error('[docs:dev] vitepress exited with code', code);
+}

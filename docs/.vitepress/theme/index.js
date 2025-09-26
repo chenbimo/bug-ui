@@ -1,16 +1,16 @@
 import DefaultTheme from 'vitepress/theme';
-import * as YiiUI from '../../../src/index.js';
+// 直接从源码引入（Vite 支持 TS 源文件解析）
+import * as Buig from '../../../src/index.ts';
 import '../../../src/styles/tokens.css';
 
 export default {
     ...DefaultTheme,
     enhanceApp({ app }) {
         // 全量注册组件库（开发文档预览）
-        if (YiiUI && YiiUI.install) {
-            app.use(YiiUI);
+        if (Buig && Buig.install) {
+            app.use(Buig);
         } else {
-            // 兜底：逐个注册命名导出的组件
-            Object.values(YiiUI).forEach((c) => c && c.name && app.component(c.name, c));
+            Object.values(Buig).forEach((c) => c && c.name && app.component(c.name, c));
         }
     }
 };
