@@ -70,21 +70,23 @@ async function main() {
     console.log('🚀 开始发布流程...\n');
     console.log(`版本类型: ${versionType}`);
 
+    // 预创建 BunFile（指定 json MIME 语义，后续可复用）
+    const pkgFile = Bun.file(packagePath, { type: 'application/json' });
+
     // 检查必要文件（仅 package.json）
     console.log('\n--- 检查必要文件 ---');
-    if (!(await Bun.file(packagePath).exists())) {
+    if (!(await pkgFile.exists())) {
         console.error('错误: 当前目录不是有效的 npm 包目录（缺少 package.json）');
         console.log('\n发布已取消');
         process.exit(1);
     }
 
-    // 读取当前版本（直接读取文件）
+    // 读取并解析 package.json（使用内置 json()，避免手动 text()+JSON.parse）
     let packageData;
     try {
-        const content = await Bun.file(packagePath).text();
-        packageData = JSON.parse(content);
+        packageData = await pkgFile.json();
     } catch (error) {
-        console.error('错误: 无法读取 package.json:', error?.message || error);
+        console.error('错误: 解析 package.json 失败:', error?.message || error);
         process.exit(1);
     }
     const currentVersion = packageData.version;
