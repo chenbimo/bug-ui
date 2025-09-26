@@ -48,3 +48,26 @@
 6. 视需要添加 `types.ts` 中更多公共类型（例如通用 Size/Variant 联合类型枚举）。
 
 （第三阶段记录完毕）
+
+### 第四阶段（2025-09-27 深夜）组件目录纯化
+
+本阶段目标：确保 `src/components` 目录仅包含 `.vue` 单文件，去除额外聚合脚本文件，满足结构约束与 Tree-Shaking 期望。
+
+已执行事项：
+
+1. 新增顶层 `src/components.ts`，集中具名导出所有组件（避免在组件目录放置聚合文件）。
+2. 调整 `src/index.ts` 改为 `export * from './components';` 指向新的聚合入口。
+3. 删除 `src/components/index.js`（遗留 `Yii*` 命名导出）与 `src/components/index.ts`（已冗余）。
+4. 现 `src/components/` 下仅保留各组件 `.vue` 文件，实现目录纯化。
+
+后续待办（延续上阶段 + 新增）：
+
+1. README：新增安装、全量注册、按需引入、size/variant 与 Tokens 自定义示例。
+2. 构建与类型校验：执行 `bun run build` 与 `vue-tsc --noEmit`，记录潜在告警。
+3. gen:meta 稳定性增强（可选）：为脚本增加 try/catch、开始/结束日志与失败 `process.exit(1)`。
+4. 公共样式抽象：提炼复用 Focus Ring / 间距 / 尺寸工具类，减少组件内重复。
+5. 全局 grep：检查遗留 `Yii`、硬编码十六进制颜色（逐步替换为 tokens）。
+6. 追加 Size/Variant 方案推广到尚未接入的组件（除已改 Button/Input/Tag 之外）。
+7. 生成脚本输出的 Components API 文档预留多语言结构（当前仍仅中文内容）。
+
+（第四阶段记录完毕）
