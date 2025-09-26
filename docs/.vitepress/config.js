@@ -10,7 +10,10 @@ export default defineConfig({
     description: 'Vue3 组件库（MVP 重构中）',
     srcDir: 'markdown',
     themeConfig: {
-        nav: [],
+        nav: [
+            // 初始组件入口：指向首个基础组件文档，可根据需要后续改成总览/索引页
+            { text: '组件', link: '/01-基础/01-Button' }
+        ],
         sidebar: [
             {
                 text: '基础',
