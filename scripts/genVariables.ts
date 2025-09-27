@@ -22,9 +22,7 @@ function main() {
         }
         total += local.length;
         if (local.length === 0) return;
-        const tableRows = local
-            .map(v => `| \`${v.name}\` | \`${v.value}\` |`)
-            .join('\n');
+        const tableRows = local.map((v) => `| \`${v.name}\` | \`${v.value}\` |`).join('\n');
         resultSections.push(`### ${file}\n\n| 变量名 | 值 |\n| ------ | --- |\n${tableRows}`);
     }
 

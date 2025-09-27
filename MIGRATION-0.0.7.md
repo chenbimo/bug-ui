@@ -14,15 +14,15 @@
 1. 搜索并替换：`'buig/styles/variable.css'` → `'buig/styles/core.css'`
 2. 若之前按需覆盖主题变量，继续在自定义样式后引入 `core.css` 确保覆盖生效。
 3. 使用暗色：
-   ```ts
-   import 'buig/styles/core.css';
-   import 'buig/styles/dark.css';
-   document.documentElement.setAttribute('data-theme','dark');
-   ```
-   或直接：
-   ```ts
-   import 'buig/styles/all.css'; // 仍需设置 data-theme 才启用暗色变量
-   ```
+    ```ts
+    import 'buig/styles/core.css';
+    import 'buig/styles/dark.css';
+    document.documentElement.setAttribute('data-theme', 'dark');
+    ```
+    或直接：
+    ```ts
+    import 'buig/styles/all.css'; // 仍需设置 data-theme 才启用暗色变量
+    ```
 4. 查看新变量列表：文档 → 基础 → 变量（分组展示）。
 
 ## 新增组件变量示例
@@ -31,11 +31,11 @@
 
 ## 常见问题
 
-| 问题 | 说明 |
-| ---- | ---- |
-| 引入后样式顺序错乱 | 确保自定义覆盖文件在 core/all 之前引入 |
-| 暗色不生效 | 检查 `data-theme='dark'` 属性是否设置在 `<html>` |
-| 找不到旧变量 | 某些变量已拆分为语义/组件前缀，参考变量文档或搜索 `--ui-` 前缀 |
+| 问题               | 说明                                                           |
+| ------------------ | -------------------------------------------------------------- |
+| 引入后样式顺序错乱 | 确保自定义覆盖文件在 core/all 之前引入                         |
+| 暗色不生效         | 检查 `data-theme='dark'` 属性是否设置在 `<html>`               |
+| 找不到旧变量       | 某些变量已拆分为语义/组件前缀，参考变量文档或搜索 `--ui-` 前缀 |
 
 ## 后续计划
 

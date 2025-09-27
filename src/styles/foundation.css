@@ -58,16 +58,16 @@
     --ui-spacing-10: 24px;
 
     /* 阴影 */
-    --ui-shadow-pop: 0 6px 20px rgba(0,0,0,0.15);
-    --ui-shadow-overlay: 0 10px 30px rgba(0,0,0,0.2);
+    --ui-shadow-pop: 0 6px 20px rgba(0, 0, 0, 0.15);
+    --ui-shadow-overlay: 0 10px 30px rgba(0, 0, 0, 0.2);
 
     /* 动效与节奏 */
     --ui-motion-fast: 80ms;
     --ui-motion-base: 160ms;
     --ui-motion-slow: 240ms;
-    --ui-ease-in-out: cubic-bezier(.4,0,.2,1);
-    --ui-ease-out: cubic-bezier(0,0,.2,1);
-    --ui-ease-in: cubic-bezier(.4,0,1,1);
+    --ui-ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+    --ui-ease-out: cubic-bezier(0, 0, 0.2, 1);
+    --ui-ease-in: cubic-bezier(0.4, 0, 1, 1);
 
     /* 层级 */
     --ui-z-base: 0;

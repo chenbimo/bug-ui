@@ -8,7 +8,11 @@ import { fileURLToPath } from 'url';
   - tokens.json （根目录，用于外部工具消费）
 */
 
-interface TokenEntry { name: string; value: string; file: string }
+interface TokenEntry {
+    name: string;
+    value: string;
+    file: string;
+}
 
 function parseFile(absPath: string, fileLabel: string): TokenEntry[] {
     const raw = readFileSync(absPath, 'utf-8');

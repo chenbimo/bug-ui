@@ -11,7 +11,9 @@ import { fileURLToPath } from 'url';
   - 输出对比度 < 4.5 的警告
 */
 
-interface Palette { [k: string]: string }
+interface Palette {
+    [k: string]: string;
+}
 
 function parseVars(raw: string): Palette {
     const p: Palette = {};
@@ -25,13 +27,19 @@ function parseVars(raw: string): Palette {
 function hexToRgb(hex: string): [number, number, number] | null {
     const h = hex.replace('#', '').trim();
     if (![3, 6].includes(h.length)) return null;
-    const full = h.length === 3 ? h.split('').map(c => c + c).join('') : h;
+    const full =
+        h.length === 3
+            ? h
+                  .split('')
+                  .map((c) => c + c)
+                  .join('')
+            : h;
     const intVal = parseInt(full, 16);
     return [(intVal >> 16) & 255, (intVal >> 8) & 255, intVal & 255];
 }
 
 function relLuminance([r, g, b]: [number, number, number]): number {
-    const srgb = [r, g, b].map(v => {
+    const srgb = [r, g, b].map((v) => {
         const c = v / 255;
         return c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
     });
@@ -77,7 +85,10 @@ function main() {
     const { light, dark } = buildContext();
     const textVars = ['--ui-color-text', '--ui-color-text-secondary'];
     const bgVars = ['--ui-color-bg', '--ui-color-bg-subtle', '--ui-color-bg-muted'];
-    const modes: [string, Palette][] = [ ['light', light], ['dark', dark] ];
+    const modes: [string, Palette][] = [
+        ['light', light],
+        ['dark', dark]
+    ];
     const threshold = 4.5;
     let warnCount = 0;
 
@@ -104,4 +115,9 @@ function main() {
     }
 }
 
-try { main(); } catch (err) { console.error('[checkContrast] failed:', err); process.exit(1); }
+try {
+    main();
+} catch (err) {
+    console.error('[checkContrast] failed:', err);
+    process.exit(1);
+}

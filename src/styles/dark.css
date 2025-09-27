@@ -16,8 +16,8 @@ html[data-theme='dark'] {
     --ui-color-neutral-foreground: #e4e4e7;
 
     /* 阴影在暗色下适度增强透明度以保持层次 */
-    --ui-shadow-pop: 0 6px 20px rgba(0,0,0,0.55);
-    --ui-shadow-overlay: 0 10px 30px rgba(0,0,0,0.6);
+    --ui-shadow-pop: 0 6px 20px rgba(0, 0, 0, 0.55);
+    --ui-shadow-overlay: 0 10px 30px rgba(0, 0, 0, 0.6);
 
     /* 组件覆盖示例（按需扩展） */
     --ui-card-bg: var(--ui-color-bg-subtle);

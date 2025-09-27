@@ -10,7 +10,7 @@
     --ui-button-bg-active: var(--ui-color-primary-active);
     --ui-button-bg-disabled: var(--ui-color-primary-disabled);
     --ui-button-fg: var(--ui-color-primary-foreground);
-    --ui-button-shadow-focus: 0 0 0 3px rgba(59,130,246,0.35);
+    --ui-button-shadow-focus: 0 0 0 3px rgba(59, 130, 246, 0.35);
 
     /* Input */
     --ui-input-height-md: var(--ui-control-height-md);
@@ -23,7 +23,7 @@
     --ui-input-border-focus: var(--ui-color-primary);
     --ui-input-fg: var(--ui-color-text);
     --ui-input-placeholder: var(--ui-color-text-secondary);
-    --ui-input-shadow-focus: 0 0 0 2px rgba(59,130,246,0.25);
+    --ui-input-shadow-focus: 0 0 0 2px rgba(59, 130, 246, 0.25);
 
     /* Card */
     --ui-card-bg: var(--ui-color-bg);
