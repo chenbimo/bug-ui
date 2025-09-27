@@ -1,0 +1,80 @@
+:root {
+    /* 基础调色板（Neutral 灰阶 1=最浅 10=最深） */
+    --ui-palette-neutral-1: #ffffff;
+    --ui-palette-neutral-2: #f7f9fa;
+    --ui-palette-neutral-3: #f2f4f6;
+    --ui-palette-neutral-4: #e5e7eb;
+    --ui-palette-neutral-5: #d1d5db;
+    --ui-palette-neutral-6: #9ca3af;
+    --ui-palette-neutral-7: #6b7280;
+    --ui-palette-neutral-8: #4b5563;
+    --ui-palette-neutral-9: #374151;
+    --ui-palette-neutral-10: #111827;
+
+    /* 品牌 / 功能色主阶 - 以 6 为基准主色（可扩展 1..10） */
+    --ui-palette-primary-1: #eff6ff;
+    --ui-palette-primary-2: #dbeafe;
+    --ui-palette-primary-3: #bfdbfe;
+    --ui-palette-primary-4: #93c5fd;
+    --ui-palette-primary-5: #60a5fa;
+    --ui-palette-primary-6: #3b82f6; /* 主色 */
+    --ui-palette-primary-7: #2563eb;
+    --ui-palette-primary-8: #1d4ed8;
+    --ui-palette-primary-9: #1e40af;
+    --ui-palette-primary-10: #1e3a8a;
+
+    --ui-palette-success-5: #16a34a;
+    --ui-palette-success-6: #15803d;
+    --ui-palette-success-7: #166534;
+    --ui-palette-warning-5: #f59e0b;
+    --ui-palette-warning-6: #d97706;
+    --ui-palette-warning-7: #b45309;
+    --ui-palette-danger-5: #dc2626;
+    --ui-palette-danger-6: #b91c1c;
+    --ui-palette-danger-7: #991b1b;
+    --ui-palette-info-5: #0ea5e9;
+    --ui-palette-info-6: #0284c7;
+    --ui-palette-info-7: #0369a1;
+
+    /* 尺寸 / 圆角 / 字体（基础原子） */
+    --ui-radius-sm: 4px;
+    --ui-radius-md: 6px;
+    --ui-radius-lg: 8px;
+    --ui-radius-xl: 12px;
+    --ui-font-size-xs: 12px;
+    --ui-font-size-sm: 13px;
+    --ui-font-size-md: 14px;
+    --ui-font-size-lg: 16px;
+    --ui-line-height: 1.4;
+    --ui-spacing-1: 2px;
+    --ui-spacing-2: 4px;
+    --ui-spacing-3: 6px;
+    --ui-spacing-4: 8px;
+    --ui-spacing-5: 10px;
+    --ui-spacing-6: 12px;
+    --ui-spacing-7: 14px;
+    --ui-spacing-8: 16px;
+    --ui-spacing-9: 20px;
+    --ui-spacing-10: 24px;
+
+    /* 阴影 */
+    --ui-shadow-pop: 0 6px 20px rgba(0,0,0,0.15);
+    --ui-shadow-overlay: 0 10px 30px rgba(0,0,0,0.2);
+
+    /* 动效与节奏 */
+    --ui-motion-fast: 80ms;
+    --ui-motion-base: 160ms;
+    --ui-motion-slow: 240ms;
+    --ui-ease-in-out: cubic-bezier(.4,0,.2,1);
+    --ui-ease-out: cubic-bezier(0,0,.2,1);
+    --ui-ease-in: cubic-bezier(.4,0,1,1);
+
+    /* 层级 */
+    --ui-z-base: 0;
+    --ui-z-dropdown: 1000;
+    --ui-z-sticky: 1100;
+    --ui-z-fixed: 1200;
+    --ui-z-popup: 1300;
+    --ui-z-modal: 1400;
+    --ui-z-toast: 1500;
+}

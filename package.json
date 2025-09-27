@@ -17,7 +17,11 @@
             "import": "./dist/components/*.js",
             "types": "./dist/components/*.d.ts"
         },
-        "./styles/*": "./dist/styles/*"
+        "./styles/*": "./dist/styles/*",
+        "./tokens": {
+            "import": "./dist/tokens.js",
+            "types": "./dist/tokens.d.ts"
+        }
     },
     "types": "./dist/index.d.ts",
     "sideEffects": [
@@ -34,7 +38,9 @@
         "docs:preview": "vitepress preview docs",
         "gen:meta": "bun run-ts scripts/genComponentMeta.ts",
         "gen:variables": "bun scripts/genVariables.ts",
-        "doc:append-vars": "bun scripts/appendVariablesSection.ts"
+        "doc:append-vars": "bun scripts/appendVariablesSection.ts",
+        "gen:tokens": "bun scripts/genTokens.ts",
+        "check:contrast": "bun scripts/checkContrast.ts"
     },
     "keywords": [
         "bun",

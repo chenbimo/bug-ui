@@ -13,7 +13,7 @@ bun add buig
 ```ts
 import { createApp } from 'vue';
 import * as Buig from 'buig';
-import 'buig/styles/variable.css';
+import 'buig/styles/core.css';
 import App from './App.vue';
 
 createApp(App).use(Buig).mount('#app');
@@ -36,18 +36,40 @@ import { BuigButton } from 'buig';
 }
 ```
 
-然后在入口确保先加载覆盖文件再加载组件库（或与 variable.css 顺序并列，后声明优先级覆盖）：
+然后在入口确保先加载覆盖文件再加载组件库（或直接使用分层/聚合 core.css，引入顺序后者可覆盖前者）：
 
 ```ts
 import './styles/theme.css';
-import 'buig/styles/variable.css';
+import 'buig/styles/core.css';
 ```
 
-## 设计 Tokens（简述）
+## 设计 Tokens（分层说明）
 
-`variable.css` 汇总颜色/尺寸/阴影等基础语义。
+当前变量体系：
 
-变量完整列表：参见文档站 基础 -> 变量 或直接查看 `docs/markdown/01-基础/00-Variables.md`（脚本生成）。
+| 层级 | 文件 | 说明 |
+| ---- | ---- | ---- |
+| 基础原子 | foundation.css | 色板 / 尺寸 / 圆角 / 阴影 / 动效 / 层级 |
+| 语义映射 | semantic.css | 文本 / 背景 / 边框 / 主色 / 状态 / 控件尺寸语义桥接 |
+| 组件级 | component.css | 组件消费接口（如 `--ui-button-*`）|
+| 主题覆盖 | dark.css | 暗色模式覆盖语义 & 组件变量 |
+| 聚合入口 | core.css | 聚合基础原子+语义+组件（不再保留旧 variable.css）|
+
+推荐引入（聚合）：
+
+```css
+@import 'buig/styles/core.css';
+```
+
+或按需精细引入：
+
+```css
+@import 'buig/styles/foundation.css';
+@import 'buig/styles/semantic.css';
+@import 'buig/styles/component.css';
+```
+
+变量完整列表：见文档站 基础 -> 变量（脚本生成，含分组）。
 
 生成/更新变量文档：
 
@@ -55,7 +77,7 @@ import 'buig/styles/variable.css';
 bun run gen:variables
 ```
 
-> 若脚本执行失败，确保使用 Bun 最新版本，并确认 `src/styles/variable.css` 存在。
+> 若脚本执行失败，确保使用 Bun 最新版本，并确认 `src/styles/{foundation,semantic,component}.css` 均存在。
 
 ### 暗色模式（示例）
 
@@ -78,14 +100,14 @@ html[data-theme='dark'] {
 document.documentElement.setAttribute('data-theme', 'dark');
 ```
 
-或直接引入提供的暗色预设文件（包含基础暗色变量覆盖）：
+或直接引入文件：
 
 ```ts
-import 'buig/styles/variable.css'; // 基础变量
+import 'buig/styles/core.css'; // 核心变量
 import 'buig/styles/dark.css'; // 暗色变量（通过 data-theme 控制生效）
 ```
 
-> 注意：`dark.css` 使用选择器 `html[data-theme='dark']`，只有在设置该属性后才会覆盖变量。
+> 注意：`dark.css` 使用选择器 `html[data-theme='dark']`，只有在设置该属性后才会覆盖变量。若需要一键引入再包含暗色覆盖，可使用 `import 'buig/styles/all.css'`（仍需设置 data-theme 才生效暗色）。
 
 ## 许可证
 

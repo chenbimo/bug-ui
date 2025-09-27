@@ -1,33 +1,37 @@
-import { readFileSync, writeFileSync } from 'fs';
-import { resolve, dirname } from 'path';
+import { readFileSync, writeFileSync, readdirSync } from 'fs';
+import { resolve, dirname, extname } from 'path';
 import { fileURLToPath } from 'url';
 
-// 简易解析 variable.css 中的 :root { ... } 变量，生成 markdown 列表。
+// 解析分层样式（foundation/semantic/component）中的 CSS 变量生成 Markdown 表格。
 // 仅处理形如 --xxx: value; 的行，忽略注释与空行。
 
 function main() {
     const __DIR = dirname(fileURLToPath(import.meta.url));
-    const cssPath = resolve(__DIR, '../src/styles/variable.css');
-    const outPath = resolve(__DIR, '../docs/markdown/01-基础/00-Variables.md');
-    const raw = readFileSync(cssPath, 'utf-8');
-    const lines = raw.split(/\r?\n/);
-    const vars: { name: string; value: string }[] = [];
-    for (const line of lines) {
-        const m = line.match(/^(\s*--[a-zA-Z0-9-_]+):\s*(.+);/);
-        if (m) {
-            vars.push({ name: m[1].trim(), value: m[2].trim() });
+    const stylesDir = resolve(__DIR, '../src/styles');
+    const targetFiles = ['foundation.css', 'semantic.css', 'component.css']; // 不直接展示 variable.css 聚合 & dark.css
+    const resultSections: string[] = [];
+    let total = 0;
+
+    function parseFile(file: string) {
+        const filePath = resolve(stylesDir, file);
+        const raw = readFileSync(filePath, 'utf-8');
+        const local: { name: string; value: string }[] = [];
+        for (const line of raw.split(/\r?\n/)) {
+            const m = line.match(/^(\s*--[a-zA-Z0-9-_]+):\s*(.+);/);
+            if (m) local.push({ name: m[1].trim(), value: m[2].trim() });
         }
+        total += local.length;
+        if (local.length === 0) return;
+        const tableRows = local
+            .map(v => `| \`${v.name}\` | \`${v.value}\` |`)
+            .join('\n');
+        resultSections.push(`### ${file}\n\n| 变量名 | 值 |\n| ------ | --- |\n${tableRows}`);
     }
 
-    const header = `# 变量参考 (variable.css)\n\n共 ${vars.length} 个变量。\n\n| 变量名 | 值 |\n| ------ | --- |\n`;
-    const body = vars
-        .map(
-            (v) => `| \
-\`${v.name}\` | \
-\`${v.value}\` |`
-        )
-        .join('\n');
-    const content = `${header}${body}\n\n> 本文件由脚本 scripts/genVariables.ts 生成，如需新增变量请修改 \`src/styles/variable.css\` 然后重新运行脚本。`;
+    for (const f of targetFiles) parseFile(f);
+
+    const outPath = resolve(__DIR, '../docs/markdown/01-基础/00-Variables.md');
+    const content = `# 变量参考\n\n总计 ${total} 个变量（不含 dark.css 覆盖层）。\n\n> 分层文件：foundation.css（基础原子）、semantic.css（语义映射）、component.css（组件级）。dark.css 为主题覆盖层，core.css 为明亮聚合入口，all.css 包含 core + dark。\n\n${resultSections.join('\n\n')}\n\n> 本文件由脚本 scripts/genVariables.ts 生成，如需新增变量请修改对应样式文件后重新运行脚本。`;
     writeFileSync(outPath, content, 'utf-8');
     console.log(`Generated ${outPath}`);
 }

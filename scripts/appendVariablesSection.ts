@@ -4,20 +4,25 @@ import { fileURLToPath } from 'url';
 
 /*
   为每个组件文档自动追加“关联变量”段落：
-  规则：根据组件英文名（Button -> button）匹配 variable.css 中包含该 block 名的变量行（--ui-...-button-...）。
-  当前 variable.css 尚未细分具体组件变量，脚本将跳过无匹配的组件（不写入）。
+    规则：根据组件英文名（Button -> button）匹配 component.css 中以 --ui-<name>- 前缀的变量；
+    若严格前缀为空则尝试宽松包含策略（例如历史命名或复合变量）。
 */
 
 function loadVariables(): string[] {
     const __DIR = resolve(fileURLToPath(import.meta.url), '..');
-    const cssPath = resolve(__DIR, '../src/styles/variable.css');
-    const raw = readFileSync(cssPath, 'utf-8');
+    const styleDir = resolve(__DIR, '../src/styles');
+    const sources = ['foundation.css', 'semantic.css', 'component.css'];
     const vars: string[] = [];
-    for (const line of raw.split(/\r?\n/)) {
-        const m = line.match(/--[a-z0-9-]+/i);
-        if (m) vars.push(m[0]);
+    for (const file of sources) {
+        const p = resolve(styleDir, file);
+        let raw = '';
+        try { raw = readFileSync(p, 'utf-8'); } catch { continue; }
+        for (const line of raw.split(/\r?\n/)) {
+            const m = line.match(/--[a-z0-9-]+/i);
+            if (m) vars.push(m[0]);
+        }
     }
-    return vars;
+    return Array.from(new Set(vars));
 }
 
 function main() {
@@ -38,7 +43,12 @@ function main() {
                 const namePart = f.replace(/^[0-9]+-/, '').replace(/\.md$/, '');
                 componentNames.push(namePart);
                 const matchPrefix = namePart.toLowerCase();
-                const related = vars.filter((v) => v.includes(matchPrefix));
+                // 组件级匹配策略：--ui-button- 前缀 (严格) + 兜底包含名 (宽松)
+                const strictPrefix = `--ui-${matchPrefix}-`;
+                let related = vars.filter(v => v.startsWith(strictPrefix));
+                if (related.length === 0) {
+                    related = vars.filter(v => v.includes(`-${matchPrefix}-`));
+                }
                 if (related.length === 0) continue; // 当前没有具体变量，暂跳过
                 const filePath = resolve(abs, f);
                 const origin = readFileSync(filePath, 'utf-8');

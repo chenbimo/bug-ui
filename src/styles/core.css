@@ -1,0 +1,4 @@
+/* core.css - 明确聚合层（不含主题覆写） */
+@import './foundation.css';
+@import './semantic.css';
+@import './component.css';

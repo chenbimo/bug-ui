@@ -1,14 +1,25 @@
+/* dark.css - 仅覆盖语义/组件级变量，不直接修改 foundation 层（palette 等） */
 html[data-theme='dark'] {
+    /* 语义背景 & 文本 */
     --ui-color-bg: #18181b;
-    --ui-color-bg-subtle: #27272a;
+    --ui-color-bg-subtle: #222225;
     --ui-color-bg-muted: #1f1f22;
     --ui-color-text: #e4e4e7;
     --ui-color-text-secondary: #a1a1aa;
     --ui-color-border: #3f3f46;
-    --ui-color-border-subtle: #52525b;
-    --ui-shadow-overlay: 0 10px 30px rgba(0, 0, 0, 0.6);
-    --ui-shadow-pop: 0 6px 20px rgba(0, 0, 0, 0.55);
+    --ui-color-border-subtle: #2f2f35;
+
+    /* 中性色语义 */
     --ui-color-neutral: #27272a;
     --ui-color-neutral-hover: #323236;
     --ui-color-neutral-active: #3a3a40;
+    --ui-color-neutral-foreground: #e4e4e7;
+
+    /* 阴影在暗色下适度增强透明度以保持层次 */
+    --ui-shadow-pop: 0 6px 20px rgba(0,0,0,0.55);
+    --ui-shadow-overlay: 0 10px 30px rgba(0,0,0,0.6);
+
+    /* 组件覆盖示例（按需扩展） */
+    --ui-card-bg: var(--ui-color-bg-subtle);
+    --ui-input-bg: var(--ui-color-bg-subtle);
 }

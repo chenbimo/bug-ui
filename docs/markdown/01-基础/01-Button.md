@@ -1,6 +1,6 @@
 # Button 按钮
 
-下面是一个在文档站直接可交互的示例（组件已全局注册，且已引入 variable.css，原 tokens.css 已移除）。
+下面是一个在文档站直接可交互的示例（组件已全局注册，且已引入 core.css 聚合层，旧 variable.css 已移除）。
 
 <ClientOnly>
   <div style="display:flex; gap:12px; align-items:center;">

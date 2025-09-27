@@ -15,7 +15,7 @@ bun add buig
 ```ts
 import { createApp } from 'vue';
 import * as Buig from 'buig';
-import 'buig/styles/variable.css';
+import 'buig/styles/core.css';
 createApp(App).use(Buig).mount('#app');
 ```
 
@@ -27,8 +27,8 @@ import { BuigButton } from 'buig';
 
 ## 目录说明
 
--   组件文档分组：依赖 `docs/markdown/<数字-分类>/<数字-组件>.md` 命名排序
--   新增文档后需在 `docs/.vitepress/config.mjs` 手工更新侧边栏
+- 组件文档分组：依赖 `docs/markdown/<数字-分类>/<数字-组件>.md` 命名排序
+- 新增文档后需在 `docs/.vitepress/config.mjs` 手工更新侧边栏
 
 ## 下一步
 
@@ -53,7 +53,7 @@ import { BuigButton } from 'buig';
 
 ```ts
 import './styles/theme.css';
-import 'buig/styles/variable.css';
+import 'buig/styles/core.css';
 ```
 
 实战建议：

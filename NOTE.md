@@ -94,6 +94,57 @@
 
 （此条为记录性变更说明）
 
+### 后续补充（2025-09-27 夜间晚些）移除旧聚合 variable.css
+
+执行：彻底删除 `src/styles/variable.css`，不再保留兼容别名。
+
+新增：
+
+1. `core.css` 作为新的显式聚合（包含 foundation/semantic/component）
+2. `all.css` 聚合 core + dark（暗色仍需设置 `data-theme="dark"` 才生效）
+
+构建：`vite.config.js` 移除 `styles/variable` 入口，新增 `styles/core` 与 `styles/all`。
+
+文档：全部 import 示例替换为 `core.css`；变量文档移除旧标题 `(variable.css)`；Button 示例说明更新。
+
+脚本：保持扫描分层文件，不依赖 variable.css。
+
+理由：减少多层间接聚合命名歧义，提供更语义化入口（core/all），避免用户继续依赖已废弃路径。
+
+潜在影响：旧使用者需更新导入语句；此变更视为下一版本（>=0.0.7）breaking（虽然仍处 0.x ）。
+
+（此条为记录性变更说明）
+
+### 后续补充（2025-09-27 夜间）变量体系分层重构
+
+本次将单一 `variable.css` 拆分为分层结构：
+
+1. `foundation.css`：基础原子（调色板 neutral / primary / success / warning / danger / info 阶梯、尺寸、spacing、圆角、阴影、动效、层级）
+2. `semantic.css`：语义映射（背景/文本/边框/状态/控件尺寸语义变量），引用 palette 原子
+3. `component.css`：首批组件级变量（Button / Input / Card），暴露 `--ui-button-*`、`--ui-input-*`、`--ui-card-*`
+4. `dark.css`：仅覆盖语义层与组件层变量（未直接修改 foundation 原子）
+5. `variable.css`：聚合入口，通过 `@import` 引入 foundation / semantic / component，保留对外兼容
+
+脚本更新：
+
+- `genVariables.ts` 改为扫描多文件并按文件分组生成表格
+- `appendVariablesSection.ts` 支持组件级前缀匹配（严格前缀 + 宽松包含两级策略）
+
+引入方式推荐：
+
+- 精细：按需引入层级文件
+- 便捷：继续使用 `variable.css` 聚合
+- 暗色：额外引入 `dark.css`，通过 `html[data-theme='dark']` 激活
+
+后续计划：
+
+1. 扩展更多组件级变量（Select / Tag / Alert 等）
+2. 引入对比度/可访问性验证（可选）
+3. 评估是否需要 aliases.css 过渡层（当前无历史包袱暂不添加）
+4. 增加 motion 曲线补充（focus ring 动画、进出场过渡统一）
+
+（此条为记录性变更说明）
+
 ### 后续补充（2025-09-27 深夜）暗色预设文件新增
 
 新增 `src/styles/dark.css`，提供基于 `html[data-theme='dark']` 的暗色变量覆写：
@@ -108,5 +159,21 @@
 1. 细化暗色下 primary / success / warning / danger 的对比度适配。
 2. 提供自动主题切换示例（监听系统 prefers-color-scheme）。
 3. 与未来主题拆分（colors/sizes）脚本联动自动再生成。
+
+（此条为记录性变更说明）
+
+### 后续补充（2025-09-27 深夜稍后）移除 legacy 样式文件 variable.css / tokens.css
+
+执行：删除 `src/styles/variable.css` 与 `src/styles/tokens.css`，统一以 `core.css` / `all.css` 作为聚合入口。前者（variable.css）为早期聚合保留的兼容层，后者（tokens.css）为旧集中变量文件，均已被分层（foundation / semantic / component / dark）取代。
+
+影响：
+1. 文档与示例已全部使用 `core.css` 或 `all.css`；
+2. 生成脚本 `genVariables.ts` 注释更新，不再提及 variable.css；
+3. MIGRATION-0.0.7.md 已记录聚合替换策略；
+4. 若历史用户仍引用 `styles/variable.css` 或 `styles/tokens.css`，需手动迁移。
+
+不兼容性：视为 0.0.x 内部架构整理（仍写入迁移文档避免困惑）。
+
+后续：保持分层结构稳定，待引入主题扩展（更多模式）再评估是否需要 alias 聚合层。
 
 （此条为记录性变更说明）

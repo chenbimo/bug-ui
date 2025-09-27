@@ -1,4 +1,4 @@
-# 变量参考 (variable.css)
+# 变量参考
 
 共 54 个变量。
 
@@ -59,4 +59,4 @@
 | `--ui-control-radius-md` | `8px` |
 | `--ui-control-radius-lg` | `10px` |
 
-> 本文件由脚本 scripts/genVariables.ts 生成，如需新增变量请修改 `src/styles/variable.css` 然后重新运行脚本。
+> 本文件由脚本 scripts/genVariables.ts 生成，如需新增变量请修改 `src/styles/{foundation,semantic,component}.css` 然后重新运行脚本。

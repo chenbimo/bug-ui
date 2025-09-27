@@ -1,0 +1,3 @@
+/* all.css - 一次性引入核心 + 暗色覆盖（仍需 data-theme="dark" 才生效暗色变量） */
+@import './core.css';
+@import './dark.css';
