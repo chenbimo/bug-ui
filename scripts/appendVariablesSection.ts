@@ -16,7 +16,11 @@ function loadVariables(): string[] {
     for (const file of sources) {
         const p = resolve(styleDir, file);
         let raw = '';
-        try { raw = readFileSync(p, 'utf-8'); } catch { continue; }
+        try {
+            raw = readFileSync(p, 'utf-8');
+        } catch {
+            continue;
+        }
         for (const line of raw.split(/\r?\n/)) {
             const m = line.match(/--[a-z0-9-]+/i);
             if (m) vars.push(m[0]);
@@ -45,9 +49,9 @@ function main() {
                 const matchPrefix = namePart.toLowerCase();
                 // 组件级匹配策略：--ui-button- 前缀 (严格) + 兜底包含名 (宽松)
                 const strictPrefix = `--ui-${matchPrefix}-`;
-                let related = vars.filter(v => v.startsWith(strictPrefix));
+                let related = vars.filter((v) => v.startsWith(strictPrefix));
                 if (related.length === 0) {
-                    related = vars.filter(v => v.includes(`-${matchPrefix}-`));
+                    related = vars.filter((v) => v.includes(`-${matchPrefix}-`));
                 }
                 if (related.length === 0) continue; // 当前没有具体变量，暂跳过
                 const filePath = resolve(abs, f);

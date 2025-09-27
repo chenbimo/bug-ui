@@ -14,19 +14,19 @@
 
 ### 待办展望
 
--   其余组件统一改名前缀与 TS 化。
--   事件命名策略与文档 API 表格生成脚本。
--   Tokens 体系进一步语义化（色板、尺寸、排版）。
--   SideEffects 精简与构建产物 d.ts 完整性验证。
+- 其余组件统一改名前缀与 TS 化。
+- 事件命名策略与文档 API 表格生成脚本。
+- Tokens 体系进一步语义化（色板、尺寸、排版）。
+- SideEffects 精简与构建产物 d.ts 完整性验证。
 
 （本文件用于记录变更，不修改 AGENTS.md）
 
 ### 第二阶段（局部执行 2025-09-27 后续补充）
 
--   已改造组件：Button / Alert / Input / Spinner。
--   删除旧根级 `install.js`，仅保留 `src/install.ts`。
--   事件内部统一采用语义名（如 Alert: close, Input: input/change/focus/blur）。
--   下一批计划：剩余所有组件名前缀与样式类替换，抽离硬编码颜色为 tokens。
+- 已改造组件：Button / Alert / Input / Spinner。
+- 删除旧根级 `install.js`，仅保留 `src/install.ts`。
+- 事件内部统一采用语义名（如 Alert: close, Input: input/change/focus/blur）。
+- 下一批计划：剩余所有组件名前缀与样式类替换，抽离硬编码颜色为 tokens。
 
 ### 第三阶段（2025-09-27 晚间）
 
@@ -149,8 +149,8 @@
 
 新增 `src/styles/dark.css`，提供基于 `html[data-theme='dark']` 的暗色变量覆写：
 
--   背景 / 文本 / 边框 / 阴影 / 中性层变量覆盖
--   通过设置 `document.documentElement.setAttribute('data-theme','dark')` 激活
+- 背景 / 文本 / 边框 / 阴影 / 中性层变量覆盖
+- 通过设置 `document.documentElement.setAttribute('data-theme','dark')` 激活
 
 构建：`vite.config.js` 增加入口 `styles/dark`，可通过 `import 'buig/styles/dark.css'` 按需引入。
 
@@ -167,6 +167,7 @@
 执行：删除 `src/styles/variable.css` 与 `src/styles/tokens.css`，统一以 `core.css` / `all.css` 作为聚合入口。前者（variable.css）为早期聚合保留的兼容层，后者（tokens.css）为旧集中变量文件，均已被分层（foundation / semantic / component / dark）取代。
 
 影响：
+
 1. 文档与示例已全部使用 `core.css` 或 `all.css`；
 2. 生成脚本 `genVariables.ts` 注释更新，不再提及 variable.css；
 3. MIGRATION-0.0.7.md 已记录聚合替换策略；
