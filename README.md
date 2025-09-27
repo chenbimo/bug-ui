@@ -1,6 +1,8 @@
 # Buig UI
 
-实验性 Vue3 组件库（MVP 阶段）。
+buig(big + bug + ui) - 有着大大的 BUG 的 Vue3 UI组件库
+
+> 实验性 Vue3 组件库（MVP 阶段）。
 
 ## 安装
 

@@ -1,6 +1,6 @@
 {
     "name": "buig",
-    "version": "0.0.6",
+    "version": "0.0.8",
     "description": "buig(big + bug + ui) - 有着大大的 BUG 的 Vue3 UI组件库",
     "type": "module",
     "private": false,
