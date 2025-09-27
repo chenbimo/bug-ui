@@ -71,3 +71,42 @@
 7. 生成脚本输出的 Components API 文档预留多语言结构（当前仍仅中文内容）。
 
 （第四阶段记录完毕）
+
+### 后续补充（2025-09-27 深夜）样式变量文件重命名
+
+执行方案 A：`src/styles/tokens.css` 重命名为 `src/styles/variable.css`。
+
+变更原因：
+
+1. 名称更贴合内容（集中存放 CSS Variables），避免与后续更完整 Token 体系（可能拆分色板/尺寸/语义层）混淆。
+2. 为将来加入 design tokens 构建/生成脚本（例如按主题拆分）预留语义空间。
+
+影响与处理：
+
+1. 构建入口由 `styles/tokens` -> `styles/variable`（`vite.config.js` 已更新）。
+2. 文档中 import 与描述全部替换为 `variable.css`；旧文件已删除，不保留兼容别名。
+3. 若已有使用者依赖 `buig/styles/tokens.css` 路径，将在版本说明中提示手动迁移。
+
+后续计划：
+
+1. 评估拆分 `variable.css` 为主题化结构（`colors.css`、`sizes.css` 等）。
+2. 在 README 新增变量覆盖示例（主题自定义指引）。
+
+（此条为记录性变更说明）
+
+### 后续补充（2025-09-27 深夜）暗色预设文件新增
+
+新增 `src/styles/dark.css`，提供基于 `html[data-theme='dark']` 的暗色变量覆写：
+
+-   背景 / 文本 / 边框 / 阴影 / 中性层变量覆盖
+-   通过设置 `document.documentElement.setAttribute('data-theme','dark')` 激活
+
+构建：`vite.config.js` 增加入口 `styles/dark`，可通过 `import 'buig/styles/dark.css'` 按需引入。
+
+后续计划：
+
+1. 细化暗色下 primary / success / warning / danger 的对比度适配。
+2. 提供自动主题切换示例（监听系统 prefers-color-scheme）。
+3. 与未来主题拆分（colors/sizes）脚本联动自动再生成。
+
+（此条为记录性变更说明）

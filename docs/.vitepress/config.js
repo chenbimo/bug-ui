@@ -18,6 +18,7 @@ export default defineConfig({
             {
                 text: '基础',
                 items: [
+                    { text: '变量 (Variables)', link: '/01-基础/00-Variables' },
                     { text: 'Button 按钮', link: '/01-基础/01-Button' },
                     { text: 'Icon 图标', link: '/01-基础/02-Icon' },
                     { text: 'Divider 分割线', link: '/01-基础/03-Divider' }

@@ -1,7 +1,7 @@
 import DefaultTheme from 'vitepress/theme';
 // 直接从源码引入（Vite 支持 TS 源文件解析）
 import * as Buig from '../../../src/index.ts';
-import '../../../src/styles/tokens.css';
+import '../../../src/styles/variable.css';
 
 export default {
     ...DefaultTheme,

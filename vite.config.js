@@ -6,10 +6,11 @@ export default defineConfig({
     build: {
         cssCodeSplit: true,
         lib: {
-            // 多入口：主库与样式 tokens
+            // 多入口：主库 + variable.css + dark.css
             entry: {
                 index: 'src/index.js',
-                'styles/tokens': 'src/styles/tokens.css'
+                'styles/variable': 'src/styles/variable.css',
+                'styles/dark': 'src/styles/dark.css'
             },
             formats: ['es'],
             fileName: (format, entryName) => `${entryName}.js`
