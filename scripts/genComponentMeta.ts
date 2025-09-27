@@ -8,8 +8,8 @@
  *  - Do NOT attempt default value inference now
  *  - Output JSON with version + generatedAt, and Markdown with overview table
  */
-import { readdirSync, readFileSync, mkdirSync, writeFileSync } from 'node:fs';
-import { join } from 'node:path';
+import { readdirSync, readFileSync, mkdirSync, writeFileSync, statSync } from 'node:fs';
+import { join, dirname } from 'node:path';
 import { parse } from '@vue/compiler-sfc';
 
 interface PropMeta {
@@ -50,11 +50,24 @@ try {
     console.error('[genComponentMeta] Cannot read package.json:', e);
 }
 
-const files = readdirSync(COMPONENT_DIR).filter((f) => f.endsWith('.vue'));
+// 深度遍历收集所有 .vue 文件，支持目录化组件
+function collectVueFiles(dir: string, acc: string[] = []): string[] {
+    for (const entry of readdirSync(dir)) {
+        const full = join(dir, entry);
+        let st; try { st = statSync(full); } catch { continue; }
+        if (st.isDirectory()) collectVueFiles(full, acc);
+        else if (entry.endsWith('.vue')) acc.push(full);
+    }
+    return acc;
+}
+const files = collectVueFiles(COMPONENT_DIR);
 
 // Regex patterns
 const RE_NAME = /defineOptions\(\{\s*name:\s*'([^']+)'/;
-const RE_DEFINE_PROPS_GENERIC = /defineProps<\s*\{([\s\S]*?)\}\s*>\(\)/;
+const RE_DEFINE_PROPS_INLINE = /defineProps<\s*\{([\s\S]*?)\}\s*>\(\)/;
+const RE_DEFINE_PROPS_IDENTIFIER = /defineProps<\s*([A-Z][A-Za-z0-9_]*)\s*>\(\)/;
+const RE_INTERFACE_BLOCK = /interface\s+([A-Z][A-Za-z0-9_]*)\s*\{([\s\S]*?)\}/g;
+const RE_TYPE_ALIAS_BLOCK = /type\s+([A-Z][A-Za-z0-9_]*)\s*=\s*\{([\s\S]*?)\}/g;
 const RE_DEFINE_EMITS_GENERIC = /defineEmits<\s*\{([\s\S]*?)\}\s*>\(\)/;
 // emits call forms: (e: 'click' | 'open', ...). We capture first literal occurrence.
 const RE_EMIT_EVENT = /\(e:\s*['"]([^'"`]+)['"]/g;
@@ -97,14 +110,32 @@ function parseEmitsGeneric(block: string | undefined): string[] {
 
 const meta: Record<string, ComponentMetaEntry> = {};
 
-for (const file of files) {
-    const full = join(COMPONENT_DIR, file);
+for (const full of files) {
+    const rel = full.substring(ROOT.length + 1).replace(/\\/g, '/');
+    const file = rel.substring(rel.lastIndexOf('/') + 1);
     const raw = readFileSync(full, 'utf-8');
     const { descriptor } = parse(raw);
     const scriptContent = descriptor.scriptSetup?.content || descriptor.script?.content || '';
 
     const name = raw.match(RE_NAME)?.[1] || file.replace(/\.vue$/, '');
-    const propsBlock = scriptContent.match(RE_DEFINE_PROPS_GENERIC)?.[1];
+    let propsBlock = scriptContent.match(RE_DEFINE_PROPS_INLINE)?.[1];
+    let identifier: string | undefined;
+    if (!propsBlock) identifier = scriptContent.match(RE_DEFINE_PROPS_IDENTIFIER)?.[1];
+    const blocks: Record<string, string> = {};
+    const collectBlocks = (code: string) => {
+        let m: RegExpExecArray | null;
+        while ((m = RE_INTERFACE_BLOCK.exec(code))) blocks[m[1]] = m[2];
+        while ((m = RE_TYPE_ALIAS_BLOCK.exec(code))) blocks[m[1]] = m[2];
+    };
+    collectBlocks(scriptContent);
+    if (identifier && !blocks[identifier]) {
+        try {
+            const typesFile = join(dirname(full), 'types.ts');
+            const typesRaw = readFileSync(typesFile, 'utf-8');
+            collectBlocks(typesRaw);
+        } catch {/* ignore */}
+    }
+    if (!propsBlock && identifier && blocks[identifier]) propsBlock = blocks[identifier];
     const emitsBlock = scriptContent.match(RE_DEFINE_EMITS_GENERIC)?.[1];
 
     const props = parsePropsGeneric(propsBlock);
@@ -123,7 +154,7 @@ for (const file of files) {
     }
 
     meta[name] = {
-        file: `src/components/${file}`,
+        file: rel,
         props,
         emits,
         slots: Array.from(slotsSet)
