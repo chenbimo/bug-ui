@@ -34,6 +34,7 @@
         "test:watch": "vitest",
         "e2e": "playwright test",
         "docs:dev": "vitepress dev docs",
+        "docs:dev:stable": "bun scripts/devDocsWrapper.ts",
         "docs:build": "vitepress build docs",
         "docs:preview": "vitepress preview docs",
         "gen:variables": "bun scripts/genVariables.ts",

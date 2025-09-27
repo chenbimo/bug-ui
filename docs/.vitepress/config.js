@@ -63,8 +63,79 @@ function demoPlugin(md) {
         }
     );
     md.renderer.rules.demo_all_open = (tokens, idx) => {
-        const { component } = tokens[idx].meta || {};
-        return renderDemoAll(component);
+        const meta = tokens[idx].meta || {};
+        const raw = meta.component || '';
+        // 支持 :::demo-all button shape,size 形式过滤
+        const parts = raw.split(/\s+/);
+        const component = parts[0];
+        const filterList = (parts[1] || '').split(',').filter(Boolean);
+        try {
+            const demoDir = path.resolve(
+                process.cwd(),
+                'src',
+                'components',
+                component,
+                'demo'
+            );
+            if (!fs.existsSync(demoDir))
+                return `<div class=\"demo-missing\">未找到组件 demo 目录: ${component}</div>`;
+            let files = fs
+                .readdirSync(demoDir)
+                .filter((f) => f.endsWith('.md') && f !== 'api.md');
+            if (filterList.length) {
+                files = files.filter((f) =>
+                    filterList.some((flt) => f.startsWith(flt))
+                );
+            }
+            if (!files.length)
+                return `<div class=\"demo-empty\">暂无 Demo</div>`;
+            // 读取并解析 front-matter
+            const parsed = files.map((filename) => {
+                const full = path.join(demoDir, filename);
+                const content = fs.readFileSync(full, 'utf-8');
+                const fmMatch = content.match(
+                    /^---[\r\n]+([\s\S]*?)---[\r\n]+/
+                );
+                let order = 9999;
+                let title = '';
+                if (fmMatch) {
+                    const lines = fmMatch[1]
+                        .split(/\r?\n/)
+                        .map((l) => l.trim())
+                        .filter(Boolean);
+                    for (const l of lines) {
+                        const kv = l.split(':');
+                        if (kv.length >= 2) {
+                            const k = kv[0].trim();
+                            const v = kv.slice(1).join(':').trim();
+                            if (k === 'order') order = Number(v) || order;
+                            if (k === 'title')
+                                title = v.replace(/^['"]|['"]$/g, '');
+                        }
+                    }
+                }
+                // 校验存在二级标题
+                if (!/^###\s+/m.test(content)) {
+                    return {
+                        order,
+                        filename,
+                        html: `<div class=\"demo-error\">缺少二级标题(### )：${filename}</div>`
+                    };
+                }
+                return { order, filename, content };
+            });
+            parsed.sort((a, b) =>
+                a.order === b.order
+                    ? a.filename.localeCompare(b.filename)
+                    : a.order - b.order
+            );
+            const merged = parsed
+                .map((p) => (p.content ? p.content : p.html))
+                .join('\n\n');
+            return md.render(merged);
+        } catch (e) {
+            return `<div class=\"demo-error\">Demo 载入异常: ${(e && e.message) || e}</div>`;
+        }
     };
     md.renderer.rules.demo_all_close = () => '';
 
