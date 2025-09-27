@@ -79,6 +79,70 @@ bun run gen:variables
 
 > 若脚本执行失败，确保使用 Bun 最新版本，并确认 `src/styles/{foundation,semantic,component}.css` 均存在。
 
+### Tokens 导出 (TS / JSON)
+
+库提供结构化 tokens 供构建工具或运行时消费：
+
+```ts
+import { tokens } from 'buig/tokens';
+console.log(tokens.semantic['--ui-color-primary']);
+```
+
+生成 / 更新 `src/tokens.ts` 与根级 `tokens.json`：
+
+```bash
+bun run gen:tokens
+```
+
+也可直接读取构建产物中的 JSON：
+
+```ts
+import tokensJson from 'buig/dist/tokens.json';
+```
+
+### 对比度检测
+
+运行自动对比度检查（当前检测 text / text-secondary 与多背景组合）：
+
+```bash
+bun run check:contrast
+```
+
+示例输出：
+
+```
+[contrast] light --ui-color-text-secondary on --ui-color-bg-muted = 3.90 (<4.5)
+[contrast] Completed with 1 warnings.
+```
+
+若输出为 `All checked pairs pass` 则表示已满足最低 4.5 基线。
+
+### 主题切换速览
+
+一次性引入明亮+暗色：
+
+```ts
+import 'buig/styles/all.css';
+```
+
+切换：
+
+```ts
+document.documentElement.setAttribute('data-theme', 'dark');
+```
+
+更完整示例参见文档页：基础 -> 主题切换与暗色模式（ThemeToggle）。
+
+### 迁移 (>=0.0.7)
+
+若从旧版本升级：
+
+1. 替换 `buig/styles/variable.css` 为 `buig/styles/core.css`
+2. 如果之前手动引入暗色，请改用 `dark.css` 或直接 `all.css`
+3. 删除对 `tokens.css` 的任何引用（已拆分）
+
+详见 `MIGRATION-0.0.7.md`。
+
 ### 暗色模式（示例）
 
 可以通过属性作用域提供一套暗色变量覆盖：
