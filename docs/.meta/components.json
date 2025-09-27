@@ -1,24 +1,19 @@
 {
   "version": "buig@0.0.6",
-  "generatedAt": "2025-09-27T05:34:20.802Z",
+  "generatedAt": "2025-09-27T05:44:44.764Z",
   "components": {
     "BuigButton": {
-      "file": "src/components/button.vue",
+      "file": "src/components/button/button.vue",
       "props": [
         {
-          "name": "variant",
+          "name": "status",
           "optional": true,
-          "type": "'primary' | 'success' | 'warning' | 'danger' | 'neutral'"
+          "type": "ButtonStatus"
         },
         {
-          "name": "size",
+          "name": "shape",
           "optional": true,
-          "type": "'xs' | 'sm' | 'md' | 'lg'"
-        },
-        {
-          "name": "disabled",
-          "optional": true,
-          "type": "boolean"
+          "type": "ButtonShape"
         },
         {
           "name": "loading",
@@ -26,15 +21,29 @@
           "type": "boolean"
         },
         {
-          "name": "type",
+          "name": "disabled",
+          "optional": true,
+          "type": "boolean"
+        },
+        {
+          "name": "htmlType",
           "optional": true,
           "type": "'button' | 'submit' | 'reset'"
+        },
+        {
+          "name": "autofocus",
+          "optional": true,
+          "type": "boolean"
+        },
+        {
+          "name": "target",
+          "optional": true,
+          "type": "'_blank' | '_self' | '_parent' | '_top'"
         }
       ],
-      "emits": [
-        "click"
-      ],
+      "emits": [],
       "slots": [
+        "icon",
         "default"
       ]
     },
