@@ -128,7 +128,7 @@ loadingDelay 可避免闪烁：
 
 ## 后续计划
 
-- 抽离样式到 `style/index.css` 并变量化 hover/active/focus
+- 抽离样式到 `style/index.scss` 并变量化 hover/active/focus
 - 集成统一 focus ring 方案
 - 增加 `loading` 插槽或内置旋转图标
 

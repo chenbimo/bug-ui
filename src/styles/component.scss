@@ -1,6 +1,5 @@
-/* 首批组件级变量：Button / Input / Card */
+/* component.scss - 组件级变量（首批） */
 :root {
-    /* Button */
     --ui-button-height-md: var(--ui-control-height-md);
     --ui-button-padding-x-md: var(--ui-control-padding-x-md);
     --ui-button-radius: var(--ui-control-radius-md);
@@ -11,8 +10,6 @@
     --ui-button-bg-disabled: var(--ui-color-primary-disabled);
     --ui-button-fg: var(--ui-color-primary-foreground);
     --ui-button-shadow-focus: 0 0 0 3px rgba(59, 130, 246, 0.35);
-
-    /* Input */
     --ui-input-height-md: var(--ui-control-height-md);
     --ui-input-padding-x-md: var(--ui-control-padding-x-md);
     --ui-input-radius: var(--ui-control-radius-md);
@@ -24,16 +21,12 @@
     --ui-input-fg: var(--ui-color-text);
     --ui-input-placeholder: var(--ui-color-text-secondary);
     --ui-input-shadow-focus: 0 0 0 2px rgba(59, 130, 246, 0.25);
-
-    /* Card */
     --ui-card-bg: var(--ui-color-bg);
     --ui-card-border: var(--ui-color-border-subtle);
     --ui-card-radius: var(--ui-radius-lg, 8px);
     --ui-card-padding-x: var(--ui-spacing-8);
     --ui-card-padding-y: var(--ui-spacing-7);
     --ui-card-shadow: var(--ui-shadow-pop);
-
-    /* Select */
     --ui-select-height-md: var(--ui-control-height-md);
     --ui-select-radius: var(--ui-control-radius-md);
     --ui-select-font-size: var(--ui-control-font-size-md);
@@ -46,8 +39,6 @@
     --ui-select-option-hover-bg: var(--ui-color-neutral-hover);
     --ui-select-option-active-bg: var(--ui-color-primary);
     --ui-select-option-active-fg: var(--ui-color-primary-foreground);
-
-    /* Tag */
     --ui-tag-radius: var(--ui-radius-sm);
     --ui-tag-font-size: var(--ui-font-size-sm);
     --ui-tag-padding-x: var(--ui-spacing-4);
@@ -56,8 +47,6 @@
     --ui-tag-bg-hover: var(--ui-color-neutral-hover);
     --ui-tag-fg: var(--ui-color-neutral-foreground);
     --ui-tag-border: var(--ui-color-border-subtle);
-
-    /* Alert */
     --ui-alert-radius: var(--ui-radius-md);
     --ui-alert-padding-x: var(--ui-spacing-8);
     --ui-alert-padding-y: var(--ui-spacing-6);

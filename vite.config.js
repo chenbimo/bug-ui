@@ -1,4 +1,4 @@
-import { defineConfig } from 'vite';
+import { defineConfig } from 'rolldown-vite';
 import vue from '@vitejs/plugin-vue';
 
 export default defineConfig({
@@ -6,12 +6,12 @@ export default defineConfig({
     build: {
         cssCodeSplit: true,
         lib: {
-            // 多入口：主库 + 分层样式（不再提供旧 variable.css 聚合） + dark.css
+            // 多入口：主库 + 分层样式（SCSS 源） + dark 主题
             entry: {
                 index: 'src/index.ts',
-                'styles/core': 'src/styles/core.css',
-                'styles/all': 'src/styles/all.css',
-                'styles/dark': 'src/styles/dark.css'
+                'styles/core': 'src/styles/core.scss',
+                'styles/all': 'src/styles/all.scss',
+                'styles/dark': 'src/styles/dark.scss'
             },
             formats: ['es'],
             fileName: (format, entryName) => `${entryName}.js`

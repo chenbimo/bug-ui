@@ -1,5 +1,5 @@
 :root {
-    /* 基础调色板（Neutral 灰阶 1=最浅 10=最深） */
+    // 基础调色板（Neutral 灰阶 1=最浅 10=最深）
     --ui-palette-neutral-1: #ffffff;
     --ui-palette-neutral-2: #f7f9fa;
     --ui-palette-neutral-3: #f2f4f6;
@@ -10,8 +10,7 @@
     --ui-palette-neutral-8: #4b5563;
     --ui-palette-neutral-9: #374151;
     --ui-palette-neutral-10: #111827;
-
-    /* 品牌 / 功能色主阶 - 以 6 为基准主色（可扩展 1..10） */
+    // 品牌 / 功能色主阶
     --ui-palette-primary-1: #eff6ff;
     --ui-palette-primary-2: #dbeafe;
     --ui-palette-primary-3: #bfdbfe;
@@ -22,7 +21,6 @@
     --ui-palette-primary-8: #1d4ed8;
     --ui-palette-primary-9: #1e40af;
     --ui-palette-primary-10: #1e3a8a;
-
     --ui-palette-success-5: #16a34a;
     --ui-palette-success-6: #15803d;
     --ui-palette-success-7: #166534;
@@ -35,8 +33,7 @@
     --ui-palette-info-5: #0ea5e9;
     --ui-palette-info-6: #0284c7;
     --ui-palette-info-7: #0369a1;
-
-    /* 尺寸 / 圆角 / 字体（基础原子） */
+    // 尺寸 / 圆角 / 字体（基础原子）
     --ui-radius-sm: 4px;
     --ui-radius-md: 6px;
     --ui-radius-lg: 8px;
@@ -56,20 +53,17 @@
     --ui-spacing-8: 16px;
     --ui-spacing-9: 20px;
     --ui-spacing-10: 24px;
-
-    /* 阴影 */
+    // 阴影
     --ui-shadow-pop: 0 6px 20px rgba(0, 0, 0, 0.15);
     --ui-shadow-overlay: 0 10px 30px rgba(0, 0, 0, 0.2);
-
-    /* 动效与节奏 */
+    // 动效与节奏
     --ui-motion-fast: 80ms;
     --ui-motion-base: 160ms;
     --ui-motion-slow: 240ms;
     --ui-ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
     --ui-ease-out: cubic-bezier(0, 0, 0.2, 1);
     --ui-ease-in: cubic-bezier(0.4, 0, 1, 1);
-
-    /* 层级 */
+    // 层级
     --ui-z-base: 0;
     --ui-z-dropdown: 1000;
     --ui-z-sticky: 1100;

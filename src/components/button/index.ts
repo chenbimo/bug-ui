@@ -1,5 +1,5 @@
 import Button from './button.vue';
-import './style/index.css';
+import './index.scss';
 
 export * from './types';
 export { Button };

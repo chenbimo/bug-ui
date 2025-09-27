@@ -4,6 +4,8 @@ buig(big + bug + ui) - 有着大大的 BUG 的 Vue3 UI组件库
 
 > 实验性 Vue3 组件库（MVP 阶段）。
 
+> 注意：自 0.0.x 某次迁移起，源码层样式已全部由 `.css` 改为 `.scss`（仅用于源码组织与嵌套/变量拆分）；发布产物仍会输出可直接消费的 `.css` 文件（如 `core.css`、`all.css` 等），因此使用方式不变，示例继续展示 `.css` 引入路径。
+
 ## 安装
 
 ```bash
@@ -79,7 +81,7 @@ import 'buig/styles/core.css';
 bun run gen:variables
 ```
 
-> 若脚本执行失败，确保使用 Bun 最新版本，并确认 `src/styles/{foundation,semantic,component}.css` 均存在。
+> 若脚本执行失败，确保使用 Bun 最新版本，并确认 `src/styles/{foundation,semantic,component}.scss` 均存在（源码已迁移为 SCSS）。
 
 ### Tokens 导出 (TS / JSON)
 

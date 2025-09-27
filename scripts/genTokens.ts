@@ -3,7 +3,7 @@ import { resolve, dirname } from 'path';
 import { fileURLToPath } from 'url';
 
 /*
-  解析 foundation.css / semantic.css / component.css 生成：
+ 解析 foundation.scss / semantic.scss / component.scss 生成：
   - src/tokens.ts （具名导出常量对象）
   - tokens.json （根目录，用于外部工具消费）
 */
@@ -19,7 +19,12 @@ function parseFile(absPath: string, fileLabel: string): TokenEntry[] {
     const out: TokenEntry[] = [];
     for (const line of raw.split(/\r?\n/)) {
         const m = line.match(/^(\s*--[a-zA-Z0-9-_]+):\s*(.+);/);
-        if (m) out.push({ name: m[1].trim(), value: m[2].trim(), file: fileLabel });
+        if (m)
+            out.push({
+                name: m[1].trim(),
+                value: m[2].trim(),
+                file: fileLabel
+            });
     }
     return out;
 }
@@ -27,7 +32,7 @@ function parseFile(absPath: string, fileLabel: string): TokenEntry[] {
 function main() {
     const __DIR = dirname(fileURLToPath(import.meta.url));
     const stylesDir = resolve(__DIR, '../src/styles');
-    const files = ['foundation.css', 'semantic.css', 'component.css'];
+    const files = ['foundation.scss', 'semantic.scss', 'component.scss'];
     const entries: TokenEntry[] = [];
     for (const f of files) {
         entries.push(...parseFile(resolve(stylesDir, f), f));
@@ -35,7 +40,10 @@ function main() {
     // 构建对象
     const tokenObject: Record<string, { value: string; layer: string }> = {};
     for (const e of entries) {
-        tokenObject[e.name] = { value: e.value, layer: e.file.replace('.css', '') };
+        tokenObject[e.name] = {
+            value: e.value,
+            layer: e.file.replace('.scss', '')
+        };
     }
 
     // 生成 TypeScript 文件
@@ -46,7 +54,9 @@ function main() {
     // 生成 JSON 文件
     const jsonPath = resolve(__DIR, '../tokens.json');
     writeFileSync(jsonPath, JSON.stringify(tokenObject, null, 2), 'utf-8');
-    console.log(`Generated ${tsPath} and ${jsonPath} (${entries.length} tokens).`);
+    console.log(
+        `Generated ${tsPath} and ${jsonPath} (${entries.length} tokens).`
+    );
 }
 
 try {

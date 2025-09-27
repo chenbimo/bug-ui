@@ -88,6 +88,6 @@ function copyCode() {
     </section>
 </template>
 
-<style>
-@import '../demo.css';
+<style lang="scss">
+@import '../demo.scss';
 </style>

@@ -1,10 +1,10 @@
 # 变量参考
 
-总计 170 个变量（不含 dark.css 覆盖层）。
+总计 170 个变量（不含 dark.scss 覆盖层）。
 
-> 分层文件：foundation.css（基础原子）、semantic.css（语义映射）、component.css（组件级）。dark.css 为主题覆盖层，core.css 为明亮聚合入口，all.css 包含 core + dark。
+> 分层文件：foundation.scss（基础原子）、semantic.scss（语义映射）、component.scss（组件级）。dark.scss 为主题覆盖层，core.scss 为明亮聚合入口，all.scss 包含 core + dark。
 
-### foundation.css
+### foundation.scss
 
 | 变量名 | 值 |
 | ------ | --- |
@@ -75,7 +75,7 @@
 | `--ui-z-modal` | `1400` |
 | `--ui-z-toast` | `1500` |
 
-### semantic.css
+### semantic.scss
 
 | 变量名 | 值 |
 | ------ | --- |
@@ -128,7 +128,7 @@
 | `--ui-control-radius-md` | `8px` |
 | `--ui-control-radius-lg` | `10px` |
 
-### component.css
+### component.scss
 
 | 变量名 | 值 |
 | ------ | --- |

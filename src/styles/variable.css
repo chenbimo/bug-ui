@@ -1,6 +1,0 @@
-/* 聚合入口：仍保留 variable.css 以兼容此前文档引用。
-   建议新代码直接分别引入 foundation.css / semantic.css / component.css。
-   暗色模式需再额外引入 dark.css （或在运行时按需切换）。 */
-@import './foundation.css';
-@import './semantic.css';
-@import './component.css';

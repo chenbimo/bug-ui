@@ -1,0 +1,5 @@
+// 全局可复用 SCSS Mixins（后续补充）
+@mixin focus-ring($color, $size: 3px) {
+    outline: none;
+    box-shadow: 0 0 0 $size $color;
+}

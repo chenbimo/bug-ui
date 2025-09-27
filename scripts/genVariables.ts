@@ -8,7 +8,7 @@ import { fileURLToPath } from 'url';
 function main() {
     const __DIR = dirname(fileURLToPath(import.meta.url));
     const stylesDir = resolve(__DIR, '../src/styles');
-    const targetFiles = ['foundation.css', 'semantic.css', 'component.css']; // 不直接展示 variable.css 聚合 & dark.css
+    const targetFiles = ['foundation.scss', 'semantic.scss', 'component.scss']; // 已迁移为 SCSS 源；仍不展示 variable/dark 聚合
     const resultSections: string[] = [];
     let total = 0;
 
@@ -22,14 +22,18 @@ function main() {
         }
         total += local.length;
         if (local.length === 0) return;
-        const tableRows = local.map((v) => `| \`${v.name}\` | \`${v.value}\` |`).join('\n');
-        resultSections.push(`### ${file}\n\n| 变量名 | 值 |\n| ------ | --- |\n${tableRows}`);
+        const tableRows = local
+            .map((v) => `| \`${v.name}\` | \`${v.value}\` |`)
+            .join('\n');
+        resultSections.push(
+            `### ${file}\n\n| 变量名 | 值 |\n| ------ | --- |\n${tableRows}`
+        );
     }
 
     for (const f of targetFiles) parseFile(f);
 
     const outPath = resolve(__DIR, '../docs/markdown/01-基础/00-Variables.md');
-    const content = `# 变量参考\n\n总计 ${total} 个变量（不含 dark.css 覆盖层）。\n\n> 分层文件：foundation.css（基础原子）、semantic.css（语义映射）、component.css（组件级）。dark.css 为主题覆盖层，core.css 为明亮聚合入口，all.css 包含 core + dark。\n\n${resultSections.join('\n\n')}\n\n> 本文件由脚本 scripts/genVariables.ts 生成，如需新增变量请修改对应样式文件后重新运行脚本。`;
+    const content = `# 变量参考\n\n总计 ${total} 个变量（不含 dark.scss 覆盖层）。\n\n> 分层文件：foundation.scss（基础原子）、semantic.scss（语义映射）、component.scss（组件级）。dark.scss 为主题覆盖层，core.scss 为明亮聚合入口，all.scss 包含 core + dark。\n\n${resultSections.join('\n\n')}\n\n> 本文件由脚本 scripts/genVariables.ts 生成，如需新增变量请修改对应样式文件后重新运行脚本。`;
     writeFileSync(outPath, content, 'utf-8');
     console.log(`Generated ${outPath}`);
 }

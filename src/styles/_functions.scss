@@ -1,0 +1,4 @@
+// 全局 SCSS 函数占位（后续按需扩展）
+@function px($value) {
+    @return $value * 1px;
+}

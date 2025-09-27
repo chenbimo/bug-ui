@@ -25,7 +25,7 @@
     },
     "types": "./dist/index.d.ts",
     "sideEffects": [
-        "**/*.css"
+        "**/*.scss"
     ],
     "scripts": {
         "build": "vite build",
@@ -69,9 +69,10 @@
         "@vue/compiler-sfc": "^3.5.22",
         "lint-staged": "^16.2.1",
         "prettier": "^3.6.2",
+        "rolldown-vite": "^7.1.13",
+        "sass-embedded": "^1.79.4",
         "simple-git-hooks": "^2.13.1",
         "typescript": "^5.4.0",
-        "vite": "^7.1.7",
         "vitepress": "^2.0.0-alpha.12",
         "vue": "^3.5.22",
         "vue-tsc": "^3.0.8"

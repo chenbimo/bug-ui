@@ -4,14 +4,14 @@ import { fileURLToPath } from 'url';
 
 /*
   为每个组件文档自动追加“关联变量”段落：
-    规则：根据组件英文名（Button -> button）匹配 component.css 中以 --ui-<name>- 前缀的变量；
+    规则：根据组件英文名（Button -> button）匹配 component.scss 中以 --ui-<name>- 前缀的变量；
     若严格前缀为空则尝试宽松包含策略（例如历史命名或复合变量）。
 */
 
 function loadVariables(): string[] {
     const __DIR = resolve(fileURLToPath(import.meta.url), '..');
     const styleDir = resolve(__DIR, '../src/styles');
-    const sources = ['foundation.css', 'semantic.css', 'component.css'];
+    const sources = ['foundation.scss', 'semantic.scss', 'component.scss'];
     const vars: string[] = [];
     for (const file of sources) {
         const p = resolve(styleDir, file);
@@ -33,7 +33,13 @@ function main() {
     const vars = loadVariables();
     const __DIR = resolve(fileURLToPath(import.meta.url), '..');
     const baseDir = resolve(__DIR, '../docs/markdown');
-    const compDirs = ['01-基础', '02-表单控件', '03-数据展示', '04-反馈', '05-导航'];
+    const compDirs = [
+        '01-基础',
+        '02-表单控件',
+        '03-数据展示',
+        '04-反馈',
+        '05-导航'
+    ];
     const componentNames: string[] = [];
 
     for (const dir of compDirs) {
@@ -51,7 +57,9 @@ function main() {
                 const strictPrefix = `--ui-${matchPrefix}-`;
                 let related = vars.filter((v) => v.startsWith(strictPrefix));
                 if (related.length === 0) {
-                    related = vars.filter((v) => v.includes(`-${matchPrefix}-`));
+                    related = vars.filter((v) =>
+                        v.includes(`-${matchPrefix}-`)
+                    );
                 }
                 if (related.length === 0) continue; // 当前没有具体变量，暂跳过
                 const filePath = resolve(abs, f);

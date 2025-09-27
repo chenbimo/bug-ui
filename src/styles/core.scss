@@ -1,0 +1,6 @@
+/* core.scss - 明确聚合层（不含主题覆写） */
+@import './functions';
+@import './mixins';
+@import './foundation.scss';
+@import './semantic.scss';
+@import './component.scss';

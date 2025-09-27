@@ -4,9 +4,9 @@ import { fileURLToPath } from 'url';
 
 /*
   简易对比度检测：
-  - 读取 semantic.css 暗/亮配色下的文本与背景变量
-  - 亮模式：semantic.css 变量
-  - 暗模式：dark.css 覆盖 + semantic 作为基底
+    - 读取 semantic.scss 暗/亮配色下的文本与背景变量
+    - 亮模式：semantic.scss 变量
+    - 暗模式：dark.scss 覆盖 + semantic 作为基底
   - 计算 `--ui-color-text` / `--ui-color-text-secondary` 相对于 `--ui-color-bg` / `--ui-color-bg-subtle` / `--ui-color-bg-muted`
   - 输出对比度 < 4.5 的警告
 */
@@ -67,8 +67,10 @@ function pickColor(value: string, fallback?: string): string | null {
 function buildContext(): { light: Palette; dark: Palette } {
     const __DIR = dirname(fileURLToPath(import.meta.url));
     const styles = resolve(__DIR, '../src/styles');
-    const semantic = parseVars(readFileSync(resolve(styles, 'semantic.css'), 'utf-8'));
-    const darkRaw = readFileSync(resolve(styles, 'dark.css'), 'utf-8');
+    const semantic = parseVars(
+        readFileSync(resolve(styles, 'semantic.scss'), 'utf-8')
+    );
+    const darkRaw = readFileSync(resolve(styles, 'dark.scss'), 'utf-8');
     const darkOverrides: Palette = {};
     // 提取 dark 作用域内变量
     for (const line of darkRaw.split(/\r?\n/)) {
@@ -84,7 +86,11 @@ function buildContext(): { light: Palette; dark: Palette } {
 function main() {
     const { light, dark } = buildContext();
     const textVars = ['--ui-color-text', '--ui-color-text-secondary'];
-    const bgVars = ['--ui-color-bg', '--ui-color-bg-subtle', '--ui-color-bg-muted'];
+    const bgVars = [
+        '--ui-color-bg',
+        '--ui-color-bg-subtle',
+        '--ui-color-bg-muted'
+    ];
     const modes: [string, Palette][] = [
         ['light', light],
         ['dark', dark]
@@ -103,7 +109,9 @@ function main() {
                 const c = contrast(tColor, bColor);
                 if (c !== null && c < threshold) {
                     warnCount++;
-                    console.warn(`[contrast] ${mode} ${t} on ${b} = ${c.toFixed(2)} (<${threshold})`);
+                    console.warn(
+                        `[contrast] ${mode} ${t} on ${b} = ${c.toFixed(2)} (<${threshold})`
+                    );
                 }
             }
         }
