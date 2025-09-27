@@ -34,4 +34,3 @@ const $Method = {
     }
 };
 </script>
-

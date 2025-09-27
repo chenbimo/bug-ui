@@ -54,7 +54,12 @@ try {
 function collectVueFiles(dir: string, acc: string[] = []): string[] {
     for (const entry of readdirSync(dir)) {
         const full = join(dir, entry);
-        let st; try { st = statSync(full); } catch { continue; }
+        let st;
+        try {
+            st = statSync(full);
+        } catch {
+            continue;
+        }
         if (st.isDirectory()) collectVueFiles(full, acc);
         else if (entry.endsWith('.vue')) acc.push(full);
     }
@@ -133,7 +138,9 @@ for (const full of files) {
             const typesFile = join(dirname(full), 'types.ts');
             const typesRaw = readFileSync(typesFile, 'utf-8');
             collectBlocks(typesRaw);
-        } catch {/* ignore */}
+        } catch {
+            /* ignore */
+        }
     }
     if (!propsBlock && identifier && blocks[identifier]) propsBlock = blocks[identifier];
     const emitsBlock = scriptContent.match(RE_DEFINE_EMITS_GENERIC)?.[1];

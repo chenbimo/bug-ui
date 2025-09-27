@@ -109,11 +109,13 @@ src/components/button/
 ```
 
 变更目的：
+
 1. 对齐后续组件统一结构（类型/样式/示例解耦）
 2. 允许脚本递归解析 props / emits / slots（支持 interface 定义）
 3. 为按需引入与 tree-shaking 减少无关样式准备
 
 影响：
+
 1. 聚合导出修改：`components.ts` 由 `./components/button.vue` → `./components/button`
 2. 构建入口不变（通过 preserveModules 输出目录层级）
 3. 样式改为 `index.ts` 中静态导入 `./style/index.css`（sideEffects 保留）
@@ -121,11 +123,12 @@ src/components/button/
 脚本更新：`scripts/genComponentMeta.ts` 增加递归目录遍历与 interface/type 解析；支持 `defineProps<Identifier>()` → types.ts 中 interface 抽取。
 
 回滚策略：
+
 1. 重新复制 `button.vue`（目录版中的 `<script>` 与 `<style>` 合并）到 `src/components/button.vue`
 2. 还原 `components.ts` 引用路径
 3. 可保留增强脚本（向后兼容普通平铺模式）
 
-后续：若验证稳定，将在其它组件上批量推广；再统一补充文档说明该结构。 
+后续：若验证稳定，将在其它组件上批量推广；再统一补充文档说明该结构。
 
 （此条为记录性变更说明）
 

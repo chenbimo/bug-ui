@@ -1,51 +1,115 @@
 /* Button component styles */
 .buig-button {
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
-	gap: 0.5rem;
-	border: 1px solid transparent;
-	border-radius: var(--ui-button-radius);
-	padding: var(--ui-button-padding-y-md, var(--ui-control-padding-y-md)) var(--ui-button-padding-x-md, var(--ui-control-padding-x-md));
-	font-size: var(--ui-button-font-size, var(--ui-control-font-size-md));
-	line-height: 1.2;
-	cursor: pointer;
-	background: var(--ui-button-bg);
-	color: var(--ui-button-fg);
-	transition: background .15s ease, color .15s ease, border-color .15s ease, box-shadow .15s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border: 1px solid transparent;
+    border-radius: var(--ui-button-radius);
+    padding: var(--ui-button-padding-y-md, var(--ui-control-padding-y-md)) var(--ui-button-padding-x-md, var(--ui-control-padding-x-md));
+    font-size: var(--ui-button-font-size, var(--ui-control-font-size-md));
+    line-height: 1.2;
+    cursor: pointer;
+    background: var(--ui-button-bg);
+    color: var(--ui-button-fg);
+    transition:
+        background 0.15s ease,
+        color 0.15s ease,
+        border-color 0.15s ease,
+        box-shadow 0.15s ease;
 }
 
 /* Variants */
-.buig-button--variant-primary { background: var(--ui-color-primary); color: var(--ui-color-primary-foreground); }
-.buig-button--variant-primary:hover:not(.buig-button--disabled):not(.buig-button--loading) { background: var(--ui-color-primary-hover); }
-.buig-button--variant-primary:active:not(.buig-button--disabled):not(.buig-button--loading) { background: var(--ui-color-primary-active); }
+.buig-button--variant-primary {
+    background: var(--ui-color-primary);
+    color: var(--ui-color-primary-foreground);
+}
+.buig-button--variant-primary:hover:not(.buig-button--disabled):not(.buig-button--loading) {
+    background: var(--ui-color-primary-hover);
+}
+.buig-button--variant-primary:active:not(.buig-button--disabled):not(.buig-button--loading) {
+    background: var(--ui-color-primary-active);
+}
 
-.buig-button--variant-success { background: var(--ui-color-success); color: var(--ui-color-success-foreground); }
-.buig-button--variant-success:hover:not(.buig-button--disabled):not(.buig-button--loading) { background: var(--ui-color-success-hover); }
-.buig-button--variant-success:active:not(.buig-button--disabled):not(.buig-button--loading) { background: var(--ui-color-success-active); }
+.buig-button--variant-success {
+    background: var(--ui-color-success);
+    color: var(--ui-color-success-foreground);
+}
+.buig-button--variant-success:hover:not(.buig-button--disabled):not(.buig-button--loading) {
+    background: var(--ui-color-success-hover);
+}
+.buig-button--variant-success:active:not(.buig-button--disabled):not(.buig-button--loading) {
+    background: var(--ui-color-success-active);
+}
 
-.buig-button--variant-warning { background: var(--ui-color-warning); color: var(--ui-color-warning-foreground); }
-.buig-button--variant-warning:hover:not(.buig-button--disabled):not(.buig-button--loading) { background: var(--ui-color-warning-hover); }
-.buig-button--variant-warning:active:not(.buig-button--disabled):not(.buig-button--loading) { background: var(--ui-color-warning-active); }
+.buig-button--variant-warning {
+    background: var(--ui-color-warning);
+    color: var(--ui-color-warning-foreground);
+}
+.buig-button--variant-warning:hover:not(.buig-button--disabled):not(.buig-button--loading) {
+    background: var(--ui-color-warning-hover);
+}
+.buig-button--variant-warning:active:not(.buig-button--disabled):not(.buig-button--loading) {
+    background: var(--ui-color-warning-active);
+}
 
-.buig-button--variant-danger { background: var(--ui-color-danger); color: var(--ui-color-danger-foreground); }
-.buig-button--variant-danger:hover:not(.buig-button--disabled):not(.buig-button--loading) { background: var(--ui-color-danger-hover); }
-.buig-button--variant-danger:active:not(.buig-button--disabled):not(.buig-button--loading) { background: var(--ui-color-danger-active); }
+.buig-button--variant-danger {
+    background: var(--ui-color-danger);
+    color: var(--ui-color-danger-foreground);
+}
+.buig-button--variant-danger:hover:not(.buig-button--disabled):not(.buig-button--loading) {
+    background: var(--ui-color-danger-hover);
+}
+.buig-button--variant-danger:active:not(.buig-button--disabled):not(.buig-button--loading) {
+    background: var(--ui-color-danger-active);
+}
 
-.buig-button--variant-neutral { background: var(--ui-color-neutral); color: var(--ui-color-neutral-foreground); }
-.buig-button--variant-neutral:hover:not(.buig-button--disabled):not(.buig-button--loading) { background: var(--ui-color-neutral-hover); }
-.buig-button--variant-neutral:active:not(.buig-button--disabled):not(.buig-button--loading) { background: var(--ui-color-neutral-active); }
+.buig-button--variant-neutral {
+    background: var(--ui-color-neutral);
+    color: var(--ui-color-neutral-foreground);
+}
+.buig-button--variant-neutral:hover:not(.buig-button--disabled):not(.buig-button--loading) {
+    background: var(--ui-color-neutral-hover);
+}
+.buig-button--variant-neutral:active:not(.buig-button--disabled):not(.buig-button--loading) {
+    background: var(--ui-color-neutral-active);
+}
 
 /* Sizes use control tokens fallback until dedicated button size tokens are expanded */
-.buig-button--size-xs { height: var(--ui-control-height-xs); font-size: var(--ui-control-font-size-xs); padding: var(--ui-control-padding-y-xs) var(--ui-control-padding-x-xs); border-radius: var(--ui-control-radius-xs); }
-.buig-button--size-sm { height: var(--ui-control-height-sm); font-size: var(--ui-control-font-size-sm); padding: var(--ui-control-padding-y-sm) var(--ui-control-padding-x-sm); border-radius: var(--ui-control-radius-sm); }
-.buig-button--size-md { height: var(--ui-control-height-md); font-size: var(--ui-control-font-size-md); padding: var(--ui-control-padding-y-md) var(--ui-control-padding-x-md); border-radius: var(--ui-control-radius-md); }
-.buig-button--size-lg { height: var(--ui-control-height-lg); font-size: var(--ui-control-font-size-lg); padding: var(--ui-control-padding-y-lg) var(--ui-control-padding-x-lg); border-radius: var(--ui-control-radius-lg); }
+.buig-button--size-xs {
+    height: var(--ui-control-height-xs);
+    font-size: var(--ui-control-font-size-xs);
+    padding: var(--ui-control-padding-y-xs) var(--ui-control-padding-x-xs);
+    border-radius: var(--ui-control-radius-xs);
+}
+.buig-button--size-sm {
+    height: var(--ui-control-height-sm);
+    font-size: var(--ui-control-font-size-sm);
+    padding: var(--ui-control-padding-y-sm) var(--ui-control-padding-x-sm);
+    border-radius: var(--ui-control-radius-sm);
+}
+.buig-button--size-md {
+    height: var(--ui-control-height-md);
+    font-size: var(--ui-control-font-size-md);
+    padding: var(--ui-control-padding-y-md) var(--ui-control-padding-x-md);
+    border-radius: var(--ui-control-radius-md);
+}
+.buig-button--size-lg {
+    height: var(--ui-control-height-lg);
+    font-size: var(--ui-control-font-size-lg);
+    padding: var(--ui-control-padding-y-lg) var(--ui-control-padding-x-lg);
+    border-radius: var(--ui-control-radius-lg);
+}
 
-.buig-button--disabled { opacity: .5; cursor: not-allowed; }
-.buig-button--loading { opacity: .85; }
+.buig-button--disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+.buig-button--loading {
+    opacity: 0.85;
+}
 
 .buig-button:focus-visible {
-	outline: none;
-	box-shadow: var(--ui-button-shadow-focus);
+    outline: none;
+    box-shadow: var(--ui-button-shadow-focus);
 }
