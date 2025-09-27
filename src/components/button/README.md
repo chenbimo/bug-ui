@@ -82,11 +82,11 @@ loadingDelay 可避免闪烁：
 ## Props
 
 | 名称         | 类型        | 默认值    | 说明                       |
-| ------------ | ----------- | --------- | -------------------------- | -------- | ---------------- | ------------------------------- | ----------------------------------------- |
-| buttonType   | `primary    | secondary | dashed                     | outline  | text`            | `secondary`                     | 风格类型                                  |
+| ------------ | ----------- | --------- | -------------------------- | -------- | ---------------- | ------------------------------- | -------- |
+| buttonType   | `primary    | secondary | dashed                     | outline  | text`            | `secondary`                     | 风格类型 |
 | status       | `normal     | warning   | success                    | danger`  | `normal`         | 状态着色（与 primary 组合常用） |
 | shape        | `square     | round     | circle`                    | `square` | 形状             |
-| size         | `mini       | small     | medium                     | large`   | `medium`         | 新尺寸体系                      |
+| size         | `mini       | small     | medium                     | large`   | `medium`         | 尺寸体系                        |
 | long         | `boolean`   | `false`   | 是否占满父级宽度           |
 | loading      | `boolean`   | `false`   | 是否处于加载态             |
 | loadingDelay | `number`    | `-`       | 进入加载态的延迟(ms)       |
@@ -95,8 +95,6 @@ loadingDelay 可避免闪烁：
 | autofocus    | `boolean`   | `false`   | 挂载后是否自动聚焦         |
 | href         | `string`    | `-`       | 传入即渲染为 a 标签        |
 | target       | `\_blank    | \_self    | \_parent                   | \_top`   | `_self`          | 链接打开方式                    |
-| variant      | `primary    | success   | warning                    | danger   | neutral`         | -                               | 旧 API（将被映射到 buttonType），仅兼容期 |
-| legacySize   | `xs         | sm        | md                         | lg`      | -                | 旧尺寸（映射到 size）           |
 | icon         | `Component` | -         | 图标组件（若无 icon 插槽） |
 
 ## 事件
@@ -120,9 +118,8 @@ loadingDelay 可避免闪烁：
 
 ## 注意事项
 
-1. variant / legacySize 为兼容属性，后续将移除，请尽快迁移到 buttonType / size。
-2. loadingDelay 仅在 loading 进入时生效；离开 loading 会立即结束。
-3. 链接模式下 (href) 不再使用 disabled attribute，但仍会通过类名禁止交互与样式淡化。
+1. loadingDelay 仅在 loading 进入时生效；离开 loading 会立即结束。
+2. 链接模式下 (href) 不再使用 disabled attribute，但仍会通过类名禁止交互与样式淡化。
 
 ## TODO (后续可能扩展)
 

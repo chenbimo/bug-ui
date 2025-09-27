@@ -1,6 +1,13 @@
 # Button 按钮
 
-下面是一个在文档站直接可交互的示例（组件已全局注册，且已引入 core.css 聚合层，旧 variable.css 已移除）。
+> 以下 Demo 来自 `src/components/button/demo` 目录，按需新增文件即可被引用。
+
+<ClientOnly>
+  <Demo id="button/basic" title="基础用法" desc="最简单的按钮示例" />
+  <DemoAll component="button" title="全部示例" />
+</ClientOnly>
+
+下面是（迁移前）旧的内联演示方式示例，后续可删除：
 
 <ClientOnly>
   <div style="display:flex; gap:12px; align-items:center;">
@@ -21,7 +28,7 @@
   </script>
 </ClientOnly>
 
-## 代码示例
+## 代码示例（旧 inline 方式 / 计划移除）
 
 ```vue
 <template>
@@ -47,3 +54,8 @@ function toggle() {
 }
 </script>
 ```
+
+## API
+
+:::api Button
+:::

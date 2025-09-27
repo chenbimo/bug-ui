@@ -1,4 +1,5 @@
-// interface.ts (原 types.ts) - 精简：移除旧兼容 variant / legacySize
+// interface.ts - Button 类型定义（集中 Props / Emits / Slots / Expose）
+// 说明：已移除旧兼容字段（variant / legacySize），未来所有文档/自动化仅解析本文件。
 
 export type ButtonType =
     | 'primary'
@@ -39,4 +40,4 @@ export interface ButtonExpose {
     focus: () => void;
 }
 
-export {}; // 保持模块作用域
+export {}; // 模块作用域占位

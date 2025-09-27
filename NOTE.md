@@ -94,6 +94,26 @@
 
 （此条为记录性变更说明）
 
+### 接口集中化与旧兼容移除（2025-09-27 深夜）
+
+执行：
+
+1. 将 Button 目录下 `types.ts` 重命名为 `interface.ts`，统一集中 Props / Emits / Slots / Expose 定义。
+2. 移除旧兼容字段：`variant`、`legacySize` 及其在组件内部的映射逻辑（LEGACY_VARIANT_MAP / LEGACY_SIZE_MAP）。
+3. `button.vue` 更新引用路径，精简计算逻辑，仅依赖新字段（buttonType / size 等）。
+4. README 移除兼容提示，Props 表同步精简。
+5. 目的：后续自动化文档只需解析 `interface.ts`，不再扫描组件脚本获取类型。
+6. 预留：未来批量推广至其它组件时采用同样 `interface.ts` 约定（XxxProps/XxxEmits/XxxSlots/XxxExpose）。
+
+计划（未立即执行部分）：
+
+- 移除旧 meta 生成脚本与 `docs/.meta` 目录（待全部组件迁移到 interface.ts 结构后统一删除）。
+- 新增一个基于 TypeScript AST 的 props/events/slots markdown 生成器（解析 interface.ts）。
+
+影响评估：当前仅 Button 存在目录化结构，风险极低；删除兼容字段为向前迭代（尚无公开版本依赖旧字段）。
+
+（此条为记录性变更说明）
+
 ### 目录化试点（2025-09-27）Button 组件
 
 执行：将 `src/components/button.vue` 重构为目录：

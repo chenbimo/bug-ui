@@ -49,28 +49,15 @@ import {
     watch,
     onBeforeUnmount
 } from 'vue';
-import type { ButtonProps, ButtonEmits, ButtonExpose } from './types';
+import type { ButtonProps, ButtonEmits, ButtonExpose } from './interface';
 
 defineOptions({ name: 'BuigButton' });
 
-// 内部常量与兼容映射
+// 内部常量
 const $Const = {
     DEFAULT_TYPE: 'secondary' as const,
     DEFAULT_STATUS: 'normal' as const,
-    DEFAULT_SIZE: 'medium' as const,
-    LEGACY_VARIANT_MAP: {
-        primary: 'primary',
-        success: 'primary',
-        warning: 'primary',
-        danger: 'primary',
-        neutral: 'secondary'
-    } as Record<string, string>,
-    LEGACY_SIZE_MAP: {
-        xs: 'mini',
-        sm: 'small',
-        md: 'medium',
-        lg: 'large'
-    } as Record<string, string>
+    DEFAULT_SIZE: 'medium' as const
 };
 
 // 属性集
@@ -90,20 +77,10 @@ const $Data = reactive({
 // 计算集
 const $Computed = {
     isLink: computed(() => !!$Prop.href),
-    type: computed(
-        () =>
-            $Prop.buttonType ||
-            ($Prop.variant && $Const.LEGACY_VARIANT_MAP[$Prop.variant]) ||
-            $Const.DEFAULT_TYPE
-    ),
+    type: computed(() => $Prop.buttonType || $Const.DEFAULT_TYPE),
     status: computed(() => $Prop.status || $Const.DEFAULT_STATUS),
     shape: computed(() => $Prop.shape || 'square'),
-    size: computed(
-        () =>
-            $Prop.size ||
-            ($Prop.legacySize && $Const.LEGACY_SIZE_MAP[$Prop.legacySize]) ||
-            $Const.DEFAULT_SIZE
-    ),
+    size: computed(() => $Prop.size || $Const.DEFAULT_SIZE),
     disabledMerged: computed(() => !!$Prop.disabled),
     onlyIcon: computed(() => !$Slots.default && ($Slots.icon || $Prop.icon)),
     interactive: computed(
@@ -111,12 +88,10 @@ const $Computed = {
     )
 };
 
-// 访问未在上方显式读取的属性用于元数据提取：buttonType long loadingDelay legacySize variant icon href target htmlType autofocus
+// 访问未在上方显式读取的属性用于潜在生成脚本：buttonType long loadingDelay icon href target htmlType autofocus size
 void ($Prop.buttonType,
 $Prop.long,
 $Prop.loadingDelay,
-$Prop.legacySize,
-$Prop.variant,
 $Prop.icon,
 $Prop.href,
 $Prop.target,
