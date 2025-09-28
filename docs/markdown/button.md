@@ -1,68 +1,25 @@
-# Button 按钮
+## Button 按钮（极简版）
 
-功能完整的按钮组件，参考 Arco Button 能力并结合本项目命名约定实现。支持多风格(type)、状态(status)、形状(shape)、尺寸(size)、占满(long)、链接模式、延迟 loading、图标插槽/属性等。
+当前为“重构阶段极简版本”，仅保留一个属性：`type` 用于控制主题风格。
 
-## 基础用法
+属性：
+| 名称 | 说明 | 类型 | 默认值 |
+| ---- | ---- | ---- | ------ |
+| type | 主题风格，可选 primary / secondary / outline / text | string | secondary |
 
-<Demo title="基础按钮类型" :code="`<BuigButton buttonType='primary'>...</BuigButton>`">
-<BuigButton buttonType="primary">主要按钮</BuigButton>
-<BuigButton buttonType="secondary">次级按钮</BuigButton>
-<BuigButton buttonType="outline">描边按钮</BuigButton>
-<BuigButton buttonType="text">文字按钮</BuigButton>
+### 基础使用
+
+<Demo title="基础类型" :code="`<BuigButton type='primary'>主要按钮</BuigButton>`">
+<BuigButton type="primary">Primary</BuigButton>
+<BuigButton type="secondary">Secondary</BuigButton>
+<BuigButton type="outline">Outline</BuigButton>
+<BuigButton type="text">Text</BuigButton>
 </Demo>
 
-## 状态 (status)
+### 默认按钮
 
-当 type=primary 时常与不同状态颜色结合：
-
-<Demo title="状态色（需 primary 组合）" :code="`<BuigButton buttonType='primary' status='success'>...</BuigButton>`">
-<BuigButton buttonType="primary" status="success">成功</BuigButton>
-<BuigButton buttonType="primary" status="warning">警告</BuigButton>
-<BuigButton buttonType="primary" status="danger">危险</BuigButton>
+<Demo title="默认风格 (secondary)" :code="`<BuigButton>默认按钮</BuigButton>`">
+<BuigButton>默认按钮</BuigButton>
 </Demo>
 
-## 形状 (shape)
-
-<Demo title="形状" :code="`<BuigButton shape='round'>...</BuigButton>`">
-<BuigButton shape="round" buttonType="primary">圆角</BuigButton>
-<BuigButton shape="circle" buttonType="primary" icon="demo" />
-</Demo>
-
-## 尺寸 (size)
-
-支持：mini / small / medium / large
-
-<Demo title="尺寸" :code="`<BuigButton size='mini'>Mini</BuigButton>`">
-<BuigButton size="mini">Mini</BuigButton>
-<BuigButton size="small">Small</BuigButton>
-<BuigButton size="medium">Medium</BuigButton>
-<BuigButton size="large">Large</BuigButton>
-</Demo>
-
-## 链接模式
-
-设置 href 后自动渲染为 a 标签。
-
-<Demo title="链接模式" :code="`<BuigButton href='https://example.com'>跳转链接</BuigButton>`">
-<BuigButton href="https://example.com" target="_blank" buttonType="text">跳转链接</BuigButton>
-</Demo>
-
-## Loading 与延迟
-
-loadingDelay 可避免闪烁：
-
-<Demo title="Loading 延迟" :code="`<BuigButton :loading='true'>提交中</BuigButton>`">
-<BuigButton :loading="true">提交中</BuigButton>
-</Demo>
-
-## 占满宽度
-
-<Demo title="占满宽度" :code="`<BuigButton long>提交</BuigButton>`">
-<BuigButton long buttonType="primary">提交</BuigButton>
-</Demo>
-
-## 图标
-
-# Button 按钮 (暂时最小化用于调试退出问题)
-
-本文件内容已临时精简，用于定位 VitePress 退出 code 1 根因。稍后还原示例。
+> 提示：其余（尺寸/形状/状态/loading/链接等）已暂时移除，将在后续阶段按需回归。

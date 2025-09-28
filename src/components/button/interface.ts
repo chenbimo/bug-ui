@@ -1,43 +1,23 @@
 // interface.ts - Button 类型定义（集中 Props / Emits / Slots / Expose）
 // 说明：已移除旧兼容字段（variant / legacySize），未来所有文档/自动化仅解析本文件。
 
-export type ButtonType =
-    | 'primary'
-    | 'secondary'
-    | 'dashed'
-    | 'outline'
-    | 'text';
-export type ButtonStatus = 'normal' | 'warning' | 'success' | 'danger';
-export type ButtonShape = 'square' | 'round' | 'circle';
-export type ButtonSize = 'mini' | 'small' | 'medium' | 'large';
+// 极简按钮：仅提供主题 type
+export type ButtonType = 'primary' | 'secondary' | 'outline' | 'text';
 
 export interface ButtonProps {
-    buttonType?: ButtonType;
-    status?: ButtonStatus;
-    shape?: ButtonShape;
-    size?: ButtonSize;
-    long?: boolean;
-    loading?: boolean;
-    loadingDelay?: number;
-    disabled?: boolean;
-    htmlType?: 'button' | 'submit' | 'reset';
-    autofocus?: boolean;
-    href?: string;
-    target?: '_blank' | '_self' | '_parent' | '_top';
-    icon?: any;
+    type?: ButtonType; // 主题，默认 secondary
 }
 
+// 保留 click 事件（基础交互常用）
 export interface ButtonEmits {
     (e: 'click', ev: MouseEvent): void;
 }
 
 export interface ButtonSlots {
     default?: any;
-    icon?: any;
 }
 
-export interface ButtonExpose {
-    focus: () => void;
-}
+// 暂无暴露 API
+export interface ButtonExpose {}
 
 export {}; // 模块作用域占位
