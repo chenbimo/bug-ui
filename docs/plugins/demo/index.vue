@@ -6,8 +6,7 @@
             'is-open': $Data.showCode
         }"
     >
-        <component v-if="$Computed.fenceMode" :is="Comp" />
-        <slot v-else />
+        <slot />
         <div v-if="$Computed.hasCode" class="vp-demo__toolbar">
             <div class="vp-demo__info">
                 <span class="vp-demo__title" v-if="$Prop.title">{{
@@ -24,14 +23,13 @@
             </div>
         </div>
         <div v-if="$Data.showCode" class="vp-demo__code">
-            <pre><code><slot v-if="$Computed.fenceMode" />
-<template v-else>{{ $Computed.displayCode }}</template></code></pre>
+            <pre><code>{{ $Computed.displayCode }}</code></pre>
         </div>
     </div>
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, watchEffect, computed, useSlots } from 'vue';
+import { ref, reactive, computed, useSlots } from 'vue';
 
 // 统一组件：
 // 1. fence 模式（插件注入）: 传入 props: code/raw -> 解析预览, slot 为高亮代码
@@ -39,8 +37,7 @@ import { ref, reactive, watchEffect, computed, useSlots } from 'vue';
 
 interface Props {
     title?: string;
-    code?: string; // 手写模式源码
-    raw?: string; // fence 模式原始源码（与 code 一样）
+    code?: string; // 手写模式源码（预览使用 slot；此字段仅用于代码区显示）
     lang?: string;
     meta?: string;
 }
@@ -48,43 +45,17 @@ interface Props {
 const $Prop = defineProps<Props>();
 const $Slots = useSlots();
 
-const $Data = reactive({
-    showCode: false,
-    copied: false
-});
+const $Data = reactive({ showCode: false, copied: false });
+console.log('🔥[ $Prop ]-59', $Prop);
 
-// fence 模式判断：插件注入时会同时提供 raw 与 code；手写模式一般只提供 code
+// 仅手写模式：如果传入 code 则显示；否则认为无代码区
 const $Computed = {
-    fenceMode: computed(() => !!$Prop.raw),
-    displayCode: computed(() => ($Prop.raw || $Prop.code || '').trim()),
+    displayCode: computed(() => ($Prop.code || '').trim()),
     hasCode: computed(() => $Computed.displayCode.value.length > 0)
 };
 
-const Comp = ref<any>(null);
-
 // 方法集
 const $Method = {
-    compileInline() {
-        // fence 模式编译 code -> 预览；非 fence 模式直接使用 slot
-        if (!$Computed.fenceMode.value) {
-            Comp.value = null;
-            return;
-        }
-        try {
-            let source = ($Prop.code || '').trim();
-            const tplMatch = source.match(/<template>([\s\S]*?)<\/template>/);
-            if (tplMatch) source = tplMatch[1];
-            Comp.value = {
-                name: 'InlineDemo',
-                template: `<div class=\"vp-demo-fragment\">${source.replace(/`/g, '\\`')}</div>`
-            };
-        } catch (e) {
-            Comp.value = {
-                name: 'InlineDemoError',
-                template: `<pre style='color:red'>${(e as Error).message}</pre>`
-            };
-        }
-    },
     onToggle() {
         $Data.showCode = !$Data.showCode;
     },
@@ -96,8 +67,6 @@ const $Method = {
         });
     }
 };
-
-watchEffect($Method.compileInline);
 
 // 暴露集（如外部需要控制展开可选择暴露）
 // defineExpose({ toggle: $Method.onToggle })
