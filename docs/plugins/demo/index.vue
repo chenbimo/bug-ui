@@ -37,7 +37,8 @@ import { ref, reactive, computed, useSlots } from 'vue';
 
 interface Props {
     title?: string;
-    code?: string; // 手写模式源码（预览使用 slot；此字段仅用于代码区显示）
+    code?: string; // fence 或手写模式直接提供源码
+    codeEnc?: string; // encodeURIComponent 编码后的源码（插件行号截取注入）
     lang?: string;
     meta?: string;
 }
@@ -49,8 +50,23 @@ const $Data = reactive({ showCode: false, copied: false });
 console.log('🔥[ $Prop ]-59', $Prop);
 
 // 仅手写模式：如果传入 code 则显示；否则认为无代码区
+function decodeMaybe(value?: string) {
+    if (!value) return '';
+    try {
+        return decodeURIComponent(value);
+    } catch (_) {
+        return value; // 不是编码格式则直接返回
+    }
+}
+
 const $Computed = {
-    displayCode: computed(() => ($Prop.code || '').trim()),
+    displayCode: computed(() => {
+        // 优先使用明文 code，其次使用编码 codeEnc
+        const plain = $Prop.code?.trim();
+        if (plain) return plain;
+        const decoded = decodeMaybe($Prop.codeEnc)?.trim();
+        return decoded;
+    }),
     hasCode: computed(() => $Computed.displayCode.value.length > 0)
 };
 
