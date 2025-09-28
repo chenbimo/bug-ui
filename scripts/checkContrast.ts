@@ -7,7 +7,7 @@ import { fileURLToPath } from 'url';
     - 读取 semantic.scss 暗/亮配色下的文本与背景变量
     - 亮模式：semantic.scss 变量
     - 暗模式：dark.scss 覆盖 + semantic 作为基底
-  - 计算 `--ui-color-text` / `--ui-color-text-secondary` 相对于 `--ui-color-bg` / `--ui-color-bg-subtle` / `--ui-color-bg-muted`
+    - 计算 `--buig-color-text` / `--buig-color-text-secondary` 相对于 `--buig-color-bg` / `--buig-color-bg-subtle` / `--buig-color-bg-muted`
   - 输出对比度 < 4.5 的警告
 */
 
@@ -85,11 +85,11 @@ function buildContext(): { light: Palette; dark: Palette } {
 
 function main() {
     const { light, dark } = buildContext();
-    const textVars = ['--ui-color-text', '--ui-color-text-secondary'];
+    const textVars = ['--buig-color-text', '--buig-color-text-secondary'];
     const bgVars = [
-        '--ui-color-bg',
-        '--ui-color-bg-subtle',
-        '--ui-color-bg-muted'
+        '--buig-color-bg',
+        '--buig-color-bg-subtle',
+        '--buig-color-bg-muted'
     ];
     const modes: [string, Palette][] = [
         ['light', light],

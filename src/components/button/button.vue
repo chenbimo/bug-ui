@@ -35,7 +35,7 @@ const $Computed = {
     min-height: 32px;
     font-size: 14px;
     line-height: 1;
-    border-radius: var(--ui-radius-sm, 4px);
+    border-radius: var(--buig-radius-sm, 4px);
     border: 1px solid transparent;
     cursor: pointer;
     user-select: none;
@@ -44,12 +44,12 @@ const $Computed = {
         color 0.15s ease,
         border-color 0.15s ease,
         opacity 0.15s ease;
-    background: var(--ui-color-bg-elevated, #fff);
-    color: var(--ui-color-text, #222);
+    background: var(--buig-color-bg-elevated, #fff);
+    color: var(--buig-color-text, #222);
 
     &--primary {
-        background: var(--ui-color-primary, #2563eb);
-        color: var(--ui-color-primary-foreground, #fff);
+    background: var(--buig-color-primary, #2563eb);
+    color: var(--buig-color-primary-foreground, #fff);
         &:hover {
             filter: brightness(1.05);
         }
@@ -58,23 +58,23 @@ const $Computed = {
         }
     }
     &--secondary {
-        background: var(--ui-color-bg-elevated, #fff);
-        color: var(--ui-color-text, #222);
-        border-color: var(--ui-color-border, #d0d7de);
+    background: var(--buig-color-bg-elevated, #fff);
+    color: var(--buig-color-text, #222);
+    border-color: var(--buig-color-border, #d0d7de);
         &:hover {
-            background: var(--ui-color-bg-hover, #f5f7fa);
+            background: var(--buig-color-bg-hover, #f5f7fa);
         }
         &:active {
-            background: var(--ui-color-bg-active, #eceff3);
+            background: var(--buig-color-bg-active, #eceff3);
         }
     }
     &--outline {
         background: transparent;
         border-color: var(
-            --ui-color-border-strong,
-            var(--ui-color-primary, #2563eb)
+            --buig-color-border-strong,
+            var(--buig-color-primary, #2563eb)
         );
-        color: var(--ui-color-text, #222);
+        color: var(--buig-color-text, #222);
         &:hover {
             background: rgba(0, 0, 0, 0.03);
         }
@@ -85,7 +85,7 @@ const $Computed = {
     &--text {
         background: transparent;
         border-color: transparent;
-        color: var(--ui-color-primary, #2563eb);
+    color: var(--buig-color-primary, #2563eb);
         &:hover {
             background: rgba(0, 0, 0, 0.03);
         }
@@ -97,7 +97,7 @@ const $Computed = {
     &:focus-visible {
         outline: none;
         box-shadow: 0 0 0 3px
-            var(--ui-color-focus-ring, rgba(64, 140, 255, 0.35));
+            var(--buig-color-focus-ring, rgba(64, 140, 255, 0.35));
     }
 }
 </style>

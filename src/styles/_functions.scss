@@ -28,7 +28,7 @@
 }
 
 // css-var(name, fallback:null) : 生成标准 var(--xxx, fallback) 字符串。
-// 使用方式：color: css-var('ui-color-primary', #409eff);
+// 使用方式：color: css-var('buig-color-primary', #409eff);
 @function css-var($name, $fallback: null) {
     @if $fallback == null {
         @return unquote('var(--#{$name})');

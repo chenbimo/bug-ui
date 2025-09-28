@@ -1,18 +1,18 @@
 /* dark.scss - 覆盖语义/组件级变量 */
 html[data-theme='dark'] {
-    --ui-color-bg: #18181b;
-    --ui-color-bg-subtle: #222225;
-    --ui-color-bg-muted: #1f1f22;
-    --ui-color-text: #e4e4e7;
-    --ui-color-text-secondary: #a1a1aa;
-    --ui-color-border: #3f3f46;
-    --ui-color-border-subtle: #2f2f35;
-    --ui-color-neutral: #27272a;
-    --ui-color-neutral-hover: #323236;
-    --ui-color-neutral-active: #3a3a40;
-    --ui-color-neutral-foreground: #e4e4e7;
-    --ui-shadow-pop: 0 6px 20px rgba(0, 0, 0, 0.55);
-    --ui-shadow-overlay: 0 10px 30px rgba(0, 0, 0, 0.6);
-    --ui-card-bg: var(--ui-color-bg-subtle);
-    --ui-input-bg: var(--ui-color-bg-subtle);
+    --buig-color-bg: #18181b;
+    --buig-color-bg-subtle: #222225;
+    --buig-color-bg-muted: #1f1f22;
+    --buig-color-text: #e4e4e7;
+    --buig-color-text-secondary: #a1a1aa;
+    --buig-color-border: #3f3f46;
+    --buig-color-border-subtle: #2f2f35;
+    --buig-color-neutral: #27272a;
+    --buig-color-neutral-hover: #323236;
+    --buig-color-neutral-active: #3a3a40;
+    --buig-color-neutral-foreground: #e4e4e7;
+    --buig-shadow-pop: 0 6px 20px rgba(0, 0, 0, 0.55);
+    --buig-shadow-overlay: 0 10px 30px rgba(0, 0, 0, 0.6);
+    --buig-card-bg: var(--buig-color-bg-subtle);
+    --buig-input-bg: var(--buig-color-bg-subtle);
 }

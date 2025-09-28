@@ -4,7 +4,7 @@ import { fileURLToPath } from 'url';
 
 /*
   为每个组件文档自动追加“关联变量”段落：
-    规则：根据组件英文名（Button -> button）匹配 component.scss 中以 --ui-<name>- 前缀的变量；
+    规则：根据组件英文名（Button -> button）匹配 component.scss 中以 --buig-<name>- 前缀的变量；
     若严格前缀为空则尝试宽松包含策略（例如历史命名或复合变量）。
 */
 
@@ -53,8 +53,8 @@ function main() {
                 const namePart = f.replace(/^[0-9]+-/, '').replace(/\.md$/, '');
                 componentNames.push(namePart);
                 const matchPrefix = namePart.toLowerCase();
-                // 组件级匹配策略：--ui-button- 前缀 (严格) + 兜底包含名 (宽松)
-                const strictPrefix = `--ui-${matchPrefix}-`;
+                // 组件级匹配策略：--buig-button- 前缀 (严格) + 兜底包含名 (宽松)
+                const strictPrefix = `--buig-${matchPrefix}-`;
                 let related = vars.filter((v) => v.startsWith(strictPrefix));
                 if (related.length === 0) {
                     related = vars.filter((v) =>
