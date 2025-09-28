@@ -31,7 +31,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watchEffect, computed, useSlots } from 'vue';
+import { ref, reactive, watchEffect, computed, useSlots } from 'vue';
 
 // 统一组件：
 // 1. fence 模式（插件注入）: 传入 props: code/raw -> 解析预览, slot 为高亮代码
@@ -48,10 +48,10 @@ interface Props {
 const $Prop = defineProps<Props>();
 const $Slots = useSlots();
 
-const $Data = {
-    showCode: ref(false),
-    copied: ref(false)
-};
+const $Data = reactive({
+    showCode: false,
+    copied: false
+});
 
 // fence 模式判断：插件注入时会同时提供 raw 与 code；手写模式一般只提供 code
 const $Computed = {
@@ -86,13 +86,13 @@ const $Method = {
         }
     },
     onToggle() {
-        $Data.showCode.value = !$Data.showCode.value;
+        $Data.showCode = !$Data.showCode;
     },
     onCopy() {
-        if (!$Computed.hasCode.value || $Data.copied.value) return;
+        if (!$Computed.hasCode.value || $Data.copied) return;
         navigator.clipboard.writeText($Computed.displayCode.value).then(() => {
-            $Data.copied.value = true;
-            setTimeout(() => ($Data.copied.value = false), 1400);
+            $Data.copied = true;
+            setTimeout(() => ($Data.copied = false), 1400);
         });
     }
 };
