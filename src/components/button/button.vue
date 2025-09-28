@@ -1,7 +1,7 @@
 <template>
     <div
         class="buig-button"
-        :class="`buig-button--${$Computed.type}`"
+        :class="`buig-button--${$Computed.type.value}`"
         @click="$Emit('click', $event)"
         role="button"
         tabindex="0"
@@ -48,8 +48,8 @@ const $Computed = {
     color: var(--buig-color-text, #222);
 
     &--primary {
-    background: var(--buig-color-primary, #2563eb);
-    color: var(--buig-color-primary-foreground, #fff);
+        background: var(--buig-color-primary, #2563eb);
+        color: var(--buig-color-primary-foreground, #fff);
         &:hover {
             filter: brightness(1.05);
         }
@@ -58,9 +58,9 @@ const $Computed = {
         }
     }
     &--secondary {
-    background: var(--buig-color-bg-elevated, #fff);
-    color: var(--buig-color-text, #222);
-    border-color: var(--buig-color-border, #d0d7de);
+        background: var(--buig-color-bg-elevated, #fff);
+        color: var(--buig-color-text, #222);
+        border-color: var(--buig-color-border, #d0d7de);
         &:hover {
             background: var(--buig-color-bg-hover, #f5f7fa);
         }
@@ -85,7 +85,7 @@ const $Computed = {
     &--text {
         background: transparent;
         border-color: transparent;
-    color: var(--buig-color-primary, #2563eb);
+        color: var(--buig-color-primary, #2563eb);
         &:hover {
             background: rgba(0, 0, 0, 0.03);
         }
