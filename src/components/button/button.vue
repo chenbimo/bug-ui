@@ -19,7 +19,7 @@
 
 <script setup lang="ts">
 // 外部集
-import { computed, inject } from 'vue';
+import { computed, inject, useSlots } from 'vue';
 import type { ButtonProps, ButtonEmits, ButtonSlots, ButtonExpose } from './interface';
 import { buttonGroupInjectionKey } from './interface';
 
@@ -34,6 +34,8 @@ defineSlots<ButtonSlots>();
 
 // 注入 Group 上下文
 const $Group = inject<any>(buttonGroupInjectionKey, null);
+// 缓存插槽引用
+const $Slots = useSlots();
 
 // 计算集
 const $Computed = {
@@ -44,8 +46,8 @@ const $Computed = {
     mergedDisabled: computed(() => !!($Prop.disabled || $Group?.disabled || false)),
     isLink: computed(() => !!$Prop.href),
     isInteractive: computed(() => !$Prop.loading && !$Computed.mergedDisabled.value),
-    onlyIcon: computed(() => !!((<any>useSlots()).icon && !(<any>useSlots()).default)),
-    showIconWrapper: computed(() => !!$Prop.loading || !!(<any>useSlots()).icon),
+    onlyIcon: computed(() => !!($Slots.icon && !$Slots.default)),
+    showIconWrapper: computed(() => !!$Prop.loading || !!$Slots.icon),
     classList: computed(() => {
         return [
             `buig-button--type-${$Computed.mergedType.value}`,

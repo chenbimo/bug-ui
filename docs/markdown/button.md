@@ -1,8 +1,8 @@
-## Button 按钮
+# Button 按钮
 
 按钮用于触发一个即时操作。支持主题类型、语义状态、尺寸、形状、加载、禁用、链接模式与按钮组。
 
-### 基础类型
+## 基础类型
 
 <Demo title="基础类型">
 <BuigButton type="secondary">Secondary</BuigButton>
@@ -12,7 +12,7 @@
 <BuigButton type="text">Text</BuigButton>
 </Demo>
 
-### 语义状态（配合 primary）
+## 语义状态（配合 primary）
 
 <Demo title="语义状态">
 <BuigButton type="primary" status="normal">Normal</BuigButton>
@@ -21,7 +21,7 @@
 <BuigButton type="primary" status="danger">Danger</BuigButton>
 </Demo>
 
-### 尺寸
+## 尺寸
 
 <Demo title="尺寸">
 <BuigButton size="mini" type="primary">Mini</BuigButton>
@@ -30,7 +30,7 @@
 <BuigButton size="large" type="primary">Large</BuigButton>
 </Demo>
 
-### 形状
+## 形状
 
 <Demo title="形状">
 <BuigButton shape="square" type="primary">Square</BuigButton>
@@ -38,7 +38,7 @@
 <BuigButton shape="circle" type="primary" :long="false">C</BuigButton>
 </Demo>
 
-### 加载与禁用
+## 加载与禁用
 
 <Demo title="加载与禁用">
 <BuigButton loading type="primary">Loading</BuigButton>
@@ -46,13 +46,13 @@
 <BuigButton loading disabled type="primary">Both</BuigButton>
 </Demo>
 
-### 链接模式
+## 链接模式
 
 <Demo title="链接模式">
 <BuigButton href="https://example.com" target="_blank" type="text">Link Button</BuigButton>
 </Demo>
 
-### 长按钮 (long)
+## 长按钮 (long)
 
 <Demo title="长按钮 100%">
 <div style="width:300px;display:flex;flex-direction:column;gap:8px;">
@@ -61,7 +61,7 @@
 </div>
 </Demo>
 
-### 按钮组
+## 按钮组
 
 <Demo title="按钮组">
 <BuigButtonGroup type="primary" size="small">
@@ -71,7 +71,7 @@
 </BuigButtonGroup>
 </Demo>
 
-### Props
+## Props
 
 | 名称      | 说明                                                    | 类型           | 默认值      |
 | --------- | ------------------------------------------------------- | -------------- | ----------- |
@@ -86,13 +86,13 @@
 | autofocus | 自动聚焦                                                | `boolean`      | `false`     |
 | href      | 链接模式（若存在渲染为 a）                              | `string`       | `-`         |
 
-### Events
+## Events
 
 | 事件  | 说明                              | 回调参数           |
 | ----- | --------------------------------- | ------------------ |
 | click | 点击（loading/disabled 时不触发） | `(ev: MouseEvent)` |
 
-### Slots
+## Slots
 
 | 名称    | 说明 |
 | ------- | ---- |
