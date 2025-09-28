@@ -1,6 +1,8 @@
 /* core.scss - 明确聚合层（不含主题覆写） */
-@import './functions';
-@import './mixins';
-@import './foundation.scss';
-@import './semantic.scss';
-@import './component.scss';
+// 命名空间化导入，避免符号泄露；下游若需 mixin/function 应显式引用对应文件
+@use './functions' as fn;
+@use './mixins' as mix;
+// 变量/基础层暂保持展开（这些文件主要输出原生 CSS 变量与 reset，无函数/混入冲突风险）
+@use './foundation.scss' as *;
+@use './semantic.scss' as *;
+@use './component.scss' as *;

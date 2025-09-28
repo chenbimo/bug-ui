@@ -1,4 +1,4 @@
 /* variable.scss - 聚合入口兼容层；建议新代码分层引入 */
-@import './foundation.scss';
-@import './semantic.scss';
-@import './component.scss';
+@use './foundation.scss' as *;
+@use './semantic.scss' as *;
+@use './component.scss' as *;

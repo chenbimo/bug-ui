@@ -1,4 +1,6 @@
 // Button SCSS (BEM + nested + size map)
+// 引入样式工具（命名空间化避免污染全局符号）
+@use '../../styles/mixins' as mix;
 $buig-button-sizes: (
     mini: (
         h: 22px,
@@ -67,23 +69,32 @@ $buig-button-sizes: (
     &--type-primary {
         background: var(--ui-color-primary);
         color: var(--ui-color-primary-foreground, #fff);
-        &:hover:not(&--disabled):not(&--loading) {
-            background: var(--ui-color-primary-hover, var(--ui-color-primary));
+        @include mix.button-interactive-bg(
+            var(--ui-color-primary-hover, var(--ui-color-primary)),
+            var(--ui-color-primary-active, var(--ui-color-primary))
+        );
+        // Status coloring（限定 primary 下的语义状态）
+        &.buig-button--status-success {
+            background: var(--ui-color-success);
         }
-        &:active:not(&--disabled):not(&--loading) {
-            background: var(--ui-color-primary-active, var(--ui-color-primary));
+        &.buig-button--status-danger {
+            background: var(--ui-color-danger);
+        }
+        &.buig-button--status-warning {
+            background: var(--ui-color-warning);
+        }
+        &.buig-button--status-info {
+            background: var(--ui-color-info);
         }
     }
     &--type-secondary {
         background: var(--ui-color-bg-elevated);
         color: var(--ui-color-text);
         border-color: var(--ui-color-border);
-        &:hover:not(&--disabled):not(&--loading) {
-            background: var(--ui-color-bg-hover, var(--ui-color-bg-elevated));
-        }
-        &:active:not(&--disabled):not(&--loading) {
-            background: var(--ui-color-bg-active, var(--ui-color-bg-elevated));
-        }
+        @include mix.button-interactive-bg(
+            var(--ui-color-bg-hover, var(--ui-color-bg-elevated)),
+            var(--ui-color-bg-active, var(--ui-color-bg-elevated))
+        );
     }
     &--type-dashed {
         background: var(--ui-color-bg-elevated);
@@ -94,32 +105,20 @@ $buig-button-sizes: (
         background: transparent;
         color: var(--ui-color-text);
         border-color: var(--ui-color-border-strong, var(--ui-color-primary));
-        &:hover:not(&--disabled):not(&--loading) {
-            background: var(--ui-color-bg-hover, rgba(0, 0, 0, 0.04));
-        }
+        @include mix.button-interactive-bg(
+            var(--ui-color-bg-hover, rgba(0, 0, 0, 0.04))
+        );
     }
     &--type-text {
         background: transparent;
         border-color: transparent;
         color: var(--ui-color-primary);
-        &:hover:not(&--disabled):not(&--loading) {
-            background: var(--ui-color-bg-hover, rgba(0, 0, 0, 0.05));
-        }
+        @include mix.button-interactive-bg(
+            var(--ui-color-bg-hover, rgba(0, 0, 0, 0.05))
+        );
     }
 
-    // Status coloring when used with primary
-    &--status-success&--type-primary {
-        background: var(--ui-color-success);
-    }
-    &--status-danger&--type-primary {
-        background: var(--ui-color-danger);
-    }
-    &--status-warning&--type-primary {
-        background: var(--ui-color-warning);
-    }
-    &--status-info&--type-primary {
-        background: var(--ui-color-info);
-    }
+    // （状态类已合并进上方 &--type-primary 中）
 
     // Shape
     &--shape-round {
@@ -127,18 +126,11 @@ $buig-button-sizes: (
     }
     &--shape-circle {
         border-radius: 50%;
-        width: 32px;
         padding: 0;
     }
 
-    // Sizes (generated)
-    @each $name, $conf in $buig-button-sizes {
-        &--size-#{$name} {
-            height: map-get($conf, h);
-            font-size: map-get($conf, fs);
-            padding: 0 map-get($conf, px);
-        }
-    }
+    // Sizes (generated via mixin; also handles only-icon & circle width)
+    @include mix.button-generate-sizes($buig-button-sizes, '.buig-button');
 
     // Long
     &--long {
@@ -153,7 +145,6 @@ $buig-button-sizes: (
     }
     &--only-icon {
         padding: 0;
-        width: 32px;
     }
     &--only-icon &__content {
         display: none;

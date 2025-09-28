@@ -1,5 +1,53 @@
+@use 'sass:map';
+
 // 全局可复用 SCSS Mixins（后续补充）
 @mixin focus-ring($color, $size: 3px) {
     outline: none;
     box-shadow: 0 0 0 $size $color;
+}
+
+// 统一按钮交互背景（支持 hover/active 替换，多数类型都可复用）
+// 参数：
+// $hover-var: hover 背景变量或颜色
+// $active-var: active 背景变量或颜色（可为空，空则不输出 active）
+// $disabled-selector: 禁用类（默认 .buig-button--disabled）
+// $loading-selector: 加载类（默认 .buig-button--loading）
+@mixin button-interactive-bg(
+    $hover-var,
+    $active-var: null,
+    $disabled-selector: '.buig-button--disabled',
+    $loading-selector: '.buig-button--loading'
+) {
+    &:hover:not(#{$disabled-selector}):not(#{$loading-selector}) {
+        @if $hover-var != null {
+            background: $hover-var;
+        }
+    }
+    @if $active-var != null {
+        &:active:not(#{$disabled-selector}):not(#{$loading-selector}) {
+            background: $active-var;
+        }
+    }
+}
+
+// 根据尺寸 map 生成 size 修饰符，同时为 only-icon / circle 情况设置宽度=高度
+// $sizes: map，如 (mini:(h:22px,fs:12px,px:8px), ...)
+// $block: 组件 Block 基础类（字符串）
+
+@mixin button-generate-sizes($sizes, $block: '.buig-button') {
+    @each $name, $conf in $sizes {
+        #{$block}--size-#{$name} {
+            height: map.get($conf, h);
+            font-size: map.get($conf, fs);
+            padding: 0 map.get($conf, px);
+        }
+        // 当是 only-icon
+        #{$block}--only-icon#{$block}--size-#{$name} {
+            width: map.get($conf, h);
+        }
+        // circle 形状若未自定义宽度则同高度
+        #{$block}--shape-circle#{$block}--size-#{$name} {
+            width: map.get($conf, h);
+        }
+    }
 }

@@ -81,21 +81,21 @@ loadingDelay 可避免闪烁：
 
 ## Props
 
-| 名称         | 类型        | 默认值    | 说明                       |
+| 名称         | 类型        | 默认值    | 说明                       |          |                  |                                 |          |
 | ------------ | ----------- | --------- | -------------------------- | -------- | ---------------- | ------------------------------- | -------- |
 | buttonType   | `primary    | secondary | dashed                     | outline  | text`            | `secondary`                     | 风格类型 |
-| status       | `normal     | warning   | success                    | danger`  | `normal`         | 状态着色（与 primary 组合常用） |
-| shape        | `square     | round     | circle`                    | `square` | 形状             |
-| size         | `mini       | small     | medium                     | large`   | `medium`         | 尺寸体系                        |
-| long         | `boolean`   | `false`   | 是否占满父级宽度           |
-| loading      | `boolean`   | `false`   | 是否处于加载态             |
-| loadingDelay | `number`    | `-`       | 进入加载态的延迟(ms)       |
-| disabled     | `boolean`   | `false`   | 是否禁用                   |
-| htmlType     | `button     | submit    | reset`                     | `button` | 原生 button type |
-| autofocus    | `boolean`   | `false`   | 挂载后是否自动聚焦         |
-| href         | `string`    | `-`       | 传入即渲染为 a 标签        |
-| target       | `\_blank    | \_self    | \_parent                   | \_top`   | `_self`          | 链接打开方式                    |
-| icon         | `Component` | -         | 图标组件（若无 icon 插槽） |
+| status       | `normal     | warning   | success                    | danger`  | `normal`         | 状态着色（与 primary 组合常用） |          |
+| shape        | `square     | round     | circle`                    | `square` | 形状             |                                 |          |
+| size         | `mini       | small     | medium                     | large`   | `medium`         | 尺寸体系                        |          |
+| long         | `boolean`   | `false`   | 是否占满父级宽度           |          |                  |                                 |          |
+| loading      | `boolean`   | `false`   | 是否处于加载态             |          |                  |                                 |          |
+| loadingDelay | `number`    | `-`       | 进入加载态的延迟(ms)       |          |                  |                                 |          |
+| disabled     | `boolean`   | `false`   | 是否禁用                   |          |                  |                                 |          |
+| htmlType     | `button     | submit    | reset`                     | `button` | 原生 button type |                                 |          |
+| autofocus    | `boolean`   | `false`   | 挂载后是否自动聚焦         |          |                  |                                 |          |
+| href         | `string`    | `-`       | 传入即渲染为 a 标签        |          |                  |                                 |          |
+| target       | `\_blank    | \_self    | \_parent                   | \_top`   | `_self`          | 链接打开方式                    |          |
+| icon         | `Component` | -         | 图标组件（若无 icon 插槽） |          |                  |                                 |          |
 
 ## 事件
 
