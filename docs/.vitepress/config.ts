@@ -9,7 +9,15 @@ export default defineConfig({
     themeConfig: {
         outlineTitle: '本页目录',
         lastUpdatedText: '最近更新',
-        docFooter: { prev: '上一页', next: '下一页' }
-        // 采用基于文件系统的侧边栏；后续若需精细控制可在此生成
+        docFooter: { prev: '上一页', next: '下一页' },
+        sidebar: [
+            {
+                text: '基础',
+                items: [{ text: 'Button 按钮', link: '/button' }]
+            }
+        ],
+        socialLinks: [
+            { icon: 'github', link: 'https://github.com/chensuiyi/buig' }
+        ]
     }
 });
