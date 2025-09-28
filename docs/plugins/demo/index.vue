@@ -72,16 +72,41 @@ function onCopy() {
 </script>
 
 <template>
-    <div class="vp-demo" :class="{ 'vp-demo--no-code': !$Computed.hasCode, 'is-open': $Data.showCode }" @mouseenter="$Data.hovering=true" @mouseleave="$Data.hovering=false">
+    <div
+        class="vp-demo"
+        :class="{
+            'vp-demo--no-code': !$Computed.hasCode,
+            'is-open': $Data.showCode
+        }"
+        @mouseenter="$Data.hovering = true"
+        @mouseleave="$Data.hovering = false"
+    >
         <div class="vp-demo__preview">
             <component v-if="$Computed.fenceMode" :is="Comp" />
             <slot v-else />
-            <div v-if="$Computed.hasCode" class="vp-demo__float" :class="{ 'vp-demo__float--show': $Data.hovering || $Data.showCode }">
-                <button type="button" class="vp-demo__icon" @click="onToggle" :title="$Data.showCode ? '隐藏代码' : '查看源码'">
+            <div
+                v-if="$Computed.hasCode"
+                class="vp-demo__float"
+                :class="{
+                    'vp-demo__float--show': $Data.hovering || $Data.showCode
+                }"
+            >
+                <button
+                    type="button"
+                    class="vp-demo__icon"
+                    @click="onToggle"
+                    :title="$Data.showCode ? '隐藏代码' : '查看源码'"
+                >
                     <span v-if="!$Data.showCode">&lt;/&gt;</span>
                     <span v-else>×</span>
                 </button>
-                <button type="button" class="vp-demo__icon" @click="onCopy" :disabled="$Data.copied" :title="$Data.copied ? '已复制' : '复制代码'">
+                <button
+                    type="button"
+                    class="vp-demo__icon"
+                    @click="onCopy"
+                    :disabled="$Data.copied"
+                    :title="$Data.copied ? '已复制' : '复制代码'"
+                >
                     <span v-if="!$Data.copied">复制</span>
                     <span v-else>✔</span>
                 </button>
