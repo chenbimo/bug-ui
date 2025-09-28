@@ -5,11 +5,11 @@
 ## 基础类型
 
 <Demo title="基础类型">
-<BuigButton type="secondary">Secondary</BuigButton>
-<BuigButton type="primary">Primary</BuigButton>
-<BuigButton type="dashed">Dashed</BuigButton>
-<BuigButton type="outline">Outline</BuigButton>
-<BuigButton type="text">Text</BuigButton>
+    <BuigButton type="secondary">Secondary</BuigButton>
+    <BuigButton type="primary">Primary</BuigButton>
+    <BuigButton type="dashed">Dashed</BuigButton>
+    <BuigButton type="outline">Outline</BuigButton>
+    <BuigButton type="text">Text</BuigButton>
 </Demo>
 
 ## 语义状态（配合 primary）

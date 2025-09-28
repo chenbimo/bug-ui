@@ -15,6 +15,8 @@
 import { computed, useSlots, VNode, h, Comment, Text, Fragment } from 'vue';
 import type { BuigSpaceProps, BuigSpaceSlots, BuigSpaceSizeLiteral, BuigSpaceSizeLike, BuigSpaceSize } from './interface';
 
+defineOptions({ name: 'BuigSpace' });
+
 // 内部集（常量）
 const SIZE_MAP: Record<BuigSpaceSizeLiteral, number> = { mini: 4, small: 8, medium: 12, large: 16 };
 
