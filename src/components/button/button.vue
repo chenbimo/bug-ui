@@ -1,12 +1,27 @@
 <template>
-    <div class="buig-button" :class="`buig-button--${$Computed.type.value}`" @click="$Emit('click', $event)" role="button" tabindex="0">
+    <!-- 链接模式 -->
+    <a v-if="$Computed.isLink.value" :href="$Computed.isInteractive.value ? $Prop.href : undefined" class="buig-button" :class="$Computed.classList.value" :aria-disabled="(!$Computed.isInteractive.value).toString()" @click="$Method.onClick">
+        <span v-if="$Computed.showIconWrapper.value" class="buig-button__icon">
+            <span v-if="$Prop.loading" class="buig-button__spinner" />
+            <slot v-else name="icon" />
+        </span>
         <slot />
-    </div>
+    </a>
+    <!-- 按钮模式 -->
+    <button v-else class="buig-button" :class="$Computed.classList.value" :type="$Prop.htmlType || 'button'" :autofocus="$Prop.autofocus" :disabled="!$Computed.isInteractive.value" @click="$Method.onClick">
+        <span v-if="$Computed.showIconWrapper.value" class="buig-button__icon">
+            <span v-if="$Prop.loading" class="buig-button__spinner" />
+            <slot v-else name="icon" />
+        </span>
+        <slot />
+    </button>
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue';
-import type { ButtonProps, ButtonEmits } from './interface';
+// 外部集
+import { computed, inject } from 'vue';
+import type { ButtonProps, ButtonEmits, ButtonSlots, ButtonExpose } from './interface';
+import { buttonGroupInjectionKey } from './interface';
 
 defineOptions({ name: 'BuigButton' });
 
@@ -14,80 +29,168 @@ defineOptions({ name: 'BuigButton' });
 const $Prop = defineProps<ButtonProps>();
 // 事件集
 const $Emit = defineEmits<ButtonEmits>();
+// 插槽类型（仅提示作用）
+defineSlots<ButtonSlots>();
+
+// 注入 Group 上下文
+const $Group = inject<any>(buttonGroupInjectionKey, null);
 
 // 计算集
 const $Computed = {
-    type: computed(() => $Prop.type || 'secondary')
+    mergedType: computed(() => $Prop.type ?? $Group?.type ?? 'secondary'),
+    mergedStatus: computed(() => $Prop.status ?? $Group?.status ?? 'normal'),
+    mergedSize: computed(() => $Prop.size ?? $Group?.size ?? 'medium'),
+    mergedShape: computed(() => $Prop.shape ?? $Group?.shape ?? 'square'),
+    mergedDisabled: computed(() => !!($Prop.disabled || $Group?.disabled || false)),
+    isLink: computed(() => !!$Prop.href),
+    isInteractive: computed(() => !$Prop.loading && !$Computed.mergedDisabled.value),
+    onlyIcon: computed(() => !!((<any>useSlots()).icon && !(<any>useSlots()).default)),
+    showIconWrapper: computed(() => !!$Prop.loading || !!(<any>useSlots()).icon),
+    classList: computed(() => {
+        return [
+            `buig-button--type-${$Computed.mergedType.value}`,
+            `buig-button--status-${$Computed.mergedStatus.value}`,
+            `buig-button--size-${$Computed.mergedSize.value}`,
+            `buig-button--shape-${$Computed.mergedShape.value}`,
+            {
+                'buig-button--long': !!$Prop.long,
+                'buig-button--loading': !!$Prop.loading,
+                'buig-button--disabled': $Computed.mergedDisabled.value,
+                'buig-button--only-icon': $Computed.onlyIcon.value,
+                'buig-button--link': !!$Prop.href,
+                'buig-button--dashed': $Computed.mergedType.value === 'dashed'
+            }
+        ];
+    })
 };
+
+// 方法集
+const $Method = {
+    onClick(ev: MouseEvent) {
+        if (!$Computed.isInteractive.value) {
+            ev.preventDefault();
+            ev.stopPropagation();
+            return;
+        }
+        $Emit('click', ev);
+    }
+};
+
+// 暴露
+defineExpose<ButtonExpose>({});
 </script>
 <style lang="scss" scoped>
+// 临时样式：完整方案将在 index.scss 中抽离；此处保留必要结构，避免构建失败。
 .buig-button {
+    position: relative;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 0 14px;
-    min-height: 32px;
-    font-size: 14px;
-    line-height: 1;
-    border-radius: var(--buig-radius-sm, 4px);
-    border: 1px solid transparent;
+    gap: 4px;
+    font-weight: 500;
     cursor: pointer;
     user-select: none;
-    transition:
-        background 0.15s ease,
-        color 0.15s ease,
-        border-color 0.15s ease,
-        opacity 0.15s ease;
-    background: var(--buig-color-bg-elevated, #fff);
+    white-space: nowrap;
+    border: 1px solid transparent;
+    border-radius: var(--buig-button-radius, 6px);
+    padding: 0 var(--buig-control-padding-x-md, 14px);
+    min-height: var(--buig-control-height-md, 34px);
+    font-size: var(--buig-control-font-size-md, 14px);
+    background: var(--buig-color-neutral, #eceff3);
     color: var(--buig-color-text, #222);
+    transition:
+        background 0.15s,
+        color 0.15s,
+        border-color 0.15s,
+        box-shadow 0.15s;
+    text-decoration: none;
 
-    &--primary {
-        background: var(--buig-color-primary, #2563eb);
-        color: var(--buig-color-primary-foreground, #fff);
-        &:hover {
-            filter: brightness(1.05);
-        }
-        &:active {
-            filter: brightness(0.92);
-        }
+    &--type-primary {
+        background: var(--buig-color-primary);
+        color: var(--buig-color-primary-foreground);
     }
-    &--secondary {
-        background: var(--buig-color-bg-elevated, #fff);
-        color: var(--buig-color-text, #222);
-        border-color: var(--buig-color-border, #d0d7de);
-        &:hover {
-            background: var(--buig-color-bg-hover, #f5f7fa);
-        }
-        &:active {
-            background: var(--buig-color-bg-active, #eceff3);
-        }
+    &--type-secondary {
+        background: var(--buig-color-bg);
+        border-color: var(--buig-color-border);
     }
-    &--outline {
+    &--type-outline {
         background: transparent;
-        border-color: var(--buig-color-border-strong, var(--buig-color-primary, #2563eb));
-        color: var(--buig-color-text, #222);
-        &:hover {
-            background: rgba(0, 0, 0, 0.03);
-        }
-        &:active {
-            background: rgba(0, 0, 0, 0.06);
-        }
+        border-color: var(--buig-color-primary);
+        color: var(--buig-color-primary);
     }
-    &--text {
+    &--type-text {
         background: transparent;
-        border-color: transparent;
-        color: var(--buig-color-primary, #2563eb);
-        &:hover {
-            background: rgba(0, 0, 0, 0.03);
-        }
-        &:active {
-            background: rgba(0, 0, 0, 0.06);
-        }
+        color: var(--buig-color-primary);
+    }
+    &--type-dashed {
+        background: transparent;
+        border-style: dashed;
+        border-color: var(--buig-color-border);
+    }
+
+    &--status-warning {
+        --_status-bg: var(--buig-color-warning);
+    }
+    &--status-success {
+        --_status-bg: var(--buig-color-success);
+    }
+    &--status-danger {
+        --_status-bg: var(--buig-color-danger);
+    }
+    &--status-warning.buig-button--type-primary,
+    &--status-success.buig-button--type-primary,
+    &--status-danger.buig-button--type-primary {
+        background: var(--_status-bg);
+    }
+
+    &--long {
+        width: 100%;
+    }
+    &--disabled,
+    &[disabled],
+    &[aria-disabled='true'] {
+        cursor: not-allowed;
+        opacity: 0.5;
+    }
+    &--loading {
+        cursor: progress;
+    }
+    &--only-icon {
+        padding-inline: 0;
+        width: var(--buig-control-height-md, 34px);
+    }
+    &--shape-circle {
+        border-radius: 50%;
+        padding-inline: 0;
+        width: var(--buig-control-height-md, 34px);
+    }
+    &--shape-round {
+        border-radius: calc(var(--buig-button-radius, 6px) * 2);
     }
 
     &:focus-visible {
         outline: none;
-        box-shadow: 0 0 0 3px var(--buig-color-focus-ring, rgba(64, 140, 255, 0.35));
+        box-shadow: var(--buig-button-shadow-focus, 0 0 0 3px rgba(59, 130, 246, 0.35));
+    }
+
+    .buig-button__icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .buig-button__spinner {
+        width: 1em;
+        height: 1em;
+        border: 2px solid currentColor;
+        border-right-color: transparent;
+        border-radius: 50%;
+        animation: buig-btn-spin 0.6s linear infinite;
+    }
+}
+
+@keyframes buig-btn-spin {
+    to {
+        transform: rotate(360deg);
     }
 }
 </style>
