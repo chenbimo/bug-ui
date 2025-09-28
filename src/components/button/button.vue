@@ -47,7 +47,8 @@ import {
     ref,
     onMounted,
     watch,
-    onBeforeUnmount
+    onBeforeUnmount,
+    useSlots
 } from 'vue';
 import type { ButtonProps, ButtonEmits, ButtonExpose } from './interface';
 
@@ -75,6 +76,13 @@ const $Data = reactive({
 });
 
 // 计算集
+// 先定义槽，再定义依赖槽的计算
+const $SlotsRaw = useSlots();
+const $Slots = {
+    get default() { return !!$SlotsRaw.default; },
+    get icon() { return !!$SlotsRaw.icon; }
+};
+
 const $Computed = {
     isLink: computed(() => !!$Prop.href),
     type: computed(() => $Prop.buttonType || $Const.DEFAULT_TYPE),
@@ -82,7 +90,7 @@ const $Computed = {
     shape: computed(() => $Prop.shape || 'square'),
     size: computed(() => $Prop.size || $Const.DEFAULT_SIZE),
     disabledMerged: computed(() => !!$Prop.disabled),
-    onlyIcon: computed(() => !$Slots.default && ($Slots.icon || $Prop.icon)),
+    onlyIcon: computed(() => !$Slots.default && ($Slots.icon || !!$Prop.icon)),
     interactive: computed(
         () => !$Computed.disabledMerged.value && !$Data.loadingReal
     )
@@ -99,8 +107,7 @@ $Prop.htmlType,
 $Prop.autofocus,
 $Prop.size);
 
-// 槽引用（便于 onlyIcon 判定）
-const $Slots = { icon: !!(__VUE_SLOT_FLAGS__ && false) } as any; // 占位：运行时通过 template 中 $slots 使用，这里仅静态类型绕过
+// 已通过 useSlots 定义 $Slots
 
 // 方法集
 const $Method = {
