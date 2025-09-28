@@ -6,7 +6,9 @@
             'is-open': $Data.showCode
         }"
     >
-        <slot />
+        <div class="vp-demo__preview">
+            <slot />
+        </div>
         <div v-if="$Computed.hasCode" class="vp-demo__toolbar">
             <div class="vp-demo__info">
                 <span class="vp-demo__title" v-if="$Prop.title">{{
@@ -46,8 +48,10 @@ interface Props {
 const $Prop = defineProps<Props>();
 const $Slots = useSlots();
 
-const $Data = reactive({ showCode: false, copied: false });
-console.log('🔥[ $Prop ]-59', $Prop);
+const $Data = reactive({
+    showCode: false,
+    copied: false
+});
 
 // 仅手写模式：如果传入 code 则显示；否则认为无代码区
 function decodeMaybe(value?: string) {
@@ -94,10 +98,13 @@ const $Method = {
     position: relative;
     margin: 20px 0 32px;
     border: 1px solid var(--vp-c-divider, #e2e2e3);
-    border-radius: 8px;
-    background: var(--vp-c-bg-soft);
+    border-radius: 4px;
     font-size: 14px;
     /* 预览包装与浮动操作区已在方案6中移除 */
+
+    &__preview {
+        padding: 16px;
+    }
 
     &__toolbar {
         display: flex;
@@ -107,6 +114,7 @@ const $Method = {
         padding: 6px 10px;
         background: var(--vp-c-bg-alt);
         font-family: var(--vp-font-family-mono);
+        border-top: 1px solid var(--vp-c-divider, #e2e2e3);
     }
 
     &__info {
@@ -139,18 +147,12 @@ const $Method = {
     }
 
     &__code {
-        border-top: 1px solid var(--vp-c-divider, #e2e2e3);
         padding: 10px;
+        border-top: 1px solid var(--vp-c-divider, #e2e2e3);
         pre {
             margin: 0;
             border-radius: 0 0 8px 8px;
         }
     }
-}
-
-/* 空片段占位 */
-.vp-demo-fragment:empty {
-    min-height: 20px;
-    display: block;
 }
 </style>
