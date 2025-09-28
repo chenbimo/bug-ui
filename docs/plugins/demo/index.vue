@@ -19,7 +19,8 @@ const $Slots = useSlots();
 
 const $Data = {
     showCode: ref($Prop.defaultExpand ?? false),
-    copied: ref(false)
+    copied: ref(false),
+    hovering: ref(false)
 };
 
 // fence 模式判断：插件注入时会同时提供 raw 与 code；手写模式一般只提供 code
@@ -58,7 +59,8 @@ watchEffect(() => {
 });
 
 function onToggle() {
-    if ($Computed.hasCode.value) $Data.showCode.value = !$Data.showCode.value;
+    if (!$Computed.hasCode.value) return;
+    $Data.showCode.value = !$Data.showCode.value;
 }
 function onCopy() {
     if (!$Computed.hasCode.value || $Data.copied.value) return;
@@ -70,10 +72,20 @@ function onCopy() {
 </script>
 
 <template>
-    <div class="vp-demo" :class="{ 'vp-demo--no-code': !$Computed.hasCode }">
+    <div class="vp-demo" :class="{ 'vp-demo--no-code': !$Computed.hasCode, 'is-open': $Data.showCode }" @mouseenter="$Data.hovering=true" @mouseleave="$Data.hovering=false">
         <div class="vp-demo__preview">
             <component v-if="$Computed.fenceMode" :is="Comp" />
             <slot v-else />
+            <div v-if="$Computed.hasCode" class="vp-demo__float" :class="{ 'vp-demo__float--show': $Data.hovering || $Data.showCode }">
+                <button type="button" class="vp-demo__icon" @click="onToggle" :title="$Data.showCode ? '隐藏代码' : '查看源码'">
+                    <span v-if="!$Data.showCode">&lt;/&gt;</span>
+                    <span v-else>×</span>
+                </button>
+                <button type="button" class="vp-demo__icon" @click="onCopy" :disabled="$Data.copied" :title="$Data.copied ? '已复制' : '复制代码'">
+                    <span v-if="!$Data.copied">复制</span>
+                    <span v-else>✔</span>
+                </button>
+            </div>
         </div>
         <div v-if="$Computed.hasCode" class="vp-demo__toolbar">
             <div class="vp-demo__info">
