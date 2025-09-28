@@ -21,6 +21,9 @@
 // 外部集
 import { computed } from 'vue';
 
+// 定义组件名称，便于全量 install 时按 name 注册以及文档中直接使用 <DemoBlock>
+defineOptions({ name: 'DemoBlock' });
+
 // 常量集
 const $Const = { BLOCK: 'buig-demoblock' };
 

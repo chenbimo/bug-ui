@@ -11,6 +11,11 @@ const theme: Theme = {
     enhanceApp({ app }) {
         // 全量插件注册（install.ts 已处理）
         app.use(BuigInstall);
+        // 保险：若插件未正确暴露 DemoBlock，则手动注册（幂等）
+        if ((Components as any).DemoBlock) {
+            const comp: any = (Components as any).DemoBlock;
+            if (comp && comp.name) app.component(comp.name, comp);
+        }
 
         // 如果需要按需也可以：
         // Object.values(Components).forEach((c: any) => {

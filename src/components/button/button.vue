@@ -79,8 +79,12 @@ const $Data = reactive({
 // 先定义槽，再定义依赖槽的计算
 const $SlotsRaw = useSlots();
 const $Slots = {
-    get default() { return !!$SlotsRaw.default; },
-    get icon() { return !!$SlotsRaw.icon; }
+    get default() {
+        return !!$SlotsRaw.default;
+    },
+    get icon() {
+        return !!$SlotsRaw.icon;
+    }
 };
 
 const $Computed = {
