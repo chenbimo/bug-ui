@@ -46,7 +46,11 @@ function applyTheme(m: 'light' | 'dark') {
 
 onMounted(() => {
     const saved = localStorage.getItem('buig-theme');
-    if (saved === 'dark' || (saved == null && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+    if (
+        saved === 'dark' ||
+        (saved == null &&
+            window.matchMedia('(prefers-color-scheme: dark)').matches)
+    ) {
         applyTheme('dark');
     } else {
         applyTheme('light');
@@ -56,7 +60,9 @@ onMounted(() => {
 
 <template>
     <div class="demo-theme-toggle">
-        <button @click="applyTheme(mode === 'light' ? 'dark' : 'light')">切换到 {{ mode === 'light' ? '暗色' : '明亮' }}</button>
+        <button @click="applyTheme(mode === 'light' ? 'dark' : 'light')">
+            切换到 {{ mode === 'light' ? '暗色' : '明亮' }}
+        </button>
         <p>当前主题：{{ mode }}</p>
     </div>
 </template>
