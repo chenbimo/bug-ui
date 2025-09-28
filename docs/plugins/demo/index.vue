@@ -95,7 +95,7 @@ function onCopy() {
                 </button>
             </div>
         </div>
-        <div v-show="$Data.showCode" class="vp-demo__code">
+        <div v-if="$Data.showCode" class="vp-demo__code">
             <pre><code><slot v-if="$Computed.fenceMode" />
 <template v-else>{{ $Computed.displayCode }}</template></code></pre>
         </div>
