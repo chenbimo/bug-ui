@@ -1,4 +1,4 @@
-/* Demo styles */
+/* Demo styles (nested BEM, 方案1) */
 .vp-demo {
     position: relative;
     margin: 20px 0 32px;
@@ -6,95 +6,106 @@
     border-radius: 8px;
     background: var(--vp-c-bg-soft);
     font-size: 14px;
+
+    &__preview {
+        /* 将 demo 卡片与内部组件的间距统一为 10px */
+        position: relative;
+    }
+
+    /* 浮动操作区域 */
+    &__float {
+        position: absolute;
+        top: 8px;
+        right: 10px;
+        display: flex;
+        gap: 6px;
+        opacity: 0;
+        transform: translateY(-4px);
+        transition: all 0.15s ease;
+        &--show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    &__icon {
+        appearance: none;
+        border: 1px solid var(--vp-c-divider, #d9d9da);
+        background: var(--vp-c-bg-alt);
+        color: var(--vp-c-text-2);
+        font: inherit;
+        padding: 2px 8px;
+        font-size: 12px;
+        line-height: 1.2;
+        border-radius: 4px;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        transition:
+            background 0.15s ease,
+            color 0.15s ease,
+            border-color 0.15s ease;
+        &:hover:not(:disabled) {
+            color: var(--vp-c-brand-1);
+            border-color: var(--vp-c-brand-1);
+        }
+        &:disabled {
+            opacity: 0.55;
+            cursor: default;
+        }
+    }
+
+    &__toolbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 6px 10px;
+        background: var(--vp-c-bg-alt);
+        font-family: var(--vp-font-family-mono);
+    }
+
+    &__info {
+        flex: 1;
+        min-width: 0;
+    }
+
+    &__title {
+        font-weight: 500;
+        color: var(--vp-c-text-1);
+    }
+
+    &__actions {
+        display: flex;
+        gap: 8px;
+    }
+
+    &__btn {
+        cursor: pointer;
+        padding: 2px 8px;
+        line-height: 1.4;
+        border-radius: 4px;
+        background: transparent;
+        border: 1px solid transparent;
+        font-size: 12px;
+        color: var(--vp-c-text-2);
+        &:hover {
+            color: var(--vp-c-brand-1);
+        }
+    }
+
+    &__code {
+        border-top: 1px solid var(--vp-c-divider, #e2e2e3);
+        padding: 10px;
+        pre {
+            margin: 0;
+            border-radius: 0 0 8px 8px;
+        }
+    }
 }
-.vp-demo__preview {
-    /* 将 demo 卡片与内部组件的间距统一为 10px */
-    position: relative;
-}
-/* 浮动操作区域 */
-.vp-demo__float {
-    position: absolute;
-    top: 8px;
-    right: 10px;
-    display: flex;
-    gap: 6px;
-    opacity: 0;
-    transform: translateY(-4px);
-    transition: all 0.15s ease;
-}
-.vp-demo__float--show {
-    opacity: 1;
-    transform: translateY(0);
-}
-.vp-demo__icon {
-    appearance: none;
-    border: 1px solid var(--vp-c-divider, #d9d9da);
-    background: var(--vp-c-bg-alt);
-    color: var(--vp-c-text-2);
-    font: inherit;
-    padding: 2px 8px;
-    font-size: 12px;
-    line-height: 1.2;
-    border-radius: 4px;
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    transition:
-        background 0.15s ease,
-        color 0.15s ease,
-        border-color 0.15s ease;
-}
-.vp-demo__icon:hover:not(:disabled) {
-    color: var(--vp-c-brand-1);
-    border-color: var(--vp-c-brand-1);
-}
-.vp-demo__icon:disabled {
-    opacity: 0.55;
-    cursor: default;
-}
-.vp-demo__toolbar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-    padding: 6px 10px;
-    background: var(--vp-c-bg-alt);
-    font-family: var(--vp-font-family-mono);
-}
-.vp-demo__info {
-    flex: 1;
-    min-width: 0;
-}
-.vp-demo__title {
-    font-weight: 500;
-    color: var(--vp-c-text-1);
-}
-.vp-demo__actions {
-    display: flex;
-    gap: 8px;
-}
-.vp-demo__btn {
-    cursor: pointer;
-    padding: 2px 8px;
-    line-height: 1.4;
-    border-radius: 4px;
-    background: transparent;
-    border: 1px solid transparent;
-    font-size: 12px;
-    color: var(--vp-c-text-2);
-}
-.vp-demo__btn:hover {
-    color: var(--vp-c-brand-1);
-}
-.vp-demo__code {
-    border-top: 1px solid var(--vp-c-divider, #e2e2e3);
-    padding: 10px;
-}
-.vp-demo__code pre {
-    margin: 0;
-    border-radius: 0 0 8px 8px;
-}
+
+/* 过渡类（保持原类名，不嵌套以免生成 .vp-demo .vp-demo-code-fade-*） */
 .vp-demo-code-fade-enter-active,
 .vp-demo-code-fade-leave-active {
     transition: all 0.15s ease;
@@ -105,6 +116,7 @@
     transform: translateY(-4px);
 }
 
+/* 空片段占位 */
 .vp-demo-fragment:empty {
     min-height: 20px;
     display: block;
