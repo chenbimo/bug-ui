@@ -1,0 +1,46 @@
+// maps.scss - 统一组件尺寸/结构类 SCSS map 定义
+// 仅存放纯数据 map，不包含样式输出逻辑；由 mixins 消费。
+
+$button-sizes: (
+    mini: (
+        h: 22px,
+        fs: 12px,
+        px: 8px
+    ),
+    small: (
+        h: 28px,
+        fs: 13px,
+        px: 12px
+    ),
+    medium: (
+        h: 32px,
+        fs: 14px,
+        px: 14px
+    ),
+    large: (
+        h: 40px,
+        fs: 15px,
+        px: 18px
+    ),
+    // legacy aliases (兼容旧命名，后续可移除)
+    xs: (
+            h: 22px,
+            fs: 12px,
+            px: 8px
+        ),
+    sm: (
+        h: 28px,
+        fs: 13px,
+        px: 12px
+    ),
+    md: (
+        h: 32px,
+        fs: 14px,
+        px: 14px
+    ),
+    lg: (
+        h: 40px,
+        fs: 15px,
+        px: 18px
+    )
+);

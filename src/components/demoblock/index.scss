@@ -1,0 +1,46 @@
+@use '../../styles/tools' as ui;
+
+.buig-demoblock {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 16px;
+    background: var(--ui-color-bg-elevated);
+    border: 1px solid var(--ui-color-border);
+    border-radius: var(--ui-radius-sm);
+    font-size: 14px;
+    line-height: 1.5;
+
+    &--compact {
+        padding: 8px 12px;
+        gap: 6px;
+    }
+    // &--bordered 目前与默认样式一致，保留修饰符类名用于未来扩展（无额外样式输出）
+
+    &__preview {
+        position: relative;
+    }
+    &__meta {
+        color: var(--ui-color-text-subtle, #666);
+    }
+    &__title {
+        font-weight: 600;
+        margin-bottom: 4px;
+    }
+    &__desc {
+        font-size: 13px;
+    }
+    &__code {
+        margin-top: 4px;
+        background: var(--ui-color-bg-code, #0f111a);
+        color: var(--ui-color-code-fg, #d3d6dd);
+        border-radius: var(--ui-radius-xs, 4px);
+        padding: 8px 10px;
+        font-family:
+            ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono',
+            monospace;
+        font-size: 12px;
+        overflow: auto;
+    }
+}

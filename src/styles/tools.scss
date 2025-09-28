@@ -1,0 +1,6 @@
+// tools.scss - 对外聚合入口，向组件提供 mixins/functions/maps
+// 通过 @forward 暴露，组件侧仅需 @use '.../styles/tools' as <ns>
+
+@forward './_functions.scss';
+@forward './_mixins.scss';
+@forward './maps.scss';

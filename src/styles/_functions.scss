@@ -1,4 +1,64 @@
-// 全局 SCSS 函数占位（后续按需扩展）
+// ============================================================================
+// Global SCSS Utility Functions
+// 说明：此处仅放纯函数（无副作用），供组件与样式层调用。
+// 命名规范：统一使用小写中划线；语义明确避免缩写；与 CSS 变量体系配合。
+// ============================================================================
+
+// px(value) : 语义化包装，将数字转为 px（若已带单位则直返）。
 @function px($value) {
-    @return $value * 1px;
+    @if type-of($value) == 'number' and unit($value) == '' {
+        @return $value * 1px;
+    }
+    @return $value;
 }
+
+// rem(value, base=16px) : 将纯数字或 px 换算为 rem；传入已带 rem 直接返回。
+@function rem($value, $base: 16px) {
+    @if type-of($value) != 'number' {
+        @return $value;
+    }
+    @if unit($value) == 'rem' {
+        @return $value;
+    }
+    @if unit($value) == 'px' or unit($value) == '' {
+        $pxValue: if(unit($value) == 'px', $value, $value * 1px);
+        @return ($pxValue / $base) * 1rem;
+    }
+    @return $value; // 其他单位不转换
+}
+
+// css-var(name, fallback:null) : 生成标准 var(--xxx, fallback) 字符串。
+// 使用方式：color: css-var('ui-color-primary', #409eff);
+@function css-var($name, $fallback: null) {
+    @if $fallback == null {
+        @return unquote('var(--#{$name})');
+    }
+    @return unquote('var(--#{$name}, #{$fallback})');
+}
+
+// strip-unit(number) : 去除单位返回纯数值；非 number 原样返回。
+@function strip-unit($value) {
+    @if type-of($value) == 'number' {
+        @return $value / (1 * (if(unit($value) == '', 1, $value)));
+    }
+    @return $value;
+}
+
+// clamp-size(min, pref, max) : 生成 clamp()，输入可为数字或带单位。
+@function clamp-size($min, $pref, $max) {
+    @return clamp(#{$min}, #{$pref}, #{$max});
+}
+
+// tone(color, amount, mode='lighten') : 包装 lighten/darken，保持接口统一。
+// amount: 0%~100%
+@function tone($color, $amount, $mode: 'lighten') {
+    @if ($mode == 'lighten') {
+        @return lighten($color, $amount);
+    }
+    @if ($mode == 'darken') {
+        @return darken($color, $amount);
+    }
+    @error 'tone(): mode 仅支持 lighten / darken';
+}
+
+// future: color-mix 包装 / contrast 计算等

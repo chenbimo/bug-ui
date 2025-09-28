@@ -1,49 +1,6 @@
-// Button SCSS (BEM + nested + size map)
-// 引入样式工具（命名空间化避免污染全局符号）
-@use '../../styles/mixins' as mix;
-$buig-button-sizes: (
-    mini: (
-        h: 22px,
-        fs: 12px,
-        px: 8px
-    ),
-    small: (
-        h: 28px,
-        fs: 13px,
-        px: 12px
-    ),
-    medium: (
-        h: 32px,
-        fs: 14px,
-        px: 14px
-    ),
-    large: (
-        h: 40px,
-        fs: 15px,
-        px: 18px
-    ),
-    // legacy aliases (to be removed)
-    xs: (
-            h: 22px,
-            fs: 12px,
-            px: 8px
-        ),
-    sm: (
-        h: 28px,
-        fs: 13px,
-        px: 12px
-    ),
-    md: (
-        h: 32px,
-        fs: 14px,
-        px: 14px
-    ),
-    lg: (
-        h: 40px,
-        fs: 15px,
-        px: 18px
-    )
-);
+// Button SCSS (BEM + nested)
+// 引入集中工具（函数 / 混入 / map 数据）
+@use '../../styles/tools' as ui;
 
 .buig-button {
     display: inline-flex;
@@ -69,7 +26,7 @@ $buig-button-sizes: (
     &--type-primary {
         background: var(--ui-color-primary);
         color: var(--ui-color-primary-foreground, #fff);
-        @include mix.button-interactive-bg(
+        @include ui.button-interactive-bg(
             var(--ui-color-primary-hover, var(--ui-color-primary)),
             var(--ui-color-primary-active, var(--ui-color-primary))
         );
@@ -91,7 +48,7 @@ $buig-button-sizes: (
         background: var(--ui-color-bg-elevated);
         color: var(--ui-color-text);
         border-color: var(--ui-color-border);
-        @include mix.button-interactive-bg(
+        @include ui.button-interactive-bg(
             var(--ui-color-bg-hover, var(--ui-color-bg-elevated)),
             var(--ui-color-bg-active, var(--ui-color-bg-elevated))
         );
@@ -105,7 +62,7 @@ $buig-button-sizes: (
         background: transparent;
         color: var(--ui-color-text);
         border-color: var(--ui-color-border-strong, var(--ui-color-primary));
-        @include mix.button-interactive-bg(
+        @include ui.button-interactive-bg(
             var(--ui-color-bg-hover, rgba(0, 0, 0, 0.04))
         );
     }
@@ -113,7 +70,7 @@ $buig-button-sizes: (
         background: transparent;
         border-color: transparent;
         color: var(--ui-color-primary);
-        @include mix.button-interactive-bg(
+        @include ui.button-interactive-bg(
             var(--ui-color-bg-hover, rgba(0, 0, 0, 0.05))
         );
     }
@@ -130,7 +87,7 @@ $buig-button-sizes: (
     }
 
     // Sizes (generated via mixin; also handles only-icon & circle width)
-    @include mix.button-generate-sizes($buig-button-sizes, '.buig-button');
+    @include ui.button-generate-sizes(ui.$button-sizes, '.buig-button');
 
     // Long
     &--long {
