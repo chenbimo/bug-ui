@@ -19,8 +19,7 @@ const $Slots = useSlots();
 
 const $Data = {
     showCode: ref($Prop.defaultExpand ?? false),
-    copied: ref(false),
-    hovering: ref(false)
+    copied: ref(false)
 };
 
 // fence 模式判断：插件注入时会同时提供 raw 与 code；手写模式一般只提供 code
@@ -78,40 +77,9 @@ function onCopy() {
             'vp-demo--no-code': !$Computed.hasCode,
             'is-open': $Data.showCode
         }"
-        @mouseenter="$Data.hovering = true"
-        @mouseleave="$Data.hovering = false"
     >
-        <div class="vp-demo__preview">
-            <component v-if="$Computed.fenceMode" :is="Comp" />
-            <slot v-else />
-            <div
-                v-if="$Computed.hasCode"
-                class="vp-demo__float"
-                :class="{
-                    'vp-demo__float--show': $Data.hovering || $Data.showCode
-                }"
-            >
-                <button
-                    type="button"
-                    class="vp-demo__icon"
-                    @click="onToggle"
-                    :title="$Data.showCode ? '隐藏代码' : '查看源码'"
-                >
-                    <!-- <span v-if="!$Data.showCode">&lt;/&gt;</span>
-                    <span v-else>×</span> -->
-                </button>
-                <button
-                    type="button"
-                    class="vp-demo__icon"
-                    @click="onCopy"
-                    :disabled="$Data.copied"
-                    :title="$Data.copied ? '已复制' : '复制代码'"
-                >
-                    <!-- <span v-if="!$Data.copied">复制</span>
-                    <span v-else>✔</span> -->
-                </button>
-            </div>
-        </div>
+        <component v-if="$Computed.fenceMode" :is="Comp" />
+        <slot v-else />
         <div v-if="$Computed.hasCode" class="vp-demo__toolbar">
             <div class="vp-demo__info">
                 <span class="vp-demo__title" v-if="$Prop.title">{{
@@ -135,3 +103,80 @@ function onCopy() {
         </transition>
     </div>
 </template>
+<style lang="scss" scoped>
+/* Demo styles (nested BEM, 方案1) */
+.vp-demo {
+    position: relative;
+    margin: 20px 0 32px;
+    border: 1px solid var(--vp-c-divider, #e2e2e3);
+    border-radius: 8px;
+    background: var(--vp-c-bg-soft);
+    font-size: 14px;
+    /* 预览包装与浮动操作区已在方案6中移除 */
+
+    &__toolbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 6px 10px;
+        background: var(--vp-c-bg-alt);
+        font-family: var(--vp-font-family-mono);
+    }
+
+    &__info {
+        flex: 1;
+        min-width: 0;
+    }
+
+    &__title {
+        font-weight: 500;
+        color: var(--vp-c-text-1);
+    }
+
+    &__actions {
+        display: flex;
+        gap: 8px;
+    }
+
+    &__btn {
+        cursor: pointer;
+        padding: 2px 8px;
+        line-height: 1.4;
+        border-radius: 4px;
+        background: transparent;
+        border: 1px solid transparent;
+        font-size: 12px;
+        color: var(--vp-c-text-2);
+        &:hover {
+            color: var(--vp-c-brand-1);
+        }
+    }
+
+    &__code {
+        border-top: 1px solid var(--vp-c-divider, #e2e2e3);
+        padding: 10px;
+        pre {
+            margin: 0;
+            border-radius: 0 0 8px 8px;
+        }
+    }
+}
+
+/* 过渡类（保持原类名，不嵌套以免生成 .vp-demo .vp-demo-code-fade-*） */
+.vp-demo-code-fade-enter-active,
+.vp-demo-code-fade-leave-active {
+    transition: all 0.15s ease;
+}
+.vp-demo-code-fade-enter-from,
+.vp-demo-code-fade-leave-to {
+    opacity: 0;
+    transform: translateY(-4px);
+}
+
+/* 空片段占位 */
+.vp-demo-fragment:empty {
+    min-height: 20px;
+    display: block;
+}
+</style>
