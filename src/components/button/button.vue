@@ -186,7 +186,27 @@ defineExpose<ButtonExpose>({});
         border-radius: 50%;
         animation: buig-btn-spin 0.6s linear infinite;
     }
+
+    /* 尺寸修饰符（合并自原 index.scss） */
+    &--size-mini {
+        min-height: var(--buig-control-height-xs);
+        font-size: var(--buig-control-font-size-xs);
+        padding: 0 var(--buig-control-padding-x-xs);
+    }
+    &--size-small {
+        min-height: var(--buig-control-height-sm);
+        font-size: var(--buig-control-font-size-sm);
+        padding: 0 var(--buig-control-padding-x-sm);
+    }
+    &--size-large {
+        min-height: var(--buig-control-height-lg);
+        font-size: var(--buig-control-font-size-lg);
+        padding: 0 var(--buig-control-padding-x-lg);
+    }
 }
+
+/* group 占位（从 index.scss 合并） */
+.buig-button-group { --_btn-group-placeholder: 0; }
 
 @keyframes buig-btn-spin {
     to {
