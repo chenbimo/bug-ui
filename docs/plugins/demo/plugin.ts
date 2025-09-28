@@ -34,7 +34,7 @@ export function createDemoPreviewPlugin(options: Options = {}) {
                 const raw = token.content;
                 const escaped = escapeHtml(raw);
                 const origin = defaultFence(tokens, idx, ...args);
-                return `<DemoPreview code="${escaped}" raw="${escaped}" lang="${info.lang}" meta="${escapeHtml(info.meta)}">${origin}</DemoPreview>`;
+                return `<Demo code="${escaped}" raw="${escaped}" lang="${info.lang}" meta="${escapeHtml(info.meta)}">${origin}</Demo>`;
             }
             return defaultFence(tokens, idx, ...args);
         };

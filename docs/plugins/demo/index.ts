@@ -1,9 +1,9 @@
 import type { App } from 'vue';
-import DemoPreview from './index.vue';
+import Demo from './index.vue';
 import './style.scss';
 
 export function registerDemo(app: App) {
-    app.component('DemoPreview', DemoPreview);
+    app.component('Demo', Demo);
 }
 
 export { createDemoPreviewPlugin } from './plugin';
