@@ -9,7 +9,7 @@
 
 ### 基础使用
 
-<Demo title="基础类型" :code="`<BuigButton type='primary'>主要按钮</BuigButton>`">
+<Demo title="基础类型">
 <BuigButton type="primary">Primary</BuigButton>
 <BuigButton type="secondary">Secondary</BuigButton>
 <BuigButton type="outline">Outline</BuigButton>
@@ -18,7 +18,7 @@
 
 ### 默认按钮
 
-<Demo title="默认风格 (secondary)" :code="`<BuigButton>默认按钮</BuigButton>`">
+<Demo title="默认风格 (secondary)">
 <BuigButton>默认按钮</BuigButton>
 </Demo>
 

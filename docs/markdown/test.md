@@ -1,5 +1,5 @@
 # Test DemoBlock
 
-<Demo title="简单演示" :code="`<div>hello</div>`">
+<Demo title="简单演示">
 <div>hello</div>
 </Demo>
