@@ -95,12 +95,10 @@ function onCopy() {
                 </button>
             </div>
         </div>
-        <transition name="vp-demo-code-fade">
-            <div v-show="$Data.showCode" class="vp-demo__code">
-                <pre><code><slot v-if="$Computed.fenceMode" />
+        <div v-show="$Data.showCode" class="vp-demo__code">
+            <pre><code><slot v-if="$Computed.fenceMode" />
 <template v-else>{{ $Computed.displayCode }}</template></code></pre>
-            </div>
-        </transition>
+        </div>
     </div>
 </template>
 <style lang="scss" scoped>
@@ -161,17 +159,6 @@ function onCopy() {
             border-radius: 0 0 8px 8px;
         }
     }
-}
-
-/* 过渡类（保持原类名，不嵌套以免生成 .vp-demo .vp-demo-code-fade-*） */
-.vp-demo-code-fade-enter-active,
-.vp-demo-code-fade-leave-active {
-    transition: all 0.15s ease;
-}
-.vp-demo-code-fade-enter-from,
-.vp-demo-code-fade-leave-to {
-    opacity: 0;
-    transform: translateY(-4px);
 }
 
 /* 空片段占位 */
