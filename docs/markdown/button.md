@@ -5,18 +5,21 @@
 ## 基础用法
 
 <DemoBlock
-    title="基础按钮类型"
-    :code="[
-        `<BuigButton buttonType='primary'>主要按钮</BuigButton>`,
-        `<BuigButton buttonType='secondary'>次级按钮</BuigButton>`,
-        `<BuigButton buttonType='outline'>描边按钮</BuigButton>`,
-        `<BuigButton buttonType='text'>文字按钮</BuigButton>`
-    ].join('\\n')"
+title="基础按钮类型"
+:code="[
+`<BuigButton buttonType='primary'>主要按钮</BuigButton>`,
+`<BuigButton buttonType='secondary'>次级按钮</BuigButton>`,
+`<BuigButton buttonType='outline'>描边按钮</BuigButton>`,
+`<BuigButton buttonType='text'>文字按钮</BuigButton>`
+].join('\\n')"
+
 >
+
     <BuigButton buttonType="primary">主要按钮</BuigButton>
     <BuigButton buttonType="secondary">次级按钮</BuigButton>
     <BuigButton buttonType="outline">描边按钮</BuigButton>
     <BuigButton buttonType="text">文字按钮</BuigButton>
+
 </DemoBlock>
 
 ## 状态 (status)
@@ -31,20 +34,19 @@
         `<BuigButton buttonType='primary' status='danger'>危险</BuigButton>`
     ].join('\\n')"
     ><BuigButton buttonType="primary" status="success">成功</BuigButton>
-    <BuigButton buttonType="primary" status="warning">警告</BuigButton>
-    <BuigButton buttonType="primary" status="danger">危险</BuigButton>
+<BuigButton buttonType="primary" status="warning">警告</BuigButton>
+<BuigButton buttonType="primary" status="danger">危险</BuigButton>
 </DemoBlock>
 
 ## 形状 (shape)
 
 <DemoBlock
-    title="形状"
-    :code="[
-        `<BuigButton shape='round' buttonType='primary'>圆角</BuigButton>`,
-        `<BuigButton shape='circle' buttonType='primary' :icon=\"SomeIcon\" />`
-    ].join('\\n')"
-    ><BuigButton shape="round" buttonType="primary">圆角</BuigButton>
-    <BuigButton shape="circle" buttonType="primary" icon="..." />
+title="形状"
+:code="[
+`<BuigButton shape='round' buttonType='primary'>圆角</BuigButton>`,
+`<BuigButton shape='circle' buttonType='primary' :icon=\"SomeIcon\" />`
+].join('\\n')" ><BuigButton shape="round" buttonType="primary">圆角</BuigButton>
+<BuigButton shape="circle" buttonType="primary" icon="..." />
 </DemoBlock>
 
 ## 尺寸 (size)
@@ -60,9 +62,9 @@
         `<BuigButton size='large'>Large</BuigButton>`
     ].join('\\n')"
     ><BuigButton size="mini">Mini</BuigButton>
-    <BuigButton size="small">Small</BuigButton>
-    <BuigButton size="medium">Medium</BuigButton>
-    <BuigButton size="large">Large</BuigButton>
+<BuigButton size="small">Small</BuigButton>
+<BuigButton size="medium">Medium</BuigButton>
+<BuigButton size="large">Large</BuigButton>
 </DemoBlock>
 
 ## 链接模式
@@ -84,9 +86,8 @@
 loadingDelay 可避免闪烁：
 
 <DemoBlock
-    title="Loading 延迟"
-    :code="`<BuigButton :loading=\"loading\" :loading-delay=\"300\">提交中</BuigButton>`"
-    ><BuigButton :loading="loading" :loading-delay="300">提交中</BuigButton>
+title="Loading 延迟"
+:code="`<BuigButton :loading=\"loading\" :loading-delay=\"300\">提交中</BuigButton>`" ><BuigButton :loading="loading" :loading-delay="300">提交中</BuigButton>
 </DemoBlock>
 
 ## 占满宽度
@@ -111,10 +112,10 @@ loadingDelay 可避免闪烁：
         `</BuigButton>`
     ].join('\\n')"
     ><BuigButton :icon="SomeIconComponent" />
-    <BuigButton>
-        <template #icon><SomeIconComponent /></template>
-        图标按钮
-    </BuigButton>
+<BuigButton>
+<template #icon><SomeIconComponent /></template>
+图标按钮
+</BuigButton>
 </DemoBlock>
 
 ## Props
