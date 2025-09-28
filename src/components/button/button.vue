@@ -1,12 +1,13 @@
 <template>
-    <button
+    <div
         class="buig-button"
         :class="`buig-button--${$Computed.type}`"
-        type="button"
         @click="$Emit('click', $event)"
+        role="button"
+        tabindex="0"
     >
         <slot />
-    </button>
+    </div>
 </template>
 
 <script setup lang="ts">
