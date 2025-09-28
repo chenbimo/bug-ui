@@ -206,7 +206,9 @@ defineExpose<ButtonExpose>({});
 }
 
 /* group 占位（从 index.scss 合并） */
-.buig-button-group { --_btn-group-placeholder: 0; }
+.buig-button-group {
+    --_btn-group-placeholder: 0;
+}
 
 @keyframes buig-btn-spin {
     to {
