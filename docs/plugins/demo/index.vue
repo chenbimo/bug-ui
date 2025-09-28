@@ -22,15 +22,17 @@ const $Data = {
     copied: ref(false)
 };
 
+// fence 模式判断：插件注入时会同时提供 raw 与 code；手写模式一般只提供 code
 const $Computed = {
-    fenceMode: computed(() => !!$Prop.raw && !!$Prop.code),
-    displayCode: computed(() => $Prop.raw || $Prop.code || ''),
-    hasCode: computed(() => !!$Computed.displayCode.value)
+    fenceMode: computed(() => !!$Prop.raw),
+    displayCode: computed(() => ($Prop.raw || $Prop.code || '').trim()),
+    hasCode: computed(() => $Computed.displayCode.value.length > 0)
 };
 
 const Comp = ref<any>(null);
 watchEffect(() => {
-    if (!$Computed.fenceMode.value && !$Slots.default) {
+    // fence 模式编译 code -> 预览；非 fence 模式直接使用 slot
+    if (!$Computed.fenceMode.value) {
         Comp.value = null;
         return;
     }
