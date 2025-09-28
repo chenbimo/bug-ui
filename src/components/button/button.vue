@@ -1,11 +1,5 @@
 <template>
-    <div
-        class="buig-button"
-        :class="`buig-button--${$Computed.type.value}`"
-        @click="$Emit('click', $event)"
-        role="button"
-        tabindex="0"
-    >
+    <div class="buig-button" :class="`buig-button--${$Computed.type.value}`" @click="$Emit('click', $event)" role="button" tabindex="0">
         <slot />
     </div>
 </template>
@@ -70,10 +64,7 @@ const $Computed = {
     }
     &--outline {
         background: transparent;
-        border-color: var(
-            --buig-color-border-strong,
-            var(--buig-color-primary, #2563eb)
-        );
+        border-color: var(--buig-color-border-strong, var(--buig-color-primary, #2563eb));
         color: var(--buig-color-text, #222);
         &:hover {
             background: rgba(0, 0, 0, 0.03);
@@ -96,8 +87,7 @@ const $Computed = {
 
     &:focus-visible {
         outline: none;
-        box-shadow: 0 0 0 3px
-            var(--buig-color-focus-ring, rgba(64, 140, 255, 0.35));
+        box-shadow: 0 0 0 3px var(--buig-color-focus-ring, rgba(64, 140, 255, 0.35));
     }
 }
 </style>

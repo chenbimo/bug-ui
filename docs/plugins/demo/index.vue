@@ -11,9 +11,7 @@
         </div>
         <div v-if="$Computed.hasCode" class="vp-demo__toolbar">
             <div class="vp-demo__info">
-                <span class="vp-demo__title" v-if="$Prop.title">{{
-                    $Prop.title
-                }}</span>
+                <span class="vp-demo__title" v-if="$Prop.title">{{ $Prop.title }}</span>
             </div>
             <div class="vp-demo__actions">
                 <button class="vp-demo__btn" @click="$Method.onToggle()">
