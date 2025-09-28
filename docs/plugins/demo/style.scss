@@ -8,7 +8,7 @@
     font-size: 14px;
 }
 .vp-demo__preview {
-    padding: 20px 20px 16px; /* 增加上下左右空间 */
+    /* 将 demo 卡片与内部组件的间距统一为 10px */
     position: relative;
 }
 /* 浮动操作区域 */
@@ -60,7 +60,6 @@
     gap: 12px;
     padding: 6px 10px;
     background: var(--vp-c-bg-alt);
-    border-top: 1px solid var(--vp-c-divider, #e2e2e3);
     font-family: var(--vp-font-family-mono);
 }
 .vp-demo__info {
@@ -90,6 +89,7 @@
 }
 .vp-demo__code {
     border-top: 1px solid var(--vp-c-divider, #e2e2e3);
+    padding: 10px;
 }
 .vp-demo__code pre {
     margin: 0;

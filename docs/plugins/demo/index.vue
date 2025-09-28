@@ -97,8 +97,8 @@ function onCopy() {
                     @click="onToggle"
                     :title="$Data.showCode ? '隐藏代码' : '查看源码'"
                 >
-                    <span v-if="!$Data.showCode">&lt;/&gt;</span>
-                    <span v-else>×</span>
+                    <!-- <span v-if="!$Data.showCode">&lt;/&gt;</span>
+                    <span v-else>×</span> -->
                 </button>
                 <button
                     type="button"
@@ -107,8 +107,8 @@ function onCopy() {
                     :disabled="$Data.copied"
                     :title="$Data.copied ? '已复制' : '复制代码'"
                 >
-                    <span v-if="!$Data.copied">复制</span>
-                    <span v-else>✔</span>
+                    <!-- <span v-if="!$Data.copied">复制</span>
+                    <span v-else>✔</span> -->
                 </button>
             </div>
         </div>
