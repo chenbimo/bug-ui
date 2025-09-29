@@ -5,12 +5,12 @@
 ## 基础类型
 
 <Demo title="基础类型">
-<BuigSpace>
-    <BuigButton type="secondary">Secondary</BuigButton>
-    <BuigButton type="primary">Primary</BuigButton>
-    <BuigButton type="dashed">Dashed</BuigButton>
-    <BuigButton type="outline">Outline</BuigButton>
-    <BuigButton type="text">Text</BuigButton>
+    <BuigSpace>
+        <BuigButton type="secondary">Secondary</BuigButton>
+        <BuigButton type="primary">Primary</BuigButton>
+        <BuigButton type="dashed">Dashed</BuigButton>
+        <BuigButton type="outline">Outline</BuigButton>
+        <BuigButton type="text">Text</BuigButton>
     </BuigSpace>
 </Demo>
 

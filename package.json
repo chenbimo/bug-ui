@@ -30,9 +30,9 @@
     "scripts": {
         "build": "vite build",
         "dev": "vite",
-        "docs:dev": "vitepress dev docs",
-        "docs:build": "vitepress build docs",
-        "docs:preview": "vitepress preview docs",
+        "docs:dev": "bunx vitepress dev docs",
+        "docs:build": "bunx vitepress build docs",
+        "docs:preview": "bunx vitepress preview docs",
         "gen:variables": "bun scripts/genVariables.ts",
         "doc:append-vars": "bun scripts/appendVariablesSection.ts",
         "gen:tokens": "bun scripts/genTokens.ts",
