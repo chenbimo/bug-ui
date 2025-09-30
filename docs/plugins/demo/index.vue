@@ -63,11 +63,18 @@ function decodeMaybe(value?: string) {
 
 const $Computed = {
     displayCode: computed(() => {
-        // 优先使用明文 code，其次使用编码 codeEnc
-        const plain = $Prop.code?.trim();
-        if (plain) return plain;
-        const decoded = decodeMaybe($Prop.codeEnc)?.trim();
-        return decoded;
+        // 仅接受 string；否则视为无代码（防止意外传入函数 / 对象被 toString 输出）
+        const rawCode = $Prop.code;
+        if (typeof rawCode === 'string') {
+            const trimmed = rawCode.trim();
+            if (trimmed) return trimmed;
+        }
+        const rawEnc = $Prop.codeEnc;
+        if (typeof rawEnc === 'string') {
+            const decoded = decodeMaybe(rawEnc);
+            if (typeof decoded === 'string') return decoded.trim();
+        }
+        return '';
     }),
     hasCode: computed(() => $Computed.displayCode.value.length > 0)
 };
@@ -79,7 +86,8 @@ const $Method = {
     },
     onCopy() {
         if (!$Computed.hasCode.value || $Data.copied) return;
-        navigator.clipboard.writeText($Computed.displayCode.value).then(() => {
+        const text = $Computed.displayCode.value;
+        navigator.clipboard.writeText(text).then(() => {
             $Data.copied = true;
             setTimeout(() => ($Data.copied = false), 1400);
         });

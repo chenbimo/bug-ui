@@ -53,8 +53,7 @@ export function createDemoPreviewPlugin(options: Options = {}) {
                 if (t.type !== 'html_block' && t.type !== 'html_inline')
                     continue;
                 if (!/<Demo(\s+[^>]*)?>/i.test(t.content)) continue;
-                // 已有 code / :code / code-enc 属性则跳过
-                if (/\s(?:code|:code|code-enc)=/i.test(t.content)) continue;
+                // 总是刷新（防止旧的 code / code-enc 残留导致展示异常）
 
                 // 检测是否同 token 即闭合
                 const selfCloseMatch = t.content.match(
@@ -103,9 +102,16 @@ export function createDemoPreviewPlugin(options: Options = {}) {
                 innerRaw = innerRaw.trimEnd();
                 try {
                     const encoded = encodeURIComponent(innerRaw);
+                    const metaDebug = ` data-demo-range="${openLine + 1}-${closeLine - 1}"`;
+                    // 调试：记录注入内容（前 80 字符）
+                    if (typeof console !== 'undefined') {
+                        const preview = innerRaw.replace(/\n/g, '\\n').slice(0, 80);
+                        // @ts-ignore
+                        console.info('[demo_auto_code] inject', `${openLine + 1}-${closeLine - 1}`, preview);
+                    }
                     t.content = t.content.replace(
                         /<Demo([^>]*)>/i,
-                        (m, g1) => `<Demo${g1} code-enc="${encoded}">`
+                        (m, g1) => `<Demo${g1}${metaDebug} code-enc="${encoded}">`
                     );
                 } catch (e) {
                     // 编码失败则忽略（极少发生）
